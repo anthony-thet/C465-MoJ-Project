@@ -1,11 +1,11 @@
 #### ICEX_MJ01: Founding the Ministry
-* **Date:** YYYY-MM-DD
-* **Team Members Present:** `@user1`, `@user2`, `@user3`, `@user4`
+* **Date:** 2026-03-03
+* **Team Members Present:** `@coolds`, `@lsiverts`, `@maklsmit`, `@amatariy`, `@kthet`
 * **Roles:**
-    * Repo Admin: `@userX`
-    * Process Lead: `@userY`
-    * Dev Lead: `@userZ`
-    * QA Sentinel: `@userW`
+    * Repo Admin: `@kthet`
+    * Process Lead: `@coolds`
+    * Dev Lead: `@amatriy`, 
+    * QA Sentinel: `@`
 * **Summary of Work:** Established the MoJ Flask skeleton with GET /jokes and POST /jokes
   routes, wrote the first pytest test using GIVEN/WHEN/THEN format, and set up the
   Engineering Log repos for all team members.
