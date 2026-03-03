@@ -4,8 +4,8 @@
 * **Roles:**
     * Repo Admin: `@kthet`
     * Process Lead: `@coolds`
-    * Dev Lead: `@amatriy`, 
-    * QA Sentinel: `@`
+    * Dev Lead: `@amatriy`, `@maklsmit`
+    * QA Sentinel: `@lsiverts`
 * **Summary of Work:** Established the MoJ Flask skeleton with GET /jokes and POST /jokes
   routes, wrote the first pytest test using GIVEN/WHEN/THEN format, and set up the
   Engineering Log repos for all team members.
