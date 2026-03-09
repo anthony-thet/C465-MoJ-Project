@@ -19,13 +19,13 @@ jobs:
 
       - name: Create Virtual Environment
         run: |
-          python -m venv .venv
-          .\.venv\Scripts\python.exe -m pip install --upgrade pip
+          python3 -m venv .venv
+          ./.venv/bin/pip install --upgrade pip
 
       - name: Install dependencies
         run: |
-          .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+          ./.venv/bin/pip install -r requirements.txt
 
       - name: Run tests
         run: |
-          .\.venv\Scripts\python.exe -m pytest tests/ -v --tb=short
+          ./.venv/bin/python -m pytest tests/ -v --tb=short
