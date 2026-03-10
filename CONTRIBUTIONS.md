@@ -57,12 +57,12 @@
   before the tests can run against it.
 ---
 # ICEX_MJ03: The Official Ledgers
-* **Date:** YYYY-MM-DD
-* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Date:** 2026-03-10
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, , `@amatariy`, `@coolds`
 * **Roles:**
     * Repo Admin: `@coolds`
     * Process Lead: `@lsiverts`
-    * Dev Lead: `@maklsmit`, `@kthet`
+    * Dev Lead: `@maklsmit`, 
     * QA Sentinel: `@amatariy`
 * **Summary of Work:** Defined User and Joke SQLAlchemy models, wired the App Factory
   pattern with Flask-Migrate, initialized the database, and documented schema decisions
