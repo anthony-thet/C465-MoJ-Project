@@ -18,7 +18,6 @@ jobs:
           python-version: "3.12"
 
       - name: Set Virtual Environment Path
-        shell: bash
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
             echo "VENV_BIN=.venv/Scripts" >> $GITHUB_ENV
