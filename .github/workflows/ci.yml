@@ -9,8 +9,13 @@ on:
 jobs:
   test:
     runs-on: self-hosted
+    defaults:
+      run:
+        shell: bash
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out code
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -19,11 +24,17 @@ jobs:
 
       - name: Create Virtual Environment
         run: |
-          python3 -m venv .venv
-          ./.venv/bin/pip install --upgrade pip
+          python -m venv .venv
+          # The '*' matches 'bin' on Mac and 'Scripts' on Windows
+          source .venv/*/activate
+          python -m pip install --upgrade pip
+
       - name: Install dependencies
         run: |
-          ./.venv/bin/pip install -r requirements.txt
+          source .venv/*/activate
+          pip install -r requirements.txt
+
       - name: Run tests
         run: |
-          ./.venv/bin/python -m pytest tests/ -v --tb=short
+          source .venv/*/activate
+          python -m pytest tests/ -v --tb=short
