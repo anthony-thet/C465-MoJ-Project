@@ -1,3 +1,27 @@
+# ICEX_MJ01: Founding the Ministry
+* **Date:** 2026-03-03
+* **Team Members Present:** `@coolds`, `@lsiverts`, `@maklsmit`, `@amatariy`, `@kthet`
+* **Roles:**
+    * Repo Admin: `@kthet`
+    * Process Lead: `@coolds`
+    * Dev Lead: `@amatriy`, `@maklsmit`
+    * QA Sentinel: `@lsiverts`
+* **Summary of Work:** Established the MoJ Flask skeleton with GET /jokes and POST /jokes
+  routes, wrote the first pytest test using GIVEN/WHEN/THEN format, and set up the
+  Engineering Log repos for all team members.
+
+* **Planted Problem:**
+    * **What was the problem?**
+       * Running pytest gave ModuleNotFoundError: No module named 'app', which meant pytest could not find the app package.
+    * **How did the team identify it?**
+       * Ran pytest tests/ -v and observed the import error on the first test.
+    * **How was it resolved?**
+       * Created an empty conftest.py in the root directory, which tells pytest to treat the root as the base directory, making the app module importable.
+
+* **Forward hook:** Next session (ICEX_MJ02), your team's runners will have different
+  operating systems. Before class, make sure every team member's self-hosted runner
+  is installed and shows as **Idle** in the repo's runner list.
+---
 # ICEX_MJ02: The Silliness Detector
 * **Date:** 2026-03-05
 * **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
@@ -31,28 +55,30 @@
   (ICEX_MJ03), your data moves out of a Python list and into a real database.
   Think about what your CI pipeline will need to know about the database
   before the tests can run against it.
-
-
-#### ICEX_MJ01: Founding the Ministry
-* **Date:** 2026-03-03
-* **Team Members Present:** `@coolds`, `@lsiverts`, `@maklsmit`, `@amatariy`, `@kthet`
+---
+# ICEX_MJ03: The Official Ledgers
+* **Date:** YYYY-MM-DD
+* **Team Members Present:** `@user1`, `@user2`, `@user3`, `@user4`
 * **Roles:**
-    * Repo Admin: `@kthet`
-    * Process Lead: `@coolds`
-    * Dev Lead: `@amatriy`, `@maklsmit`
-    * QA Sentinel: `@lsiverts`
-* **Summary of Work:** Established the MoJ Flask skeleton with GET /jokes and POST /jokes
-  routes, wrote the first pytest test using GIVEN/WHEN/THEN format, and set up the
-  Engineering Log repos for all team members.
+    * Repo Admin: `@userX`
+    * Process Lead: `@userY`
+    * Dev Lead: `@userZ`
+    * QA Sentinel: `@userW`
+* **Summary of Work:** Defined User and Joke SQLAlchemy models, wired the App Factory
+  pattern with Flask-Migrate, initialized the database, and documented schema decisions
+  including deliberate data capture choices for v1.
 
-* **Planted Problem:**
-    * **What was the problem?**
-       * Running pytest gave ModuleNotFoundError: No module named 'app', which meant pytest could not find the app package.
-    * **How did the team identify it?**
-       * Ran pytest tests/ -v and observed the import error on the first test.
-    * **How was it resolved?**
-       * Created an empty conftest.py in the root directory, which tells pytest to treat the root as the base directory, making the app module importable.
+## Planted Problem
+* **What was the problem?**
+  [Describe the symptom — e.g., "clean import, runtime error on first DB call"]
+* **How did the team identify it?**
+  [Describe the diagnosis steps — commands run, output observed, hypothesis tested]
+* **How was it resolved?**
+  [The fix, the commit reference, or — if unresolved — the next step]
 
-* **Forward hook:** Next session (ICEX_MJ02), your team's runners will have different
-  operating systems. Before class, make sure every team member's self-hosted runner
-  is installed and shows as **Idle** in the repo's runner list.
+## Forward Hook
+Your schema is the foundation every future ICEX builds on. Next week (ICEX_MJ04),
+you will write tests that verify this schema behaves correctly under valid input,
+boundary conditions, and invalid input — at all three levels of the test taxonomy.
+The decisions you documented today in `docs/schema.md` are the behaviors you will
+be testing tomorrow.
