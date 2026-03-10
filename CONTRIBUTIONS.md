@@ -1,4 +1,4 @@
-# ICEX_MJ02: The Silliness Detector
+#### ICEX_MJ02: The Silliness Detector
 * **Date:** 2026-03-05
 * **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
 * **Roles:**
