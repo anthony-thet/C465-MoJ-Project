@@ -32,7 +32,7 @@
   Think about what your CI pipeline will need to know about the database
   before the tests can run against it.
 
-
+---
 #### ICEX_MJ01: Founding the Ministry
 * **Date:** 2026-03-03
 * **Team Members Present:** `@coolds`, `@lsiverts`, `@maklsmit`, `@amatariy`, `@kthet`
