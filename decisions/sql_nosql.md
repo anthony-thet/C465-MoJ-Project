@@ -1,10 +1,19 @@
 ### Section 1: Decision Summary
+Our team has decided to use SQl, specifically PostgreSQL as we believe it to the best for the Ministry of Jokes. The first main reason is because of the complex three-dimensional rating system and the features that will be provided by SQL such as Joins. SQL will allow the ratings to be much easier to implement without the data duplication that arises from NoSQL. SQL also has a more robust system for handling data deletion and ensures that the rating system remains consistent and ensures the right to erasure will not affect our systems. 
 
 ### Section 2: Strongest Counterargument
+The strongest case we could come up with has to do with the limitations of SQL itself. At it's core SQL is very strict and this might be an issue as you delve into the core of the MOJ. At its core the MOJ is storing jokes and rating them. On paper this is fine but if any user wants to add anthing besides purely plaintext it might cause major issues with how the database operates as a whole. We will also have issues dealing with anything beides just plaintext and those items would be much easier to implement with a NoSQL system that allows for more flexibility. 
 
 ### Section 3: Ethical Challenge
+Given your chosen engine, what is the hardest data minimization or right-to-erasure problem you will face? Name the specific tables, relationships, or data types involved. “User deletion will be complex” is not an answer — “deleting a user requires recalculating aggregate rating scores across three dimensions for every joke they rated, on a live system” is.
+- We believe the most significant erasure challenge would be when we are dealing with deleting a user's ratings if they choose to remove the records. Most of the information about a user that we would have on record is quite simple to delete' however, the ratings would pose more of an issue when we wish to delete them. In order to remove their ratings we would need to recalculate the scores once again post their data removal and thus update the scores accordingly by doing so. 
+
+At what point in the project schedule does this problem become concrete — meaning, when will you first write code that either handles it correctly or defers it deliberately?
+- This would be when we are dealing with the right-to-erasure policy specifically. As stated in the vision document we plan to have a very strict adherence to the right-to-erasure. Thus, this code will need to be implemented as soon as we want the database to be operational and interactable to users so that we will continue to adhere to this set policy. 
+
 
 ### Section 4: Synthesis Reflection
+Originally the right-to-erasure issue seemed to be just another policy in the vision document that would be simple to implement and so our discussion was more focused on why SQL would be the best option. We also discussed how SQL would be fine for our use case since the data amount, while seemingly large, does not require a NoSQL database as the amount is relatively small all-in-all. Thus after that debate we focused more specifically on the right-to-erasure issues as we realized it needed more substantiation in our arguments. 
 
 ### Section 5: Individual Reflections
 - @coolds - - I believe that SQL would be the best choice for our specific implementation and vision goals for a couple of key reasons. Firstly, it's the system that I have the most experience with and thus would allow for an easier time in adjusting and setting up said system for our use case. Secondly, because of the sheer amount of users and jokes that we plan to be dealing with the duplicate items that would arise from NoSQL implementation would diminish our servers and overall efficiency. Another key reason is when it comes to rating system that is intended to be implemented. The rating is a three-dimensional rating system that is much simpler and efficient to implement in SQL as it is better at handling complex queries in comparison to NoSQL.
