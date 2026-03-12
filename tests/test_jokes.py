@@ -21,3 +21,61 @@ def test_get_jokes_returns_empty_list(client):
     data = response.get_json()
     assert data['status'] == 'ok'
     assert data['data']['jokes'] == []
+
+# tests/test_jokes.py
+# Three-level test suite for POST /jokes
+# GIVEN/WHEN/THEN format required — Level: tag required in every docstring
+
+def test_submit_joke_valid(client):
+    """
+    GIVEN ...
+    WHEN ...
+    THEN ...
+
+    Level: HAPPY PATH
+    """
+    pass  # Phase 2 fills this in
+
+
+def test_submit_joke_max_length(client):
+    """
+    GIVEN ...
+    WHEN ...
+    THEN ...
+
+    Level: EDGE CASE
+    """
+    pass
+
+
+def test_submit_joke_empty_text(client):
+    """
+    GIVEN ...
+    WHEN ...
+    THEN ...
+
+    Level: ERROR CASE
+    """
+    pass
+
+
+def test_submit_joke_over_max_length(client):
+    """
+    GIVEN ...
+    WHEN ...
+    THEN ...
+
+    Level: EDGE CASE
+    """
+    pass
+
+
+def test_submit_joke_whitespace_only(client):
+    """
+    GIVEN ...
+    WHEN ...
+    THEN ...
+
+    Level: EDGE CASE
+    """
+    pass
