@@ -84,7 +84,7 @@ The decisions you documented today in `docs/schema.md` are the behaviors you wil
 be testing tomorrow.
 ---
 # ICEX_MJ04: Upgrading the Detector
-* **Date:** YYYY-MM-DD
+* **Date:** 2026-03-12
 * **Team Members Present:** `@maklsmit`, `@lsiverts`, , `@amatariy`, `@coolds`, `@kthet`
 * **Roles:**
     * Repo Admin: `@maklsmit`
