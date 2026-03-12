@@ -70,11 +70,11 @@
 
 ## Planted Problem
 * **What was the problem?**
-  [Describe the symptom — e.g., "clean import, runtime error on first DB call"]
+   * The application threw a Runtime Error because both db and app were dependent on one another while neither were fully initalized . 
 * **How did the team identify it?**
-  [Describe the diagnosis steps — commands run, output observed, hypothesis tested]
+   * We ran the tests, specifically the test_db_init.py tests. 
 * **How was it resolved?**
-  [The fix, the commit reference, or — if unresolved — the next step]
+   * We modified models.py to instead initalize its own instance of SQL Alchemy and then have db = SQLAlchemy()
 
 ## Forward Hook
 Your schema is the foundation every future ICEX builds on. Next week (ICEX_MJ04),
