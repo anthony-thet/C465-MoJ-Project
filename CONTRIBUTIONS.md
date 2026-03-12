@@ -82,3 +82,43 @@ you will write tests that verify this schema behaves correctly under valid input
 boundary conditions, and invalid input — at all three levels of the test taxonomy.
 The decisions you documented today in `docs/schema.md` are the behaviors you will
 be testing tomorrow.
+---
+# ICEX_MJ04: Upgrading the Detector
+* **Date:** YYYY-MM-DD
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, , `@amatariy`, `@coolds`, `@kthet`
+* **Roles:**
+    * Repo Admin: `@maklsmit`
+    * Process Lead: `@amatariy`
+    * Dev Lead: `@coolds`, `lsiverts`
+    * QA Sentinel: `@kthet`
+* **Summary of Work:** Added a parallel flake8 linting CI job; wrote a
+  three-level test suite for POST /jokes using GIVEN/WHEN/THEN format;
+  ran pytest --cov and observed coverage output.
+
+## Planted Problem
+* **What was the problem?**
+  [Symptom — e.g., "lint job failed with F401 on routes.py line 1"]
+* **How did the team identify it?**
+  [Diagnosis — e.g., "flake8 output in CI showed 'os' imported but unused;
+  confirmed by reading routes.py line 1"]
+* **How was it resolved?**
+  [Fix and commit reference — e.g., "Removed unused import; commit abc1234.
+  Fixes #N"]
+
+## Coverage Output
+## Individual Extension Route Assignments
+| Team Member | Claimed Route / Function |
+|---|---|
+| `@kthet` | test_submit_joke_whitespace_only |
+| `@maklsmit` | test_submit_joke_over_max_length |
+| `@lsiverts` | test_submit_joke_empty_text |
+| `@coolds` | test_submit_joke_max_length |
+| `@amatariy` | test_submit_joke_valid |
+
+## Forward Hook
+Your test suite now specifies what POST /jokes should do — at every level.
+Next week (Cycle 1 Close), your team will assess the health of the full
+test suite across all routes. The gap between what you tested today and
+what the full app does is the gap you will document in the Test Health block.
+Start thinking now: which routes have no tests at all?
+
