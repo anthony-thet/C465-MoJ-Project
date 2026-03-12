@@ -106,6 +106,14 @@ be testing tomorrow.
   Fixes #N"]
 
 ## Coverage Output
+Name                  Stmts   Miss  Cover   Missing
+---------------------------------------------------
+app/__init__.py          11      0   100%
+app/models.py            19      2    89%   17, 28
+app/routes/jokes.py      14      0   100%
+---------------------------------------------------
+TOTAL                    44      2    95%
+
 ## Individual Extension Route Assignments
 | Team Member | Claimed Route / Function |
 |---|---|
