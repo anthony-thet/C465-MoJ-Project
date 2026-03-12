@@ -106,4 +106,3 @@ def test_submit_joke_whitespace_only(client):
     """
     response = client.post('/jokes', json={'text': '   '})
     assert response.status_code == 400
-    """
