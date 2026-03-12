@@ -70,9 +70,9 @@
 
 ## Planted Problem
 * **What was the problem?**
-   * The application threw a Runtime Error because both db and app were dependent on one another while neither were fully initalized . 
+   * DB wasn't working from Models as it was never initalized fully at any point. 
 * **How did the team identify it?**
-   * We ran the tests, specifically the test_db_init.py tests. 
+   * There was an error in __init__ that db wasn't working from models. Later verification was from the test_db_init.py to ensure it was working as intended.
 * **How was it resolved?**
    * We modified models.py to instead initalize its own instance of SQL Alchemy and then have db = SQLAlchemy()
 
