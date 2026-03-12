@@ -85,11 +85,11 @@ be testing tomorrow.
 ---
 # ICEX_MJ04: Upgrading the Detector
 * **Date:** 2026-03-12
-* **Team Members Present:** `@maklsmit`, `@lsiverts`, , `@amatariy`, `@coolds`, `@kthet`
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@amatariy`, `@coolds`, `@kthet`
 * **Roles:**
     * Repo Admin: `@maklsmit`
     * Process Lead: `@amatariy`
-    * Dev Lead: `@coolds`, `lsiverts`
+    * Dev Lead: `@coolds`, `@lsiverts`
     * QA Sentinel: `@kthet`
 * **Summary of Work:** Added a parallel flake8 linting CI job; wrote a
   three-level test suite for POST /jokes using GIVEN/WHEN/THEN format;
