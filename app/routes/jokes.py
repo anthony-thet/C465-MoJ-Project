@@ -18,6 +18,15 @@ def post_joke():
                 "message": "The 'text' field is required."
             }
         }), 400
+    
+    if len(body.get('text')) > 500:
+        return jsonify({
+            "error": {
+                "code": "USER_ERROR",
+                "message": "The 'text' field is too long"
+            }
+        }), 400
+
     joke = {"text": body['text']}
     _jokes.append(joke)
     return jsonify({"data": joke, "status": "ok"}), 201
