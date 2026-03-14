@@ -11,13 +11,25 @@ def get_jokes():
 @jokes_bp.route('/jokes', methods=['POST'])
 def post_joke():
     body = request.get_json(silent=True)
-    if not body or not body.get('text'):
+    text = body.get('text')
+
+    if not body or not text:
         return jsonify({
             "error": {
                 "code": "VALIDATION_ERROR",
                 "message": "The 'text' field is required."
             }
         }), 400
+
+    if text != "" and text.strip() == "":
+        return jsonify({
+            "error": {
+                "code": "BAD_REQUEST",
+                "message": "Text field cannot be only whitespace."
+            }
+        }), 400
+
+    _jokes.append(text)
     joke = {"text": body['text']}
     _jokes.append(joke)
     return jsonify({"data": joke, "status": "ok"}), 201
