@@ -1,12 +1,14 @@
 import pytest
 from app import create_app
 
+
 @pytest.fixture
 def client():
     app = create_app()
     app.config['TESTING'] = True
     with app.test_client() as client:
         yield client
+
 
 def test_get_jokes_returns_empty_list(client):
     """
@@ -25,6 +27,7 @@ def test_get_jokes_returns_empty_list(client):
 # tests/test_jokes.py
 # Three-level test suite for POST /jokes
 # GIVEN/WHEN/THEN format required — Level: tag required in every docstring
+
 
 def test_submit_joke_valid(client):
     """

@@ -1,6 +1,11 @@
-import pytest 
+import pytest
 from app import create_app
 from app.models import db as _db
+
+
+class TestConfig:
+    TESTING = True
+
 
 @pytest.fixture(scope='function')
 def app():
@@ -9,6 +14,7 @@ def app():
         _db.create_all()
         yield application
         _db.drop_all()
+
 
 @pytest.fixture(scope='function')
 def client(app):
