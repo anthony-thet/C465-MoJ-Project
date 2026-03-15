@@ -41,11 +41,13 @@ def test_submit_joke_valid(client):
     """
     response = client.post(
         '/jokes',
-        json={'text': 'Why did the knight cross the road? To get to the other keep.'}
+        json={'text': 'Why did the knight cross the road? '
+                      'To get to the other keep.'}
     )
     assert response.status_code == 201
     data = response.get_json()
-    assert data['data']['text'] == 'Why did the knight cross the road? To get to the other keep.'
+    assert data['data']['text'] == ('Why did the knight cross the road? '
+                                    'To get to the other keep.')
     assert isinstance(data['data'].get('id'), int)
 
 
