@@ -70,11 +70,11 @@
 
 ## Planted Problem
 * **What was the problem?**
-  [Describe the symptom — e.g., "clean import, runtime error on first DB call"]
+  * Getting an ImportError during test collection because of a circular import with __init__.py and models.py
 * **How did the team identify it?**
-  [Describe the diagnosis steps — commands run, output observed, hypothesis tested]
+  * ran "pytest tests/test_db_init.py" 
 * **How was it resolved?**
-  [The fix, the commit reference, or — if unresolved — the next step]
+  * Restructured __init__.py to own the db object with "db = SQLAlchemy()" and the circular dependency was removed by avoiding "from app.models import db" in app/__init__.py while models.py also imported db from app
 
 ## Forward Hook
 Your schema is the foundation every future ICEX builds on. Next week (ICEX_MJ04),
