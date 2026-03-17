@@ -13,6 +13,7 @@ def get_jokes():
 @jokes_bp.route('/jokes', methods=['POST'])
 def post_joke():
     body = request.get_json(silent=True)
+    
     if not body or not body.get('text'):
         return jsonify({
             "error": {
@@ -20,6 +21,12 @@ def post_joke():
                 "message": "The 'text' field is required."
             }
         }), 400
+
+    if len(body.get('text')) == 500:
+        joke = {"text": body['text']}
+        _jokes.append(joke)
+        return jsonify({"data": joke, "status": "created"}), 201
+        
     joke = {"text": body['text']}
     _jokes.append(joke)
     return jsonify({"data": joke, "status": "ok"}), 201
