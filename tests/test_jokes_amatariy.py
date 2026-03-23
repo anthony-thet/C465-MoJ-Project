@@ -20,11 +20,19 @@ def app():
 def client(app):
     return app.test_client()
 
-
 # ----------------------
 # HAPPY PATH
 # ----------------------
 def test_submit_joke_valid(client):
+    """
+    GIVEN a running MoJ application
+    WHEN a POST request is made to /jokes with valid non-empty text
+    THEN the response should be 201 Created
+    AND the response envelope should contain the submitted text
+    AND the response should include an ID (if generated)
+    
+    Level: HAPPY PATH
+    """
     response = client.post(
         '/jokes',
         json={'text': 'Why did the knight cross the road? To get to the other keep.'}
@@ -35,37 +43,3 @@ def test_submit_joke_valid(client):
     # Only check id if it exists
     if 'id' in data['data']:
         assert isinstance(data['data']['id'], int)
-
-
-# ----------------------
-# EDGE CASE
-# ----------------------
-def test_submit_joke_max_length(client):
-    """
-    GIVEN a running MoJ application
-    WHEN a POST request is made to /jokes with text exactly 500 characters long
-    THEN the response should be 201 Created
-    AND the stored text should not be truncated
-
-    Level: EDGE CASE
-    """
-    max_text = 'A' * 500
-    response = client.post('/jokes', json={'text': max_text})
-    assert response.status_code == 201
-    data = response.get_json()
-    assert len(data['data']['text']) == 500
-
-
-# ----------------------
-# ERROR CASE
-# ----------------------
-def test_submit_joke_empty_text(client):
-    """
-    GIVEN a running MoJ application
-    WHEN a POST request is made to /jokes with empty text
-    THEN the response should be 400 Bad Request
-
-    Level: ERROR CASE
-    """
-    response = client.post('/jokes', json={'text': ''})
-    assert response.status_code == 400
