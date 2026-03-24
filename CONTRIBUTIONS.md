@@ -122,8 +122,7 @@ be testing tomorrow.
 | `@amatariy` | test_submit_joke_valid |
 
 ## Forward Hook
-
-Your test suite now specifies what POST /jokes should do — at every level.
+* Your test suite now specifies what POST /jokes should do — at every level.
 Next week (Cycle 1 Close), your team will assess the health of the full
 test suite across all routes. The gap between what you tested today and
 what the full app does is the gap you will document in the Test Health block.
