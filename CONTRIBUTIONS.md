@@ -97,13 +97,11 @@ be testing tomorrow.
 
 ## Planted Problem
 * **What was the problem?**
-  [Symptom — e.g., "lint job failed with F401 on routes.py line 1"]
+  * Many files were failing to meet the lint standards.
 * **How did the team identify it?**
-  [Diagnosis — e.g., "flake8 output in CI showed 'os' imported but unused;
-  confirmed by reading routes.py line 1"]
+  * Lint kept failing and checking the CI logs for flake8 shows all the errors.
 * **How was it resolved?**
-  [Fix and commit reference — e.g., "Removed unused import; commit abc1234.
-  Fixes #N"]
+  * Went through the repository and reformatted files to flake8's liking.
 
 ## Coverage Output
 | Name | Stmts | Miss | Cover | Missing |
