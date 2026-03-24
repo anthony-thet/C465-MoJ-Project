@@ -4,9 +4,11 @@ jokes_bp = Blueprint('jokes', __name__)
 
 _jokes = []
 
+
 @jokes_bp.route('/jokes', methods=['GET'])
 def get_jokes():
     return jsonify({"data": {"jokes": _jokes}, "status": "ok"}), 200
+
 
 @jokes_bp.route('/jokes', methods=['POST'])
 def post_joke():

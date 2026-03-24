@@ -82,3 +82,49 @@ you will write tests that verify this schema behaves correctly under valid input
 boundary conditions, and invalid input — at all three levels of the test taxonomy.
 The decisions you documented today in `docs/schema.md` are the behaviors you will
 be testing tomorrow.
+---
+# ICEX_MJ04: Upgrading the Detector
+* **Date:** 2026-03-12
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@amatariy`, `@coolds`, `@kthet`
+* **Roles:**
+    * Repo Admin: `@maklsmit`
+    * Process Lead: `@amatariy`
+    * Dev Lead: `@coolds`, `@lsiverts`
+    * QA Sentinel: `@kthet`
+* **Summary of Work:** Added a parallel flake8 linting CI job; wrote a
+  three-level test suite for POST /jokes using GIVEN/WHEN/THEN format;
+  ran pytest --cov and observed coverage output.
+
+## Planted Problem
+* **What was the problem?**
+  * Many files were failing to meet the lint standards.
+* **How did the team identify it?**
+  * Lint kept failing and checking the CI logs for flake8 shows all the errors.
+* **How was it resolved?**
+  * Went through the repository and reformatted files to flake8's liking.
+
+## Coverage Output
+| Name | Stmts | Miss | Cover | Missing |
+|---|---|---|---|---|
+| app/__init__.py | 11 | 0 | 100% | |
+| app/models.py | 19 | 2 | 89% | 17, 28 |
+| app/routes/jokes.py | 14 | 0 | 100% | |
+|---|---|---|---|---|
+| TOTAL |44 | 2 | 95% |
+
+## Individual Extension Route Assignments
+| Team Member | Claimed Route / Function |
+|---|---|
+| `@kthet` | test_submit_joke_whitespace_only |
+| `@maklsmit` | test_submit_joke_over_max_length |
+| `@lsiverts` | test_submit_joke_empty_text |
+| `@coolds` | test_submit_joke_max_length |
+| `@amatariy` | test_submit_joke_valid |
+
+## Forward Hook
+Your test suite now specifies what POST /jokes should do — at every level.
+Next week (Cycle 1 Close), your team will assess the health of the full
+test suite across all routes. The gap between what you tested today and
+what the full app does is the gap you will document in the Test Health block.
+Start thinking now: which routes have no tests at all?
+
