@@ -23,7 +23,6 @@ def post_joke():
             }
         }), 400
 
-
     if text != "" and text.strip() == "":
         return jsonify({
             "error": {
