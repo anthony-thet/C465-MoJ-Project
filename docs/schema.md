@@ -6,8 +6,8 @@
 | Field | Type | Nullable | Notes |
 |---|---|---|---|
 | id | Integer | No | Primary Key |
-| username | String(30) | No | Unique Login |
-| password | String(30) | No | User Password, should be hashed or something for security | 
+| username | String(80) | No | Unique Login |
+| password_hash | String(256) | No | User Password, should be hashed or something for security | 
 
 ### Joke
 | Field | Type | Nullable | Notes |
