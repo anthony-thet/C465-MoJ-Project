@@ -1,12 +1,14 @@
 import pytest
 from app import create_app
 
+
 @pytest.fixture
 def client():
     app = create_app()
     app.config['TESTING'] = True
     with app.test_client() as client:
         yield client
+
 
 def test_get_jokes_returns_empty_list(client):
     """
@@ -26,6 +28,7 @@ def test_get_jokes_returns_empty_list(client):
 # Three-level test suite for POST /jokes
 # GIVEN/WHEN/THEN format required — Level: tag required in every docstring
 
+
 def test_submit_joke_valid(client):
     """
     GIVEN a running MoJ application
@@ -38,11 +41,13 @@ def test_submit_joke_valid(client):
     """
     response = client.post(
         '/jokes',
-        json={'text': 'Why did the knight cross the road? To get to the other keep.'}
+        json={'text': 'Why did the knight cross the road? '
+                      'To get to the other keep.'}
     )
     assert response.status_code == 201
     data = response.get_json()
-    assert data['data']['text'] == 'Why did the knight cross the road? To get to the other keep.'
+    assert data['data']['text'] == ('Why did the knight cross the road? '
+                                    'To get to the other keep.')
     assert isinstance(data['data'].get('id'), int)
 
 
