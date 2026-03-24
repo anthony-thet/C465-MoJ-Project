@@ -22,6 +22,14 @@ def post_joke():
                 "message": "The 'text' field is required."
             }
         }), 400
+    
+    if len(text) > 500:
+        return jsonify({
+            "error": {
+                "code": "USER_ERROR",
+                "message": "The 'text' field is too long"
+            }
+        }), 400
 
     if text != "" and text.strip() == "":
         return jsonify({
@@ -30,8 +38,6 @@ def post_joke():
                 "message": "Text field cannot be only whitespace."
             }
         }), 400
-
-    _jokes.append(text)
 
     if len(text) == 500:
         joke = {"text": body['text']}
