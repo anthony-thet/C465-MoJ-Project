@@ -22,7 +22,7 @@ def post_joke():
                 "message": "The 'text' field is required."
             }
         }), 400
-    
+
     if len(text) > 500:
         return jsonify({
             "error": {
