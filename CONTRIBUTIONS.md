@@ -135,13 +135,13 @@ Start thinking now: which routes have no tests at all?
 * **Complexity Horizon:** Our MVP does not yet meet the standard 99.5% uptime and is in fact not fully operational and ready to handle users.
 ---
 # ICEX 5: Joke-Teller Licenses
-* **Date:** YYYY-MM-DD
-* **Team Members Present:** `@user1`, `@user2`, `@user3`, `@user4`
+* **Date:** 2026-03-24
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
 * **Roles:**
-    * Repo Admin: `@userX`
-    * Process Lead: `@userY`
-    * Dev Lead: `@userZ`
-    * QA Sentinel: `@userW`
+    * Repo Admin: `@coolds`
+    * Process Lead: `@lsiverts` 
+    * Dev Lead: `@kthet`, `@amatariy`
+    * QA Sentinel: `@maklsmit`
 * **Summary of Work:** [1-2 sentences on what was accomplished]
 
 ### Planted Problem
