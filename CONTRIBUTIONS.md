@@ -122,6 +122,7 @@ be testing tomorrow.
 | `@amatariy` | test_submit_joke_valid |
 
 ## Forward Hook
+
 Your test suite now specifies what POST /jokes should do — at every level.
 Next week (Cycle 1 Close), your team will assess the health of the full
 test suite across all routes. The gap between what you tested today and
@@ -129,7 +130,26 @@ what the full app does is the gap you will document in the Test Health block.
 Start thinking now: which routes have no tests at all?
 ---
 # Cycle 1 Close — moj-c1-v1.0
-***Date:** 2026-03-23
-***Team Members:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
-***Summary:** Team has begun working on the MoJ and have built the foundation for the entire system. We now have a running flask application with a CI pipeline that ensures that all changes still work as intended and pass linter tests. Jokes.py can now handle the edge cases as listed. 
-***Complexity Horizon:** Our MVP does not yet meet the standard 99.5% uptime and is in fact not fully operational and ready to handle users. 
+* **Date:** 2026-03-23
+* **Team Members:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Summary:** Team has begun working on the MoJ and have built the foundation for the entire system. We now have a running flask application with a CI pipeline that ensures that all changes still work as intended and pass linter tests. Jokes.py can now handle the edge cases as listed. 
+* **Complexity Horizon:** Our MVP does not yet meet the standard 99.5% uptime and is in fact not fully operational and ready to handle users.
+---
+# ICEX 5: Joke-Teller Licenses
+* **Date:** YYYY-MM-DD
+* **Team Members Present:** `@user1`, `@user2`, `@user3`, `@user4`
+* **Roles:**
+    * Repo Admin: `@userX`
+    * Process Lead: `@userY`
+    * Dev Lead: `@userZ`
+    * QA Sentinel: `@userW`
+* **Summary of Work:** [1-2 sentences on what was accomplished]
+
+### Planted Problem
+* **What was the bug?** [Describe the security issue in the admin route]
+* **How did the team identify it?** [Which test caught it? What was the symptom?]
+* **How was it resolved?** [What code change fixed it?]
+
+* **Forward Hook:** Next time, we meet the attacker. ICEX 6 applies STRIDE to the
+  endpoints you just built — every route you wrote today becomes an attack surface
+  to enumerate and harden.
