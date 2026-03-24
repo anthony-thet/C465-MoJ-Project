@@ -142,7 +142,7 @@ Start thinking now: which routes have no tests at all?
     * Process Lead: `@lsiverts` 
     * Dev Lead: `@kthet`, `@amatariy`
     * QA Sentinel: `@maklsmit`
-* **Summary of Work:** [1-2 sentences on what was accomplished]
+* **Summary of Work:** Implemented a role based security system using Flask logins to log users and ensure that users can login, logout, and register themselves. Also has an extensive test plan toe ensure users can register as needed and that users besides admin can not see admin users.
 
 ### Planted Problem
 * **What was the bug?** [Describe the security issue in the admin route]
