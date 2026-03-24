@@ -127,4 +127,9 @@ Next week (Cycle 1 Close), your team will assess the health of the full
 test suite across all routes. The gap between what you tested today and
 what the full app does is the gap you will document in the Test Health block.
 Start thinking now: which routes have no tests at all?
-
+---
+# Cycle 1 Close — moj-c1-v1.0
+***Date:** 2026-03-23
+***Team Members:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+***Summary:** Team has begun working on the MoJ and have built the foundation for the entire system. We now have a running flask application with a CI pipeline that ensures that all changes still work as intended and pass linter tests. Jokes.py can now handle the edge cases as listed. 
+***Complexity Horizon:** Our MVP does not yet meet the standard 99.5% uptime and is in fact not fully operational and ready to handle users. 
