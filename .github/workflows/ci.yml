@@ -30,6 +30,7 @@ jobs:
         run: |
           ${{ runner.os == 'Windows' && '.venv\Scripts\activate' || 'source .venv/bin/activate' }}
           python -m pytest tests/ -v --tb=short
+          python -m pytest --cov=app --cov-report=term-missing
   lint:
     runs-on: self-hosted
     steps:
