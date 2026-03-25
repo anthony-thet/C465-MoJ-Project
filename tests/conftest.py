@@ -1,6 +1,6 @@
 import pytest
 from app import create_app
-from app.models import db as _db
+from app.models import db as _db, User
 
 
 class TestConfig:
