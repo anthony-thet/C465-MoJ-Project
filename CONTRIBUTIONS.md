@@ -152,3 +152,23 @@ Start thinking now: which routes have no tests at all?
 * **Forward Hook:** Next time, we meet the attacker. ICEX 6 applies STRIDE to the
   endpoints you just built — every route you wrote today becomes an attack surface
   to enumerate and harden.
+---
+# ICEX 6: Forging Unforgeable Licenses
+* **Date:** 2026-03-26
+* **Team Members Present:** `@kthet`, `@lsiverts`, `@coolds`, `@maklsmit`, `@amatariy`
+* **Roles:**
+    * Repo Admin: `@maklsmit`
+    * Process Lead: `@kthet`
+    * Dev Lead: `@lsiverts`, `@amatariy`
+    * QA Sentinel: `@coolds`
+* **Summary of Work:** [1-2 sentences on what was accomplished]
+
+### Planted Problem
+* **What was the bug?** [Describe the CI configuration issue]
+* **How did the team identify it?** [What comparison or observation revealed it?]
+* **How was it resolved?** [What change to the YAML fixed it?]
+
+* **Forward Hook:** Next time, MoJ gets an opinion system. ICEX 7 adds three-axis
+  attributed ratings — funniness, appropriateness, and originality. Every threat in
+  your STRIDE table applies to the rating endpoints too. The security issues you
+  opened today are the backlog you carry into feature development.
