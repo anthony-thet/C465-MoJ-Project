@@ -145,9 +145,9 @@ Start thinking now: which routes have no tests at all?
 * **Summary of Work:** Implemented a role based security system using Flask logins to log users and ensure that users can login, logout, and register themselves. Also has an extensive test plan toe ensure users can register as needed and that users besides admin can not see admin users.
 
 ### Planted Problem
-* **What was the bug?** [Describe the security issue in the admin route]
-* **How did the team identify it?** [Which test caught it? What was the symptom?]
-* **How was it resolved?** [What code change fixed it?]
+* **What was the bug?** The issue wouldn't be an issue for a joke teller specifically but if the user was not logged in and instead an Anonyomous user and so the code didn't return the correct error. 
+* **How did the team identify it?** There was a specific test that tested if a person of joketeller role could acquire the list of admin users: 'test_admin_access_forbidden_for_teller'
+* **How was it resolved?** Added a @login_required block above the specific admin block to ensure the user is logged in and has a role so that the '!= admin' would work as intended.
 
 * **Forward Hook:** Next time, we meet the attacker. ICEX 6 applies STRIDE to the
   endpoints you just built — every route you wrote today becomes an attack surface
