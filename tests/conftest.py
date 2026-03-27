@@ -22,16 +22,6 @@ def client(app):
 
 
 @pytest.fixture
-def app():
-    app = create_app()
-    app.config['TESTING'] = True
-    with app.app_context():
-        _db.create_all()
-        yield app
-        _db.drop_all()
-
-
-@pytest.fixture
 def authenticated_client(client, app):
     """Returns a test client logged in as a joke-teller."""
     with app.app_context():
