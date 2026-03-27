@@ -31,7 +31,7 @@ def post_joke():
             }
         }), 400
 
-    if len(text) = 0:
+    if len(text) == 0:
         return jsonify({
             "error": {
                 "code": "USER_ERROR",
