@@ -1,7 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from app.models import db, User
-auth_bp = Blueprint('auth', __name__) 
+auth_bp = Blueprint('auth', __name__)
+
 
 @auth_bp.route('/register', methods=['POST'])
 def register():
@@ -23,6 +24,7 @@ def register():
 
     return jsonify({'username': user.username}), 201
 
+
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -35,6 +37,7 @@ def login():
     login_user(user)
 
     return jsonify({'message': f'Welcome, {user.username}'}), 200
+
 
 @auth_bp.route('/logout', methods=['POST'])
 @login_required
