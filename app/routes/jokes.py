@@ -3,7 +3,8 @@ from flask import Blueprint, jsonify, request
 jokes_bp = Blueprint('jokes', __name__)
 
 _jokes = []
-_next_id = 1 
+_next_id = 1
+
 
 @jokes_bp.route('/jokes', methods=['GET'])
 def get_jokes():
@@ -52,5 +53,5 @@ def post_joke():
     }
     _jokes.append(new_joke)
     _next_id += 1
-    
+
     return jsonify({"data": new_joke, "status": "ok"}), 201
