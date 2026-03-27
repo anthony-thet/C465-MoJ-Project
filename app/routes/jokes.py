@@ -31,6 +31,14 @@ def post_joke():
             }
         }), 400
 
+    if len(text) = 0:
+        return jsonify({
+            "error": {
+                "code": "USER_ERROR",
+                "message": "The 'text' field can't be empty"
+            }
+        }), 400
+
     if text != "" and text.strip() == "":
         return jsonify({
             "error": {
