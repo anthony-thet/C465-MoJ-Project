@@ -51,8 +51,15 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      
       - name: Install pip-audit
         run: pip install pip-audit
+      
       - name: Run pip-audit
-        run: pip-audit
+        run: python -m pip-audit
         continue-on-error: true
