@@ -20,9 +20,6 @@ def app():
 def client(app):
     return app.test_client()
 
-import pytest
-from app import create_app
-from app.models import db as _db, User
 
 @pytest.fixture
 def app():
@@ -32,6 +29,7 @@ def app():
         _db.create_all()
         yield app
         _db.drop_all()
+
 
 @pytest.fixture
 def authenticated_client(client, app):
