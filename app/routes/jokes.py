@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 jokes_bp = Blueprint('jokes', __name__)
 
 _jokes = []
-
+_next_id = 1 
 
 @jokes_bp.route('/jokes', methods=['GET'])
 def get_jokes():
@@ -17,6 +17,7 @@ def post_joke():
 
     if not body or not text:
         return jsonify({
+            "status": "error",
             "error": {
                 "code": "VALIDATION_ERROR",
                 "message": "The 'text' field is required."
@@ -28,14 +29,6 @@ def post_joke():
             "error": {
                 "code": "USER_ERROR",
                 "message": "The 'text' field is too long"
-            }
-        }), 400
-
-    if len(text) == 0:
-        return jsonify({
-            "error": {
-                "code": "USER_ERROR",
-                "message": "The 'text' field can't be empty"
             }
         }), 400
 
@@ -52,6 +45,12 @@ def post_joke():
         _jokes.append(joke)
         return jsonify({"data": joke, "status": "created"}), 201
 
-    joke = {"text": body['text']}
-    _jokes.append(joke)
-    return jsonify({"data": joke, "status": "ok"}), 201
+    global _next_id
+    new_joke = {
+        "id": _next_id,
+        "text": text
+    }
+    _jokes.append(new_joke)
+    _next_id += 1
+    
+    return jsonify({"data": new_joke, "status": "ok"}), 201
