@@ -1,7 +1,4 @@
 ## Client / User
-
-Template:
-
 ### Events
 - Log/Event Title
   - Data Fields:
@@ -12,7 +9,30 @@ Template:
 Gemini
 
 ## Operational
+### Events
+- Log/Event Title
+  - Data Fields:
+  - Reason:
+  - Log Level:
+  - Risk:
+### Tools
+
 
 ## Support / Helpdesk
+### Events
+- Log/Event Title
+  - Data Fields:
+  - Reason:
+  - Log Level:
+  - Risk:
+### Tools
+
 
 ## Regulatory / Compliance
+### Events
+- Log/Event Title
+  - Data Fields:
+  - Reason:
+  - Log Level:
+  - Risk:
+### Tools
