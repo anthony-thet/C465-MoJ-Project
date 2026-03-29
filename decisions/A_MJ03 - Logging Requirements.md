@@ -74,3 +74,5 @@ Gemini
 - Makena Smith | `@maklsmit` |
 - Amin Matariyeh | `@amatariy` |
 - Anthony Thet | `@kthet` |
+
+# Ethical Challenge
