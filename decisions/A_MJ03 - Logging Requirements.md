@@ -60,8 +60,8 @@ Gemini
 # Section 1: Individual Summaries
 - `@coolds`
   - Dimension: Client / User
-  - Recommended Log Events:
-  - Insight: 
+  - Recommended Log Events: Profile Information Change, Successful Joke Submission, Account Deletion Initiation
+  - Insight: The key aspect of this dimension is keeping track of any changes a user makes to their account and ensures that we track said changes for support.
 - `@kthet`
   - Dimension:
   - Recommended Log Events:
