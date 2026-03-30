@@ -1,21 +1,21 @@
 # Individual Security Audit — Lily Sivertson
 
 ## Finding
-- **Bandit ID:** [e.g., B201]
-- **Severity / Confidence:** [e.g., High / Medium]
-- **File and Line:** [e.g., app/__init__.py:12]
-- **What bandit detected:** [One sentence — what the code pattern is]
+- **Bandit ID:** B105
+- **Severity / Confidence:** Low/Medium
+- **File and Line:** app/__init__.py:12
+- **What bandit detected:** there is possibly a hard coded password.
 
 ## OWASP Traceability
-- **OWASP Category:** [e.g., A05:2021 Security Misconfiguration]
-- **Why this category:** [2-3 sentences — how does this finding map to the OWASP category's definition?]
+- **OWASP Category:** A02: Cryptographic Failures
+- **Why this category:** The A02 category focuses on instances where weak/ improper use of cryptography can lead to the exposure of sensitive data. This hardcoded key would fall into this category as it would make it easy for someone to gain access to the data if they were to find out the hardcoded key.
 
 ## Attacker Goal
-- **What could an attacker do with this?** [2-3 sentences — describe the attack scenario. Be specific: what request would they send? What would they learn or gain?]
+- **What could an attacker do with this?** If an attacker has the hardcoded key then they could use it to impersonate/log in as other users by creating tokens/cookies will be accepted as valid by the system, allowing them to gain full administrative access. It could also allow the attacker to tamper with data or change things that they should not otherwise have access to.
 
 ## Proposed Fix
-- **What code change would address this?** [Show the before and after, or describe the change precisely enough that a teammate could implement it]
-- **What is the tradeoff?** [1-2 sentences — does the fix change behavior, add complexity, or require a new dependency?]
+- **What code change would address this?** instead of hardcoding the secret key, store it in a secure secret manager and then retrieve it at runtime using authenticated access controls.
+- **What is the tradeoff?** Security would be improved as it would be much harder for an attacker to gain access to the secret key, but this may add additional complexity to the program compared to a simple hardcoded key. It may also introduce a dependence on external services to manage the secret key.
 
 ## Reflection
-- **Is this finding a real risk for MoJ, or a false positive?** [2-3 sentences — defend your assessment. Reference MoJ's specific context: who are the users, what data is at stake, what is the deployment model?]
+- **Is this finding a real risk for MoJ, or a false positive?**  Yes, this could pose a real risk to MoJ. Since Flask uses symmetric encryption, someone gaining acccess to the secret key would be a serious issue since they would be able to both encrypt and decrpyt information with this. This could allow them to modify information they should not be able to, impersonate others, or access sensitive user data.
