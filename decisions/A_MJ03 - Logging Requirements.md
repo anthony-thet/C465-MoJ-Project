@@ -123,9 +123,9 @@ chatGPT
   - Recommended Log Events:
   - Insight: 
 - `@lsiverts`
-  - Dimension:
-  - Recommended Log Events:
-  - Insight: 
+  - Dimension:  Regulatory / Compliance
+  - Recommended Log Events: failed login attempt, GDPR Erasure request, Data Access.
+  - Insight: For this dimension, the main priority is complying with ethical and legal obligations. The GDPR erasure request would be important to this, to make sure that the program is abiding by the right to erasure. Data access allows to see when and what data that people are accessing, which is important in ensuring that people are not accessing data they should not be, or taking advantage of priveledges they may have to look up sensitive information. Finally, failed login attempt helps to identify and ideally slow down/prevent brute force attacks on accounts. Together these events help to log activity to make it easier to check for any unethical behaviors or legal issues.
 - `@amatariy`
   - Dimension:
   - Recommended Log Events:
