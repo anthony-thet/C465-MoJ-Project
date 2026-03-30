@@ -70,12 +70,44 @@ ChatGPT
 
 ## Regulatory / Compliance
 ### Events
-- Log/Event Title
-  - Data Fields:
-  - Reason:
-  - Log Level:
-  - Risk:
+- Successful Login Attempt
+  - Data Fields: timestamp, IP address, user_id
+  - Reason: Keep a log of account access.
+  - Log Level: INFO
+  - Risk: If an attacker gets into an account but there is no log of where the login was from, it may be impossible to detect the account has been hacked into or to remove the intruder.
+
+- Failed Login Attempt
+  - Data Fields: timestamp, attempted_username, attempted_password, failure reason, IP
+  - Reason: help to identify suspicious activity and brute force attacks
+  - Log Level: WARNING
+  - Risk: without this, a brute force attack could be done with tons of failed attempts to login to an account, but there would not be any record of this pattern, letting it go by undetected.
+ 
+- Data Retention Deletion
+  - Data Fields: data_type, records deleted, timestamp, retention period
+  - Reason: Show that user data is not kept longer than allowed, showing compliance with retention policy
+  - Log Level: INFO
+  - Risk: if user data is store indefinitely or the organization cannot prove compliance with retention policies, they could face legal penalties or  additional issues in the case of a data breach.
+
+- Data Update
+  - Data Fields: user_id, new data, old data, timestamp, IP
+  - Reason: keep a record of changes to user data in case this needs to be reviewed or reverted
+  - Log Level:INFO or WARNING
+  - Risk: If data is altered without a record of the changes, it may be hard to restore the correct data or investigate the changes.
+ 
+- User Data Access
+  - Data Fields: timestamp, user_id for person accessing data, user_id for the target, data accessed
+  - Reason: maintain a record of access for user data to keep up accountability and regulatory compliance.
+  - Log Level: INFO
+  - Risk: If a user accesses another user’s private data (like their email or something), but there is no record of who accessed it, this could hinder investigation into the issue and violate accountability requirement
+ 
+- GDPR Erasure Request
+  - Data Fields: timestamp, user_id, request, content_count
+  - Reason: Comply with the right to erasure, allowing content or accounts to be removed from the application.
+  - Log Level: INFO
+  - Risk: If this is not logged, we could face legal penalties as we are unable to prove that we are abiding by GDPR Compliance
 ### Tools
+chatGPT
+
 ---
 # Section 1: Individual Summaries
 - `@coolds`
