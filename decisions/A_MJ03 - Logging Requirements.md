@@ -129,16 +129,16 @@ ChatGPT
 # Section 2: Unified Logging Specification
 | # | Event | Fields | Log Level | Dimension(s) | Priority |
 |---|---|---|---|---|---|
-| 1 | Successful Login | timestamp, user_id, request_ip, user_agent | INFO | Regulatory, Client | High |
-| 2 | Failed Login | timestamp, attempted_username, request_ip, failure_reason | WARNING | Regulatory, Support | High |
-| 3 | Unhandled Exception | timestamp, request_id, user_id, route, stack_trace | ERROR | Support, Operational | High |
-| 4 | Joke Submission | timestamp, user_id, joke_id, status (Success/Fail) | INFO | Client, Support | Medium |
-| 5 | Rating Submission | timestamp, user_id, joke_id, dimension, score | DEBUG | Client | Low |
-| 6 | Erasure Request | timestamp, user_id, request_type (Account/GDPR) | WARNING | Regulatory, Client | High |
-| 7 | Profile Change | timestamp, user_id, field_changed, old/new value, IP | INFO | Regulatory, Client | Medium |
-| 8 | Auth Denied | timestamp, request_id, user_id, route, required_role | WARNING | Support, Security | Medium |
-| 9 | Content Moderation | timestamp, joke_id, report_id, reason_category | WARNING | Client, Regulatory | Medium |
-| 10 | Internal Data Access | timestamp, accessor_id, target_user_id, scope | INFO | Regulatory, Security | High |
+| 1 | Successful Login | timestamp, user_id, request_ip, user_agent | INFO - keeps track that a specific ip most likely belongs to a specific user | Regulatory, Client | High |
+| 2 | Failed Login | timestamp, attempted_username, request_ip, failure_reason | WARNING - informs us that a certain ip is attempted to log in and could be suspicious | Regulatory, Support | High |
+| 3 | Unhandled Exception | timestamp, request_id, user_id, route, stack_trace | ERROR - logged as an error to inform admins of it and for maintaing MoJ's uptime | Support, Operational | High |
+| 4 | Joke Submission | timestamp, user_id, joke_id, status (Success/Fail) | INFO - purely informational and maintains the list of all accepted jokes | Client, Support | Medium |
+| 5 | Rating Submission | timestamp, user_id, joke_id, dimension, score | DEBUG - allows us to identify why a joke has a specific score | Client | Low |
+| 6 | Erasure Request | timestamp, user_id, request_type (Account/GDPR) | WARNING - informs admins that an erasure request was made and consolidate the information | Regulatory, Client | High |
+| 7 | Profile Change | timestamp, user_id, field_changed, old/new value, IP | INFO - informs user and admins of changed information and a backlog of all changes | Regulatory, Client | Medium |
+| 8 | Auth Denied | timestamp, request_id, user_id, route, required_role | WARNING - similar to failed login as it maintains security and logs suspicious behavior | Support, Security | Medium |
+| 9 | Content Moderation | timestamp, joke_id, report_id, reason_category | WARNING - allows admins to identify why specific content was hidden or removed | Client, Regulatory | Medium |
+| 10 | Internal Data Access | timestamp, accessor_id, target_user_id, scope | INFO - informs admins of requests for data access and its scope | Regulatory, Security | High |
 
 # Section 3: Conflicts and Resolutions
 **Conflict Identified:** The Failed Login event exists in both the Support and Regulatory dimensions. Support requires detailed logs for why the login failed so that we can help users get back into their accounts. Regulatory requires this data to be strictly controlled or encrypted so that we don't leak anything valuable to someone wishing to steal or access an account.
