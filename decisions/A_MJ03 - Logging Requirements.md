@@ -28,15 +28,35 @@
 ### Tools
 Gemini
 
-## Operational
+## Operational - maklsmit
 ### Events
-- Log/Event Title
-  - Data Fields:
-  - Reason:
-  - Log Level:
-  - Risk:
+- Error rates
+  - Data Fields: error code, error response, timestamp, current error rate.
+  - Reason: Tracks when an error is thrown and the current rate of errors.
+  - Log Level: INFO
+  - Risk: If there is a high amount of errors, especially in a shorter amount of time, it could point towards there being a bug in the code causing errors to occur often. Without logging these errors, it would be difficult to tell how often the errors are occurring and what error is actually being thrown.
+- Slow query
+  - Data Fields: table being queried, query called on it, timestamp logged, time query started, time it took querying.
+  - Reason: Track when a query takes longer than a certain amount of time to run to be able to make the program more efficient.
+  - Log Level: WARNING
+  - Risk: Without this, users might be waiting longer than desired and we would not be able to identify why that is and not be able to fix it. Furthermore, if an attack is causing the slow query, no log of the query would make it difficult to tell which table is being affected and how to fix the issue.
+- Slow webpage loading
+  - Data Fields: webpage being loaded, time it started loading, time it took to load, timestamp logged
+  - Reason: Tracks when a page loads slower than a certain amount of time to be able to identify why and fix it.
+  - Log Level: WARNING
+  - Risk: Without this, users might be waiting longer than desired and we would not be able to identify why that is and not be able to fix it. Furthermore, if it was an attack that caused this, we would not be able to quickly stop the attack.
+- RAM usage
+  - Data Fields: timestamp, RAM usage
+  - Reason: If too much RAM is being used, it could mean there's something wrong or we need to optimize our program.
+  - Log Level: INFO
+  - Risk: If RAM usage goes too high, the computer the ministry is run on could become slow, freeze, or run into errors because of the low remaining memory.
+- Query failure
+  - Data Fields: timestamp, table being queried, query function called on it
+  - Reason: If the query fails to return certain information, it could mean that the code has a bug, or someone sent an invalid query to the database.
+  - Log Level: WARNING
+  - Risk: If these aren't logged, we wouldn't know if it throws a critical error to a user, or if it could be an invalid query sent by an attacker.
 ### Tools
-
+I used Gemini to get examples of what would be logged for conditional logging.
 
 ## Support / Helpdesk
 ### Events
@@ -119,9 +139,9 @@ chatGPT
   - Recommended Log Events: Request Received, Authorization Denied on Protected Route, Unhandled Server Exception
   - Insight: For support and helpdesk work, the most valuable logs are the ones that make it easy to reconstruct a user’s experience from start to finish. A support team usually needs to know what request the user made, whether the system denied it for a known reason, and whether the application itself failed. These events give enough context to troubleshoot common problems like access issues, bad requests, and server errors without guessing.
 - `@maklsmit`
-  - Dimension:
-  - Recommended Log Events:
-  - Insight: 
+  - Dimension: Operational
+  - Recommended Log Events: Slow query, error rates, and RAM usage
+  - Insight: Operational logging tracks data to keep the general system running well. It can be used to improve efficiency or to detect attacks, which overall improves user experience and keeps our data safe. The events chosen focus on user experience such as wait times and errors, but they can also assist in ascertaining that an attack is happening or had happened.
 - `@lsiverts`
   - Dimension:  Regulatory / Compliance
   - Recommended Log Events: failed login attempt, GDPR Erasure request, Data Access.
@@ -143,7 +163,7 @@ chatGPT
 # Section 5: Team Member Information
 - Cole Olds | `@coolds` | Client / User
 - Lily Sivertson | `@lsiverts` | Regulatory / Compliance
-- Makena Smith | `@maklsmit` |
+- Makena Smith | `@maklsmit` | Operational
 - Amin Matariyeh | `@amatariy` | 
 - Anthony Thet | `@kthet` | Support / Helpdesk
 
