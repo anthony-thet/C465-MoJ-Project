@@ -58,8 +58,7 @@ jobs:
           python-version: "3.12"
       
       - name: Install pip-audit
-        run: pip install pip-audit
+        run: python -m pip install pip-audit
       
       - name: Run pip-audit
-        run: python -m pip_audit
-        continue-on-error: true
+        run: pip-audit || true
