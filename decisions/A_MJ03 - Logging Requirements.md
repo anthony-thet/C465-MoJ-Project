@@ -142,9 +142,9 @@ chatGPT
 
 # Section 5: Team Member Information
 - Cole Olds | `@coolds` | Client / User
-- Lily Sivertson | `@lsiverts` |
+- Lily Sivertson | `@lsiverts` | Regulatory / Compliance
 - Makena Smith | `@maklsmit` |
-- Amin Matariyeh | `@amatariy` |
+- Amin Matariyeh | `@amatariy` | 
 - Anthony Thet | `@kthet` | Support / Helpdesk
 
 # Ethical Challenge
