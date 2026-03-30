@@ -212,6 +212,9 @@ ChatGPT
 | 8 | Auth Denied | timestamp, request_id, user_id, route, required_role | WARNING - similar to failed login as it maintains security and logs suspicious behavior | Support, Security | Medium |
 | 9 | Content Moderation | timestamp, joke_id, report_id, reason_category | WARNING - allows admins to identify why specific content was hidden or removed | Client, Regulatory | Medium |
 | 10 | Internal Data Access | timestamp, accessor_id, target_user_id, scope | INFO - informs admins of requests for data access and its scope | Regulatory, Security | High |
+| 11 | Query Failure | timestamp, queried_table, query_function | WARNING - we need to know if a query failed or an invalid query from an attack | Operational | High | 
+| 12 | Slow Query | timestamp, queried_table, query, query_time | WARNING - allows admins to identify why a query took to long and work to fix it | Operational | High |
+| 13 | Database Initialization Failure | timestamp, database, error_message | CRITICAL - without this warning and log the app could fail entirely without a valid reasoning to look into | Operational | High | 
 
 # Section 3: Conflicts and Resolutions
 **Conflict Identified:** The Failed Login event exists in both the Support and Regulatory dimensions. Support requires detailed logs for why the login failed so that we can help users get back into their accounts. Regulatory requires this data to be strictly controlled or encrypted so that we don't leak anything valuable to someone wishing to steal or access an account.
