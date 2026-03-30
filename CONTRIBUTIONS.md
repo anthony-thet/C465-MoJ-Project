@@ -161,7 +161,7 @@ Start thinking now: which routes have no tests at all?
     * Process Lead: `@kthet`
     * Dev Lead: `@lsiverts`, `@amatariy`
     * QA Sentinel: `@coolds`
-* **Summary of Work:** We installed a much needed security check into our system. This security check runs our currently installed requirements and audits them using pip-audit to ensure there are widely known security issues. We also addressed the STRIDE table and document each category of stride and it's importance and reference to our MoJ. 
+* **Summary of Work:** We installed a much needed security check into our system. This security check runs our currently installed requirements and audits them using pip-audit to ensure there are widely known security issues. We also addressed the STRIDE table and document each category of stride and it's importance and reference to our MoJ. Also for the hardening issue we deduced the non-repudiation and DoS gap to be the most substantial issues and has depicted by the assignment description have made issues reflecting this decision.
 
 ### Planted Problem
 * **What was the bug?** There were two issues. First is that python was not setup before installing and running pip-audit in the security job. The second was that pip-audit was auditing the local packages and not specifically the dependencies we cared about in requirements.txt.
