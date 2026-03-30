@@ -164,9 +164,9 @@ Start thinking now: which routes have no tests at all?
 * **Summary of Work:** We installed a much needed security check into our system. This security check runs our currently installed requirements and audits them using pip-audit to ensure there are widely known security issues. We also addressed the STRIDE table and document each category of stride and it's importance and reference to our MoJ. 
 
 ### Planted Problem
-* **What was the bug?** There were two issues. First is that the or operator '||' was not recognized and the second was pip-audit can not be run and instead must be run as pip_audit instead.
+* **What was the bug?** There were two issues. First is that python was not setup before installing and running pip-audit in the security job. The second was that pip-audit was auditing the local packages and not specifically the dependencies we cared about in requirements.txt.
 * **How did the team identify it?** The runner was passing the security check but not actually running pip audit on the requirements.
-* **How was it resolved?** We removed the || operator and instead added the line "continue-on-error: true". Then I continued to mess wtih the run pip-audit line and tried pip_audit which worked. 
+* **How was it resolved?** We set up python before installing pip-audit. We ran "pip-audit -r requirements.txt" and we removed the || operator and instead added the line "continue-on-error: true". 
 
 * **Forward Hook:** Next time, MoJ gets an opinion system. ICEX 7 adds three-axis
   attributed ratings — funniness, appropriateness, and originality. Every threat in
