@@ -20,7 +20,7 @@
   - Reason: Records why a joke was hidden or deleted which is necessary for transparency and regulation for explaining issues to corresponding teller
   - Log Level: WARNIN G
   - Risk: Users could feel silenced or targetted if we did not have these logged reasons on why a joke was removed or hidden
-- Profile Informating Changes
+- Profile Information Change
   - Data Fields: timestamp, user_id, field_changed, request_ip
   - Reason: Tracks when information for an account is modified and allows a user to revirew their own account change activity and prevent unauthorized changes
   - Log Level: INFO
