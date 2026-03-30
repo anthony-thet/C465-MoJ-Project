@@ -226,12 +226,12 @@ The team discussion surfaced the need for a more unified hierarchy for requests 
 
 This specification and overall structure closes the gap in our STRIDE table by ensuring that every action taken by any user or admin can be tracked and identified. This means that a user can not deny they took an action and admins can not hide any unauthorized data access or deletion.
 
+## Ethical Challenge
+The line between security and surveillence in MoJ is drawn mostly clear when we look at the User Data Access log. Logging is for seucrity when it only tracks system events and prevents harm. However, this line can be very easily breached if those same logs are used to build a profile of a user and start identifying their habits and patterns. This log comes the closest to that line as it records exactly what user is looking at what data. In order to safeguard this specific log we should mask the user_id on these types of logs and any attempt to access the unmasked user_id should be tracked as well and logged. 
+
 # Section 5: Team Member Information
 - Cole Olds | `@coolds` | Client / User
 - Lily Sivertson | `@lsiverts` | Regulatory / Compliance
 - Makena Smith | `@maklsmit` | Operational
 - Amin Matariyeh | `@amatariy` | Operational
 - Anthony Thet | `@kthet` | Support / Helpdesk
-
-# Ethical Challenge
-The line between security and surveillence in MoJ is drawn mostly clear when we look at the User Data Access log. Logging is for seucrity when it only tracks system events and prevents harm. However, this line can be very easily breached if those same logs are used to build a profile of a user and start identifying their habits and patterns. This log comes the closest to that line as it records exactly what user is looking at what data. In order to safeguard this specific log we should mask the user_id on these types of logs and any attempt to access the unmasked user_id should be tracked as well and logged. 
