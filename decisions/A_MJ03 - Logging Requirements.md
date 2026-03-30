@@ -30,12 +30,56 @@ Gemini
 
 ## Operational
 ### Events
-- Log/Event Title
-  - Data Fields:
-  - Reason:
-  - Log Level:
-  - Risk:
+- Request Completed
+  - Data Fields: timestamp, endpoint, method, status_code, response_time
+  - Reason: Shows normal behavior of the app and helps track how endpoints like /jokes are being used and if they are slow
+  - Log Level: INFO
+  - Risk: Without this, we would not know how the system is performing or which endpoints are being used the most
+
+- Request Validation Failure
+  - Data Fields: timestamp, endpoint, method, error_code
+  - Reason: Tracks bad input requests like missing or invalid fields so we can identify patterns or client issues
+  - Log Level: WARNING
+  - Risk: Without this, we would not know if users are consistently sending bad requests or if there is a frontend issue
+
+- Server Error (Exception)
+  - Data Fields: timestamp, endpoint, method, error_type
+  - Reason: Helps identify when something breaks in the app and separates real system errors from user mistakes
+  - Log Level: ERROR
+  - Risk: Without this, we would not know what caused failures in the system or where they happened
+
+- Database Initialization Failure
+  - Data Fields: timestamp, database_uri, error_message
+  - Reason: Ensures we know when the database fails to start since the app depends on it to function
+  - Log Level: CRITICAL
+  - Risk: Without this, the app could fail completely and we would not know why
+
+- Database Operation Failure
+  - Data Fields: timestamp, model_name, operation, error_message
+  - Reason: Tracks failures when interacting with models like User and Joke
+  - Log Level: ERROR
+  - Risk: Without this, data issues would go unnoticed and could break features silently
+
+- Service Start / Restart
+  - Data Fields: timestamp, service_instance, status
+  - Reason: Tracks when the app starts or restarts to help explain sudden issues
+  - Log Level: INFO
+  - Risk: Without this, it would be harder to connect failures to restarts or deployments
+
+- Environment / Dependency Failure
+  - Data Fields: timestamp, environment, dependency, error_message
+  - Reason: Helps track issues caused by environment differences like CI runner problems
+  - Log Level: ERROR
+  - Risk: Without this, we would not know why something works on one machine but not another
+
+- Slow Request or Query
+  - Data Fields: timestamp, endpoint_or_query, duration, threshold
+  - Reason: Identifies performance issues before they become bigger problems
+  - Log Level: WARNING
+  - Risk: Without this, slow performance could go unnoticed until it affects users
+
 ### Tools
+ChatGPT
 
 
 ## Support / Helpdesk
@@ -122,9 +166,9 @@ ChatGPT
   - Recommended Log Events: failed login attempt, GDPR Erasure request, Data Access.
   - Insight: For this dimension, the main priority is complying with ethical and legal obligations. The GDPR erasure request would be important to this, to make sure that the program is abiding by the right to erasure. Data access allows to see when and what data that people are accessing, which is important in ensuring that people are not accessing data they should not be, or taking advantage of priveledges they may have to look up sensitive information. Finally, failed login attempt helps to identify and ideally slow down/prevent brute force attacks on accounts. Together these events help to log activity to make it easier to check for any unethical behaviors or legal issues.
 - `@amatariy`
-  - Dimension:
-  - Recommended Log Events:
-  - Insight:
+  - Dimension: Operational
+  - Recommended Log Events: Request Completed, Database Initialization Failure, Environment / Dependency Failure
+  - Insight: From our ICEX work, a lot of issues came from environment differences, database setup, and unexpected errors rather than just code bugs. Because of that, operational logging should focus on tracking requests, failures, and system behavior so we can quickly figure out what broke and where.
 
 # Section 2: Unified Logging Specification
 | # | Event | Fields | Log Level | Dimension(s) | Priority |
