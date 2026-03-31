@@ -24,38 +24,72 @@ def create_rating(joke_id):
     data = request.get_json() or {}
     error_msg = validate_rating_data(data)
     if error_msg:
-        return jsonify({"error": {"code": "VALIDATION_ERROR", "message": error_msg}}), 400
+        return jsonify({
+                "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": error_msg
+                }
+            }), 400
 
     existing = Rating.query.filter_by(user_id=current_user.id, joke_id=joke_id).first()
     if existing:
-        return jsonify({"error": {"code": "DUPLICATE_RATING", "message": "This joke has already been rated"}}), 409
+        return jsonify({
+                "error": {
+                    "code": "DUPLICATE_RATING",
+                    "message": "This joke has already been rated"
+                }
+            }), 409
 
     new_rating = Rating(
-        user_id = current_user.id,
-        joke_id = joke_id,
-        selected_scores = {}
-        for k in ['funniness', 'appropriateness', 'originality']:
-            selected_scores[k] = data[k]
+        user_id=current_user.id,
+        joke_id=joke_id,
+        funniness=data['funniness'],
+        appropriateness=data['appropriateness'],
+        originality=data['originality']
     )
     db.session.add(new_rating)
     db.session.commit()
-    return jsonify(new_rating.to_dict()), 201
-    # TODO: Implement
-    #   2. Validate all three axes are present and integers 1-5 (400 if not)
-    #   3. Check for duplicate rating by this user on this joke (409 if exists)
-    #   4. Create and save the Rating
-    #   5. Return 201 with the rating data
-    pass
+
+    return jsonify({
+        "data": {
+            "id": new_rating.id,
+            "user_id": new_rating.user_id,
+            "joke_id": new_rating.joke_id,
+            "funniness": new_rating.funniness,
+            "appropriateness": new_rating.appropriateness,
+            "originality": new_rating.originality,
+            "created_at": new_rating.created_at,
+            "updated_at": new_rating.updated_at
+        },
+        "status": "ok"
+    }), 201
 
 
 @ratings_bp.route('/jokes/<int:joke_id>/ratings/me', methods=['GET'])
 @login_required
 def get_my_rating(joke_id):
-    """Get the current user's rating for a joke."""
-    # TODO: Implement
-    #   1. Query for rating by current_user.id and joke_id
-    #   2. Return 200 with rating data, or 404 if no rating exists
-    pass
+    rating = Rating.query.filter_by(user_id=current_user.id, joke_id=joke_id).first()
+    if not rating:
+        return jsonify({
+            "error": {
+                "code": "NOT_FOUND",
+                "message": "Rating not found."
+            }
+        }), 404
+
+    return jsonify({
+        "data": {
+            "id": rating.id,
+            "user_id": rating.user_id,
+            "joke_id": rating.joke_id,
+            "funniness": rating.funniness,
+            "appropriateness": rating.appropriateness,
+            "originality": rating.originality,
+            "created_at": rating.created_at,
+            "updated_at": rating.updated_at
+        },
+        "status": "ok"
+    }), 200
 
 
 @ratings_bp.route('/jokes/<int:joke_id>/ratings/me', methods=['PUT'])
