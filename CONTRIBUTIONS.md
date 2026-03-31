@@ -175,11 +175,11 @@ Start thinking now: which routes have no tests at all?
 ---
 # ICEX 7: The Department of Conditions and Alarm
 * **Date:** 2026-03-31
-* **Team Members Present:** `@lsiverts`, `@coolds`, `@maklsmit`, `@amatariy`
+* **Team Members Present:** `@lsiverts`, `@coolds`, `@maklsmit`, `@amatariy`, `@kthet`
 * **Roles:**
     * Repo Admin: `@maklsmit`
     * Process Lead: `@lsiverts`
-    * Dev Lead: `@coolds`
+    * Dev Lead: `@coolds`, `@kthet`
     * QA Sentinel: `@amatariy`
 * **Summary of Work:** [1-2 sentences on what was accomplished]
 
