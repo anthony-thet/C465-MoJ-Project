@@ -189,7 +189,7 @@ Start thinking now: which routes have no tests at all?
 * **How was it resolved?** [What was added and why does it matter?]
 
 ### Security Carry-Forward
-* **STRIDE threat 1 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation of how it applies to the rating endpoints]
-* **STRIDE threat 2 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation]
+* **STRIDE threat 1 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation of how it applies to the rating endpoints] Denial of Service is applicable since there is no rate limit on how many times someone can try to rate a joke, which could slow down the system.
+* **STRIDE threat 2 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation] Tampering is applicable because while we test if the user has already rated the joke, we don't test if the user is even authenticated. This means that someone could not be authenticated and put a rating, so it would be easy for someone to pretend to be different users rate the same joke multiple time.
 
-* **Evidence & Reflection:** The POST endpoint is non-idempotent and the PUT endpoint is idempotent. In one sentence: what would break in MoJ's user experience if both were non-idempotent (both POST)?
+* **Evidence & Reflection:** The POST endpoint is non-idempotent and the PUT endpoint is idempotent. In one sentence: what would break in MoJ's user experience if both were non-idempotent (both POST)? If PUT was non-idempotent, it could add duplicates to the database that interfere with user data and change that users experience because of that.
