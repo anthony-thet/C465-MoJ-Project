@@ -177,10 +177,10 @@ Start thinking now: which routes have no tests at all?
 * **Date:** 2026-03-31
 * **Team Members Present:** `@lsiverts`, `@coolds`, `@maklsmit`, `@amatariy`
 * **Roles:**
-    * Repo Admin: `@userX`
-    * Process Lead: `@userY`
-    * Dev Lead: `@userZ`
-    * QA Sentinel: `@userW`
+    * Repo Admin: `@maklsmit`
+    * Process Lead: `@lsiverts`
+    * Dev Lead: `@coolds`
+    * QA Sentinel: `@amatariy`
 * **Summary of Work:** [1-2 sentences on what was accomplished]
 
 ### Planted Problem (either one)
