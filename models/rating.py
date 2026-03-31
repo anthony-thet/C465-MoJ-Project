@@ -15,3 +15,8 @@ class Rating(db.Model):
     originality     = db.Column(db.Integer, nullable=False)
     created_at      = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at      = db.Column(db.DateTime, onupdate=datetime.utcnow)
+
+    __table_args__ = (
+        db.UniqueConstraint('user_id', 'joke_id',
+                            name='one_rating_per_user_per_joke'),
+    )
