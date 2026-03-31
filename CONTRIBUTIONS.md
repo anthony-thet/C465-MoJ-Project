@@ -172,3 +172,24 @@ Start thinking now: which routes have no tests at all?
   attributed ratings — funniness, appropriateness, and originality. Every threat in
   your STRIDE table applies to the rating endpoints too. The security issues you
   opened today are the backlog you carry into feature development.
+---
+# ICEX 7: The Department of Conditions and Alarm
+* **Date:** 2026-03-31
+* **Team Members Present:** `@lsiverts`, `@coolds`, `@maklsmit`, `@amatariy`
+* **Roles:**
+    * Repo Admin: `@userX`
+    * Process Lead: `@userY`
+    * Dev Lead: `@userZ`
+    * QA Sentinel: `@userW`
+* **Summary of Work:** [1-2 sentences on what was accomplished]
+
+### Planted Problem (either one)
+* **What was the bug?** [Describe the omission in the starter model]
+* **What was the consequence?** [What behavior did tests reveal without the fix?]
+* **How was it resolved?** [What was added and why does it matter?]
+
+### Security Carry-Forward
+* **STRIDE threat 1 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation of how it applies to the rating endpoints]
+* **STRIDE threat 2 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation]
+
+* **Evidence & Reflection:** The POST endpoint is non-idempotent and the PUT endpoint is idempotent. In one sentence: what would break in MoJ's user experience if both were non-idempotent (both POST)?
