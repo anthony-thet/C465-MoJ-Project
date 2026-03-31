@@ -96,9 +96,42 @@ def get_my_rating(joke_id):
 @login_required
 def update_my_rating(joke_id):
     """Update the current user's rating. Idempotent — safe to retry."""
-    # TODO: Implement
-    #   1. Find existing rating (404 if none)
-    #   2. Validate new scores (same rules as POST)
-    #   3. Update the fields and commit
-    #   4. Return 200 with updated rating data
-    pass
+    rating = Rating.query.filter_by(user_id=current_user.id, joke_id=joke_id).first()
+    if not rating:
+        return jsonify({
+            "error": {
+                "code": "NOT_FOUND",
+                "message": "Rating not found."
+            }
+        }), 404
+
+    data = request.get_json() or {}
+    error_msg = validate_rating_data(data)
+    if error_msg:
+        return jsonify({
+            "error": {
+                "code": "VALIDATION_ERROR",
+                "message": error_msg
+            }
+        }), 400
+
+
+    rating.funniness = data['funniness']
+    rating.appropriateness = data['appropriateness']
+    rating.originality = data['originality']
+
+    db.session.commit()
+
+    return jsonify({
+        "data": {
+            "id": rating.id,
+            "user_id": rating.user_id,
+            "joke_id": rating.joke_id,
+            "funniness": rating.funniness,
+            "appropriateness": rating.appropriateness,
+            "originality": rating.originality,
+            "created_at": rating.created_at,
+            "updated_at": rating.updated_at
+        },
+        "status": "ok"
+    }), 200
