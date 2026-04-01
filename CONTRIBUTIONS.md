@@ -181,12 +181,12 @@ Start thinking now: which routes have no tests at all?
     * Process Lead: `@lsiverts`
     * Dev Lead: `@coolds`, `@kthet`
     * QA Sentinel: `@amatariy`
-* **Summary of Work:** [1-2 sentences on what was accomplished]
+* **Summary of Work:** We have now added the three dimensional rating system. Alongside this we have also added test cases to ensure it all meets our standard of operation as well. Lastly, we did a security audit on this new feature in relation to STRIDE. 
 
 ### Planted Problem (either one)
-* **What was the bug?** [Describe the omission in the starter model]
-* **What was the consequence?** [What behavior did tests reveal without the fix?]
-* **How was it resolved?** [What was added and why does it matter?]
+* **What was the bug?** There was no UniqueConstraint in the Rating Class
+* **What was the consequence?** A single user could spam a joke with hundreds of ratings and break the integrity of our rating system as a whole. 
+* **How was it resolved?** We added a db.UniqueConstraint('user_id', 'joke_id', name='one_rating_per_user_per_joke'). This ensures the database will reject any inserts and throw an error if someone tries to bypass the unique constraint. 
 
 ### Security Carry-Forward
 * **STRIDE threat 1 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation of how it applies to the rating endpoints] Denial of Service is applicable since there is no rate limit on how many times someone can try to rate a joke, which could slow down the system.
