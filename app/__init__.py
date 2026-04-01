@@ -3,7 +3,7 @@ from flask_migrate import Migrate
 from app.models import db
 from flask_login import LoginManager
 from app.models import User
-from app.models import rating
+from app.models import Rating
 
 login_manager = LoginManager()
 
