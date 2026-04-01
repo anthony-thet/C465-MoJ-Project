@@ -6,6 +6,7 @@ from app.models import Joke
 
 ratings_bp = Blueprint('ratings', __name__)
 
+
 def validate_rating_data(data):
     "Helper to validate axes are integers 1-5"
     axes = ['funniness', 'appropriateness', 'originality']
@@ -14,6 +15,7 @@ def validate_rating_data(data):
         if not isinstance(val, int) or not (1 <= val <= 5):
             return f"{axis} must be an integer between 1 and 5"
     return None
+
 
 @ratings_bp.route('/jokes/<int:joke_id>/ratings', methods=['POST'])
 @login_required
@@ -114,7 +116,6 @@ def update_my_rating(joke_id):
                 "message": error_msg
             }
         }), 400
-
 
     rating.funniness = data['funniness']
     rating.appropriateness = data['appropriateness']
