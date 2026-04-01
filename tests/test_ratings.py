@@ -1,6 +1,3 @@
-import pytest
-
-
 class TestRatings:
     """Rating endpoint tests — organized by the three-level taxonomy from L7."""
 
