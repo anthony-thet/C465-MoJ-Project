@@ -28,7 +28,8 @@ class TestRatings:
 
         assert response.status_code == 201
 
-        data = response.get_json()
+        response_json = response.get_json()
+        data = response_json["data"]
         assert data["funniness"] == 4
         assert data["appropriateness"] == 5
         assert data["originality"] == 3
@@ -56,7 +57,8 @@ class TestRatings:
         )
 
         assert response.status_code == 201
-        data = response.get_json()
+        response_json = response.get_json()
+        data = response_json["data"]
         assert data["funniness"] == 1
         assert data["appropriateness"] == 5
         assert data["originality"] == 1
