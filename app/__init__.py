@@ -3,7 +3,6 @@ from flask_migrate import Migrate
 from app.models import db
 from flask_login import LoginManager
 from app.models import User
-from app.models import Rating
 
 login_manager = LoginManager()
 
@@ -25,7 +24,7 @@ def create_app(config=None):
 
     from app.routes.ratings import ratings_bp
     app.register_blueprint(ratings_bp)
-    
+
     return app
 
 
