@@ -41,16 +41,16 @@ class Joke(db.Model):
 class Rating(db.Model):
     __tablename__ = 'ratings'
 
-    id              = db.Column(db.Integer, primary_key=True)
-    user_id         = db.Column(db.Integer, db.ForeignKey('user.id'),
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),
                                 nullable=False)
-    joke_id         = db.Column(db.Integer, db.ForeignKey('joke.id'),
+    joke_id = db.Column(db.Integer, db.ForeignKey('joke.id'),
                                 nullable=False)
-    funniness       = db.Column(db.Integer, nullable=False)
+    funniness = db.Column(db.Integer, nullable=False)
     appropriateness = db.Column(db.Integer, nullable=False)
-    originality     = db.Column(db.Integer, nullable=False)
-    created_at      = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at      = db.Column(db.DateTime, onupdate=datetime.utcnow)
+    originality = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
     __table_args__ = (
         db.UniqueConstraint('user_id', 'joke_id',
