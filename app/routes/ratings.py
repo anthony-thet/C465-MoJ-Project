@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app import db
-from models import Rating
-from models import Joke
+from app.models import Rating
+from app.models import Joke
 
 ratings_bp = Blueprint('ratings', __name__)
 
