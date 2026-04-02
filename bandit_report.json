@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2026-03-28T03:08:49Z",
+  "generated_at": "2026-03-30T01:14:33Z",
   "metrics": {
     "_totals": {
       "CONFIDENCE.HIGH": 0,
@@ -41,7 +41,7 @@
       "nosec": 0,
       "skipped_tests": 0
     },
-    "app/routes/auth.py": {
+    "app/routes\\auth.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -54,7 +54,7 @@
       "nosec": 0,
       "skipped_tests": 0
     },
-    "app/routes/jokes.py": {
+    "app/routes\\jokes.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
