@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 from flask_login import login_required, current_user
 from app import db
 from app.models import Rating
@@ -51,6 +51,19 @@ def create_rating(joke_id):
     )
     db.session.add(new_rating)
     db.session.commit()
+
+    current_app.logger.info(
+        "Rating created",
+            extra={
+                "event": "rating_created",
+                "user_id": Rating.user.id,
+                "joke_id": Rating.joke.id,
+                "funniness": data['funniness']
+                "appropriateness": data['appropriateness']
+                "originality": data['originality']
+                "status_code": 201
+            }
+    )
 
     return jsonify({
         "data": {

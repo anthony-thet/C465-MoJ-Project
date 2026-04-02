@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 
 jokes_bp = Blueprint('jokes', __name__)
 
@@ -15,6 +15,11 @@ def get_jokes():
 def post_joke():
     body = request.get_json(silent=True)
     text = body.get('text')
+
+    user_id = None
+
+    if body.get('user_id'):
+        user_id = body.get('user_id')
 
     if not body or not text:
         return jsonify({
@@ -53,5 +58,16 @@ def post_joke():
     }
     _jokes.append(new_joke)
     _next_id += 1
+
+    current_app.logger.info(
+        "Joke created",
+            extra={
+                "event": "joke_created",
+                "user_id": user_id,
+                "joke_id": new_joke['id'],
+                "endpoint": "POST /jokes"
+                "status_code": 
+            }	
+    )
 
     return jsonify({"data": new_joke, "status": "ok"}), 201
