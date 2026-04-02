@@ -193,3 +193,25 @@ Start thinking now: which routes have no tests at all?
 * **STRIDE threat 2 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation] Tampering is applicable because while we test if the user has already rated the joke, we don't test if the user is even authenticated. This means that someone could not be authenticated and put a rating, so it would be easy for someone to pretend to be different users rate the same joke multiple time.
 
 * **Evidence & Reflection:** The POST endpoint is non-idempotent and the PUT endpoint is idempotent. In one sentence: what would break in MoJ's user experience if both were non-idempotent (both POST)? If PUT was non-idempotent, it could add duplicates to the database that interfere with user data and change that users experience because of that.
+---
+# ICEX 8: The Minutes of the Ministry
+* **Date:** YYYY-MM-DD
+* **Team Members Present:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@coolds`
+    * Process Lead: `@kthet`
+    * Dev Lead: `@amatariy`, `@maklsmit`
+    * QA Sentinel: `@lsiverts`
+* **Summary of Work:** [1-2 sentences on what was accomplished]
+
+### Planted Problem
+* **What was the bug?** [Describe the JSONFormatter limitation]
+* **What was the consequence?** [Which fields were silently dropped from log output?]
+* **How was it resolved?** [What change to the formatter fixed it?]
+
+### Spec → Implementation Map
+| Team Best Event | Category | Implemented? | Notes |
+|-----------------|----------|-------------|-------|
+| [event from W10] | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+
+* **Evidence & Reflection:** Your JSONFormatter now emits structured JSON for every significant event. In one sentence: if MoJ were operating in production and a user claimed "I never submitted that joke," which specific log fields would you use to prove or disprove the claim?
