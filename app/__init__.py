@@ -6,6 +6,7 @@ from app.models import User
 
 login_manager = LoginManager()
 
+
 def create_app(config=None):
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'dev-key'
@@ -20,8 +21,9 @@ def create_app(config=None):
 
     from app.routes.auth import auth_bp
     app.register_blueprint(auth_bp)
-    
+
     return app
+
 
 @login_manager.user_loader
 def load_user(user_id):

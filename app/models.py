@@ -17,7 +17,6 @@ class User(UserMixin, db.Model):
     jokes = db.relationship('Joke', backref='author', lazy=True)
     role = db.Column(db.String(20), default='joke-teller')
 
-    
     def __repr__(self):
         return f'<User {self.username}>'
 

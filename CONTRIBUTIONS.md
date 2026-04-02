@@ -152,3 +152,23 @@ Start thinking now: which routes have no tests at all?
 * **Forward Hook:** Next time, we meet the attacker. ICEX 6 applies STRIDE to the
   endpoints you just built — every route you wrote today becomes an attack surface
   to enumerate and harden.
+---
+# ICEX 6: Forging Unforgeable Licenses
+* **Date:** 2026-03-26
+* **Team Members Present:** `@kthet`, `@lsiverts`, `@coolds`, `@maklsmit`, `@amatariy`
+* **Roles:**
+    * Repo Admin: `@maklsmit`
+    * Process Lead: `@kthet`
+    * Dev Lead: `@lsiverts`, `@amatariy`
+    * QA Sentinel: `@coolds`
+* **Summary of Work:** We installed a much needed security check into our system. This security check runs our currently installed requirements and audits them using pip-audit to ensure there are widely known security issues. We also addressed the STRIDE table and document each category of stride and it's importance and reference to our MoJ. Also for the hardening issue we deduced the non-repudiation and DoS gap to be the most substantial issues and has depicted by the assignment description have made issues reflecting this decision.
+
+### Planted Problem
+* **What was the bug?** There were two issues. First is that python was not setup before installing and running pip-audit in the security job. The second was that pip-audit was auditing the local packages and not specifically the dependencies we cared about in requirements.txt.
+* **How did the team identify it?** The runner was passing the security check but not actually running pip audit on the requirements.
+* **How was it resolved?** We set up python before installing pip-audit. We ran "pip-audit -r requirements.txt" and we removed the || operator and instead added the line "continue-on-error: true". 
+
+* **Forward Hook:** Next time, MoJ gets an opinion system. ICEX 7 adds three-axis
+  attributed ratings — funniness, appropriateness, and originality. Every threat in
+  your STRIDE table applies to the rating endpoints too. The security issues you
+  opened today are the backlog you carry into feature development.
