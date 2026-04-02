@@ -172,3 +172,24 @@ Start thinking now: which routes have no tests at all?
   attributed ratings — funniness, appropriateness, and originality. Every threat in
   your STRIDE table applies to the rating endpoints too. The security issues you
   opened today are the backlog you carry into feature development.
+---
+# ICEX 7: The Department of Conditions and Alarm
+* **Date:** 2026-03-31
+* **Team Members Present:** `@lsiverts`, `@coolds`, `@maklsmit`, `@amatariy`, `@kthet`
+* **Roles:**
+    * Repo Admin: `@maklsmit`
+    * Process Lead: `@lsiverts`
+    * Dev Lead: `@coolds`, `@kthet`
+    * QA Sentinel: `@amatariy`
+* **Summary of Work:** We have now added the three dimensional rating system. Alongside this we have also added test cases to ensure it all meets our standard of operation as well. Lastly, we did a security audit on this new feature in relation to STRIDE. 
+
+### Planted Problem (either one)
+* **What was the bug?** There was no UniqueConstraint in the Rating Class
+* **What was the consequence?** A single user could spam a joke with hundreds of ratings and break the integrity of our rating system as a whole. 
+* **How was it resolved?** We added a db.UniqueConstraint('user_id', 'joke_id', name='one_rating_per_user_per_joke'). This ensures the database will reject any inserts and throw an error if someone tries to bypass the unique constraint. 
+
+### Security Carry-Forward
+* **STRIDE threat 1 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation of how it applies to the rating endpoints] Denial of Service is applicable since there is no rate limit on how many times someone can try to rate a joke, which could slow down the system.
+* **STRIDE threat 2 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation] Tampering is applicable because while we test if the user has already rated the joke, we don't test if the user is even authenticated. This means that someone could not be authenticated and put a rating, so it would be easy for someone to pretend to be different users rate the same joke multiple time.
+
+* **Evidence & Reflection:** The POST endpoint is non-idempotent and the PUT endpoint is idempotent. In one sentence: what would break in MoJ's user experience if both were non-idempotent (both POST)? If PUT was non-idempotent, it could add duplicates to the database that interfere with user data and change that users experience because of that.

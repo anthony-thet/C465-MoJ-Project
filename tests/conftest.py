@@ -1,6 +1,6 @@
 import pytest
 from app import create_app
-from app.models import db as _db, User
+from app.models import db as _db, User, Joke
 
 
 class TestConfig:
@@ -34,3 +34,32 @@ def authenticated_client(client, app):
             'password': 'testpass'
         })
     return client
+
+
+@pytest.fixture(scope='function')
+def sample_user(app):
+    user = User(username='qauser')
+    user.set_password('testpass')
+    _db.session.add(user)
+    _db.session.commit()
+    return user
+
+
+@pytest.fixture(scope='function')
+def sample_joke(app, sample_user):
+    joke = Joke(
+        text='Why did the QA engineer cross the road? To reproduce the bug.',
+        submitted_by=sample_user.id
+    )
+    _db.session.add(joke)
+    _db.session.commit()
+    return joke
+
+
+@pytest.fixture(scope='function')
+def auth_headers(client, sample_user):
+    client.post('/login', json={
+        'username': 'qauser',
+        'password': 'testpass'
+    })
+    return {}
