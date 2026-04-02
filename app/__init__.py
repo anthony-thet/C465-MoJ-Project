@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from app.models import db
 from flask_login import LoginManager
 from app.models import User
+from app.utils.logging_config
 
 login_manager = LoginManager()
 
@@ -11,6 +12,8 @@ def create_app(config=None):
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'dev-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///moj.db'
+
+    configure_logging(app)
 
     db.init_app(app)
     login_manager.init_app(app)
