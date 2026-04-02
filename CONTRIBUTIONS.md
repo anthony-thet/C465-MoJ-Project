@@ -122,14 +122,53 @@ be testing tomorrow.
 | `@amatariy` | test_submit_joke_valid |
 
 ## Forward Hook
-Your test suite now specifies what POST /jokes should do — at every level.
+* Your test suite now specifies what POST /jokes should do — at every level.
 Next week (Cycle 1 Close), your team will assess the health of the full
 test suite across all routes. The gap between what you tested today and
 what the full app does is the gap you will document in the Test Health block.
 Start thinking now: which routes have no tests at all?
 ---
 # Cycle 1 Close — moj-c1-v1.0
-***Date:** 2026-03-23
-***Team Members:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
-***Summary:** Team has begun working on the MoJ and have built the foundation for the entire system. We now have a running flask application with a CI pipeline that ensures that all changes still work as intended and pass linter tests. Jokes.py can now handle the edge cases as listed. 
-***Complexity Horizon:** Our MVP does not yet meet the standard 99.5% uptime and is in fact not fully operational and ready to handle users. 
+* **Date:** 2026-03-23
+* **Team Members:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Summary:** Team has begun working on the MoJ and have built the foundation for the entire system. We now have a running flask application with a CI pipeline that ensures that all changes still work as intended and pass linter tests. Jokes.py can now handle the edge cases as listed. 
+* **Complexity Horizon:** Our MVP does not yet meet the standard 99.5% uptime and is in fact not fully operational and ready to handle users.
+---
+# ICEX 5: Joke-Teller Licenses
+* **Date:** 2026-03-24
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@coolds`
+    * Process Lead: `@lsiverts` 
+    * Dev Lead: `@kthet`, `@amatariy`
+    * QA Sentinel: `@maklsmit`
+* **Summary of Work:** Implemented a role based security system using Flask logins to log users and ensure that users can login, logout, and register themselves. Also has an extensive test plan toe ensure users can register as needed and that users besides admin can not see admin users.
+
+### Planted Problem
+* **What was the bug?** There was an access-control bug in the /admin/users route. The route returns all users, but an anonymous user could reach code that assumed a logged-in user with a valid role. 
+* **How did the team identify it?** There was a specific test that tested if a person of joketeller role could acquire the list of users with admin access: 'test_admin_access_forbidden_for_teller'
+* **How was it resolved?** Added a @login_required block above the specific admin block to ensure the user is logged in and has a role so that the '!= admin' would work as intended.
+
+* **Forward Hook:** Next time, we meet the attacker. ICEX 6 applies STRIDE to the
+  endpoints you just built — every route you wrote today becomes an attack surface
+  to enumerate and harden.
+---
+# ICEX 6: Forging Unforgeable Licenses
+* **Date:** 2026-03-26
+* **Team Members Present:** `@kthet`, `@lsiverts`, `@coolds`, `@maklsmit`, `@amatariy`
+* **Roles:**
+    * Repo Admin: `@maklsmit`
+    * Process Lead: `@kthet`
+    * Dev Lead: `@lsiverts`, `@amatariy`
+    * QA Sentinel: `@coolds`
+* **Summary of Work:** We installed a much needed security check into our system. This security check runs our currently installed requirements and audits them using pip-audit to ensure there are widely known security issues. We also addressed the STRIDE table and document each category of stride and it's importance and reference to our MoJ. Also for the hardening issue we deduced the non-repudiation and DoS gap to be the most substantial issues and has depicted by the assignment description have made issues reflecting this decision.
+
+### Planted Problem
+* **What was the bug?** There were two issues. First is that python was not setup before installing and running pip-audit in the security job. The second was that pip-audit was auditing the local packages and not specifically the dependencies we cared about in requirements.txt.
+* **How did the team identify it?** The runner was passing the security check but not actually running pip audit on the requirements.
+* **How was it resolved?** We set up python before installing pip-audit. We ran "pip-audit -r requirements.txt" and we removed the || operator and instead added the line "continue-on-error: true". 
+
+* **Forward Hook:** Next time, MoJ gets an opinion system. ICEX 7 adds three-axis
+  attributed ratings — funniness, appropriateness, and originality. Every threat in
+  your STRIDE table applies to the rating endpoints too. The security issues you
+  opened today are the backlog you carry into feature development.

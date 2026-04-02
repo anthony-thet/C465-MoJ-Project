@@ -1,6 +1,6 @@
 import pytest
 from app import create_app
-from app.models import db as _db
+from app.models import db as _db, User
 
 
 class TestConfig:
@@ -19,3 +19,18 @@ def app():
 @pytest.fixture(scope='function')
 def client(app):
     return app.test_client()
+
+
+@pytest.fixture
+def authenticated_client(client, app):
+    """Returns a test client logged in as a joke-teller."""
+    with app.app_context():
+        user = User(username='testuser')
+        user.set_password('testpass')
+        _db.session.add(user)
+        _db.session.commit()
+        client.post('/login', json={
+            'username': 'testuser',
+            'password': 'testpass'
+        })
+    return client
