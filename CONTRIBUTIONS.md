@@ -145,8 +145,8 @@ Start thinking now: which routes have no tests at all?
 * **Summary of Work:** Implemented a role based security system using Flask logins to log users and ensure that users can login, logout, and register themselves. Also has an extensive test plan toe ensure users can register as needed and that users besides admin can not see admin users.
 
 ### Planted Problem
-* **What was the bug?** The issue wouldn't be an issue for a joke teller specifically but if the user was not logged in and instead an Anonyomous user and so the code didn't return the correct error. 
-* **How did the team identify it?** There was a specific test that tested if a person of joketeller role could acquire the list of admin users: 'test_admin_access_forbidden_for_teller'
+* **What was the bug?** There was an access-control bug in the /admin/users route. The route returns all users, but an anonymous user could reach code that assumed a logged-in user with a valid role. 
+* **How did the team identify it?** There was a specific test that tested if a person of joketeller role could acquire the list of users with admin access: 'test_admin_access_forbidden_for_teller'
 * **How was it resolved?** Added a @login_required block above the specific admin block to ensure the user is logged in and has a role so that the '!= admin' would work as intended.
 
 * **Forward Hook:** Next time, we meet the attacker. ICEX 6 applies STRIDE to the
@@ -161,12 +161,12 @@ Start thinking now: which routes have no tests at all?
     * Process Lead: `@kthet`
     * Dev Lead: `@lsiverts`, `@amatariy`
     * QA Sentinel: `@coolds`
-* **Summary of Work:** We installed a much needed security check into our system. This security check runs our currently installed requirements and audits them using pip-audit to ensure there are widely known security issues. We also addressed the STRIDE table and document each category of stride and it's importance and reference to our MoJ. 
+* **Summary of Work:** We installed a much needed security check into our system. This security check runs our currently installed requirements and audits them using pip-audit to ensure there are widely known security issues. We also addressed the STRIDE table and document each category of stride and it's importance and reference to our MoJ. Also for the hardening issue we deduced the non-repudiation and DoS gap to be the most substantial issues and has depicted by the assignment description have made issues reflecting this decision.
 
 ### Planted Problem
-* **What was the bug?** There were two issues. First is that the or operator '||' was not recognized and the second was pip-audit can not be run and instead must be run as pip_audit instead.
+* **What was the bug?** There were two issues. First is that python was not setup before installing and running pip-audit in the security job. The second was that pip-audit was auditing the local packages and not specifically the dependencies we cared about in requirements.txt.
 * **How did the team identify it?** The runner was passing the security check but not actually running pip audit on the requirements.
-* **How was it resolved?** We removed the || operator and instead added the line "continue-on-error: true". Then I continued to mess wtih the run pip-audit line and tried pip_audit which worked. 
+* **How was it resolved?** We set up python before installing pip-audit. We ran "pip-audit -r requirements.txt" and we removed the || operator and instead added the line "continue-on-error: true". 
 
 * **Forward Hook:** Next time, MoJ gets an opinion system. ICEX 7 adds three-axis
   attributed ratings — funniness, appropriateness, and originality. Every threat in
