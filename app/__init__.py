@@ -3,7 +3,7 @@ from flask_migrate import Migrate
 from app.models import db
 from flask_login import LoginManager
 from app.models import User
-from app.utils.logging_config
+from app.utils.logging_config import *
 
 login_manager = LoginManager()
 
