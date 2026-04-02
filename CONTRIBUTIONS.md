@@ -212,6 +212,18 @@ Start thinking now: which routes have no tests at all?
 ### Spec → Implementation Map
 | Team Best Event | Category | Implemented? | Notes |
 |-----------------|----------|-------------|-------|
-| [event from W10] | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Successful Login | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Failed Login | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Unhandled Exception | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Joke Submission | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Rating Submission | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Erasure Request | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Profile Change | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Auth Denied | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Content Moderation | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Internal Data Access | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Query Failure | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Slow Query | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Database Initialization Failure | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
 
 * **Evidence & Reflection:** Your JSONFormatter now emits structured JSON for every significant event. In one sentence: if MoJ were operating in production and a user claimed "I never submitted that joke," which specific log fields would you use to prove or disprove the claim?
