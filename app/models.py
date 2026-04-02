@@ -43,9 +43,9 @@ class Rating(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'),
-        nullable=False)
+                        nullable=False)
     joke_id = db.Column(db.Integer, db.ForeignKey('joke.id'),
-        nullable=False)
+                        nullable=False)
     funniness = db.Column(db.Integer, nullable=False)
     appropriateness = db.Column(db.Integer, nullable=False)
     originality = db.Column(db.Integer, nullable=False)
