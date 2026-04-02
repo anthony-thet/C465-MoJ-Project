@@ -56,8 +56,8 @@ def create_rating(joke_id):
         "Rating created",
             extra={
                 "event": "rating_created",
-                "user_id": Rating.user.id,
-                "joke_id": Rating.joke.id,
+                "user_id": new_rating.user.id,
+                "joke_id": new_rating.joke.id,
                 "funniness": data['funniness'],
                 "appropriateness": data['appropriateness'],
                 "originality": data['originality'],
