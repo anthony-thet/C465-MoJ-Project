@@ -65,7 +65,7 @@ def post_joke():
                 "event": "joke_created",
                 "user_id": user_id,
                 "joke_id": new_joke['id'],
-                "endpoint": "POST /jokes"
+                "endpoint": "POST /jokes",
                 "status_code": 201
             }	
     )

@@ -58,9 +58,9 @@ def create_rating(joke_id):
                 "event": "rating_created",
                 "user_id": Rating.user.id,
                 "joke_id": Rating.joke.id,
-                "funniness": data['funniness']
-                "appropriateness": data['appropriateness']
-                "originality": data['originality']
+                "funniness": data['funniness'],
+                "appropriateness": data['appropriateness'],
+                "originality": data['originality'],
                 "status_code": 201
             }
     )

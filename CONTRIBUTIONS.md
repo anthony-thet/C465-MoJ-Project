@@ -212,7 +212,7 @@ Start thinking now: which routes have no tests at all?
 ### Spec → Implementation Map
 | Team Best Event | Category | Implemented? | Notes |
 |-----------------|----------|-------------|-------|
-| Successful Login | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+| Successful Login | Auth | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
 | Failed Login | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
 | Unhandled Exception | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
 | Joke Submission | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |

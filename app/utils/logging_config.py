@@ -6,7 +6,9 @@ from datetime import datetime, timezone
 class JSONFormatter(logging.Formatter):
     """Structured JSON formatter for MoJ production logging."""
 
-    EXTRA_FIELDS = ("event", "user_id")
+    EXTRA_FIELDS = ("event", "user_id", "joke_id",
+                    "funniness", "appropriateness", "originality"
+                    "endpoint", "status_code", "attempted_username")
 
     def format(self, record):
         log_entry = {
@@ -31,4 +33,4 @@ def configure_logging(app):
     app.logger.handlers.clear()
     app.logger.addHandler(handler)
     app.logger.setLevel(logging.INFO)
-    app.logger.propagate = False
+    app.logger.propagate = app.config.get("TESTING", False)
