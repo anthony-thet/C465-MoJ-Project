@@ -22,6 +22,9 @@ def create_app(config=None):
     from app.routes.auth import auth_bp
     app.register_blueprint(auth_bp)
 
+    from app.routes.ratings import ratings_bp
+    app.register_blueprint(ratings_bp)
+
     return app
 
 
