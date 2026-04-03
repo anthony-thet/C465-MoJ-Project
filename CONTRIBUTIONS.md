@@ -226,4 +226,4 @@ Start thinking now: which routes have no tests at all?
 | Slow Query | Error | ⏳ Deferred | Not implemented or tested yet. |
 | Database Initialization Failure | Error | ⏳ Deferred | Not implemented or tested yet. |
 
-* **Evidence & Reflection:** Your JSONFormatter now emits structured JSON for every significant event. In one sentence: if MoJ were operating in production and a user claimed "I never submitted that joke," which specific log fields would you use to prove or disprove the claim?
+* **Evidence & Reflection:** Your JSONFormatter now emits structured JSON for every significant event. In one sentence: if MoJ were operating in production and a user claimed "I never submitted that joke," which specific log fields would you use to prove or disprove the claim? I would check the event, timestamp, user_id, joke_id, endpoint, and status_code fields together to verify whether a joke_created event was logged for that user, when it happened, which joke was created, and whether the request completed successfully.
