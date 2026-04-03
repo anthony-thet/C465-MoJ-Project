@@ -55,7 +55,7 @@ class TestLogging:
         WHEN they POST a valid rating to /jokes/<int:joke_id>/ratings
         THEN an INFO log entry with event 'rating_created' should be emitted
 
-        Level: ERROR CASE
+        Level: HAPPY PATH
         """
         with caplog.at_level(logging.INFO):
             response = authenticated_client.post(
