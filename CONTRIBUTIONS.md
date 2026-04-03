@@ -202,12 +202,12 @@ Start thinking now: which routes have no tests at all?
     * Process Lead: `@kthet`
     * Dev Lead: `@amatariy`, `@maklsmit`
     * QA Sentinel: `@lsiverts`
-* **Summary of Work:** [1-2 sentences on what was accomplished]
+* **Summary of Work:** Implemented structured JSON logging in MoJ by configuring a custom formatter and handler and adding log events to existing authentication, content, and interaction routes. Also verified the logging behavior with caplog tests for successful login, failed login, and rating submission.
 
 ### Planted Problem
-* **What was the bug?** [Describe the JSONFormatter limitation]
-* **What was the consequence?** [Which fields were silently dropped from log output?]
-* **How was it resolved?** [What change to the formatter fixed it?]
+* **What was the bug?** The JSONFormatter only copied a hardcoded, limited set of extra logging fields from LogRecord objects. Initially, it preserved only event and user_id, so it did not support the full set of data used by our routes.
+* **What was the consequence?** Additional fields such as joke_id, funniness, appropriateness, originality, endpoint, status_code, and attempted_username were silently omitted from the JSON log output.
+* **How was it resolved?** We fixed the formatter by expanding EXTRA_FIELDS to include all of the structured fields our application logs use.
 
 ### Spec → Implementation Map
 | Team Best Event | Category | Implemented? | Notes |
