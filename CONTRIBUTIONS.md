@@ -211,19 +211,19 @@ Start thinking now: which routes have no tests at all?
 
 ### Spec → Implementation Map
 | Team Best Event | Category | Implemented? | Notes |
-|-----------------|----------|-------------|-------|
-| Successful Login | Auth | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Failed Login | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Unhandled Exception | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Joke Submission | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Rating Submission | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Erasure Request | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Profile Change | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Auth Denied | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Content Moderation | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Internal Data Access | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Query Failure | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Slow Query | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
-| Database Initialization Failure | Auth / Content / Interaction / Error | ✅ / ⏳ Deferred / ➕ Discovered | [brief note] |
+|-----------------|----------|-|-------|
+| Successful Login | Auth | ✅ | Implemented and tested; INFO log with event `login_success`. |
+| Failed Login | Auth / Error | ✅ | Implemented and tested; WARNING log with event `login_failure`. |
+| Unhandled Exception | Error | ⏳ Deferred | Not implemented or tested yet. |
+| Joke Submission | Content / Interaction | ✅ | Implemented; successful joke submission emits INFO log with event `joke_created`. |
+| Rating Submission | Content / Interaction | ✅ | Implemented and tested; INFO log with event `rating_created`. |
+| Erasure Request | Auth / Content / Error | ⏳ Deferred | Not implemented or tested yet. |
+| Profile Change | Auth / Interaction | ⏳ Deferred | Not implemented or tested yet. |
+| Auth Denied | Auth / Error | ⏳ Deferred | Not implemented or tested yet. |
+| Content Moderation | Content / Error | ⏳ Deferred | Not implemented or tested yet. |
+| Internal Data Access | Auth / Error | ⏳ Deferred | Not implemented or tested yet. |
+| Query Failure | Error | ⏳ Deferred | Not implemented or tested yet. |
+| Slow Query | Error | ⏳ Deferred | Not implemented or tested yet. |
+| Database Initialization Failure | Error | ⏳ Deferred | Not implemented or tested yet. |
 
 * **Evidence & Reflection:** Your JSONFormatter now emits structured JSON for every significant event. In one sentence: if MoJ were operating in production and a user claimed "I never submitted that joke," which specific log fields would you use to prove or disprove the claim?

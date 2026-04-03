@@ -7,7 +7,7 @@ class JSONFormatter(logging.Formatter):
     """Structured JSON formatter for MoJ production logging."""
 
     EXTRA_FIELDS = ("event", "user_id", "joke_id",
-                    "funniness", "appropriateness", "originality"
+                    "funniness", "appropriateness", "originality",
                     "endpoint", "status_code", "attempted_username")
 
     def format(self, record):
