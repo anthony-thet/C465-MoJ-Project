@@ -195,7 +195,7 @@ Start thinking now: which routes have no tests at all?
 * **Evidence & Reflection:** The POST endpoint is non-idempotent and the PUT endpoint is idempotent. In one sentence: what would break in MoJ's user experience if both were non-idempotent (both POST)? If PUT was non-idempotent, it could add duplicates to the database that interfere with user data and change that users experience because of that.
 ---
 # ICEX 8: The Minutes of the Ministry
-* **Date:** YYYY-MM-DD
+* **Date:** 2026-04-02
 * **Team Members Present:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
 * **Roles:**
     * Repo Admin: `@coolds`
@@ -226,4 +226,4 @@ Start thinking now: which routes have no tests at all?
 | Slow Query | Error | ⏳ Deferred | Not implemented or tested yet. |
 | Database Initialization Failure | Error | ⏳ Deferred | Not implemented or tested yet. |
 
-* **Evidence & Reflection:** Your JSONFormatter now emits structured JSON for every significant event. In one sentence: if MoJ were operating in production and a user claimed "I never submitted that joke," which specific log fields would you use to prove or disprove the claim?
+* **Evidence & Reflection:** Your JSONFormatter now emits structured JSON for every significant event. In one sentence: if MoJ were operating in production and a user claimed "I never submitted that joke," which specific log fields would you use to prove or disprove the claim? I would check the event, timestamp, user_id, joke_id, endpoint, and status_code fields together to verify whether a joke_created event was logged for that user, when it happened, which joke was created, and whether the request completed successfully.
