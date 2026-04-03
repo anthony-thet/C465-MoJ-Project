@@ -195,7 +195,7 @@ Start thinking now: which routes have no tests at all?
 * **Evidence & Reflection:** The POST endpoint is non-idempotent and the PUT endpoint is idempotent. In one sentence: what would break in MoJ's user experience if both were non-idempotent (both POST)? If PUT was non-idempotent, it could add duplicates to the database that interfere with user data and change that users experience because of that.
 ---
 # ICEX 8: The Minutes of the Ministry
-* **Date:** YYYY-MM-DD
+* **Date:** 2026-04-02
 * **Team Members Present:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
 * **Roles:**
     * Repo Admin: `@coolds`
