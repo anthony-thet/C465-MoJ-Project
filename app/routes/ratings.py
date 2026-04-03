@@ -54,15 +54,15 @@ def create_rating(joke_id):
 
     current_app.logger.info(
         "Rating created",
-            extra={
-                "event": "rating_created",
-                "user_id": new_rating.user_id,
-                "joke_id": new_rating.joke_id,
-                "funniness": data['funniness'],
-                "appropriateness": data['appropriateness'],
-                "originality": data['originality'],
-                "status_code": 201
-            }
+        extra={
+            "event": "rating_created",
+            "user_id": new_rating.user_id,
+            "joke_id": new_rating.joke_id,
+            "funniness": data['funniness'],
+            "appropriateness": data['appropriateness'],
+            "originality": data['originality'],
+            "status_code": 201
+        }
     )
 
     return jsonify({
