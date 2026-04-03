@@ -61,13 +61,13 @@ def post_joke():
 
     current_app.logger.info(
         "Joke created",
-            extra={
-                "event": "joke_created",
-                "user_id": user_id,
-                "joke_id": new_joke['id'],
-                "endpoint": "POST /jokes",
-                "status_code": 201
-            }	
+        extra={
+            "event": "joke_created",
+            "user_id": user_id,
+            "joke_id": new_joke['id'],
+            "endpoint": "POST /jokes",
+            "status_code": 201
+        }
     )
 
     return jsonify({"data": new_joke, "status": "ok"}), 201
