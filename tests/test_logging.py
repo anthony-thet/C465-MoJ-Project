@@ -16,8 +16,7 @@ class TestLogging:
             response = client.post('/login', json={
                 'username': 'qauser',
                 'password': 'testpass'
-            }
-        )
+            })
 
         assert response.status_code == 200
         assert any(
@@ -49,7 +48,8 @@ class TestLogging:
             for record in caplog.records
         )
 
-    def test_rating_created_emits_log_event(self, authenticated_client, caplog, sample_joke):
+    def test_rating_created_emits_log_event(self, authenticated_client,
+                                            caplog, sample_joke):
         """
         GIVEN a registered user and an existing joke
         WHEN they POST a valid rating to /jokes/<int:joke_id>/ratings
@@ -64,8 +64,7 @@ class TestLogging:
                     "funniness": 4,
                     "appropriateness": 5,
                     "originality": 3
-                },
-            )
+                })
 
         assert response.status_code == 201
         assert any(

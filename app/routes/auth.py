@@ -33,7 +33,7 @@ def login():
 
     if user is None or not user.check_password(data.get('password', '')):
         current_app.logger.warning(
-	        "Login failure",
+            "Login failure",
             extra={
                 "event": "login_failure",
                 "attempted_username": data.get('username'),
@@ -41,7 +41,7 @@ def login():
                 "status_code": 401
             }
         )
-        return jsonify({'error': 'Invalid credentials'}), 401        
+        return jsonify({'error': 'Invalid credentials'}), 401
 
     login_user(user)
 
@@ -52,8 +52,7 @@ def login():
             "user_id": user.id,
             "endpoint": "POST /login",
             "status_code": 200
-        }
-    )
+        })
 
     return jsonify({'message': f'Welcome, {user.username}'}), 200
 
