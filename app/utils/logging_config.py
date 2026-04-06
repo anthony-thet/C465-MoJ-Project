@@ -13,7 +13,7 @@ class JSONFormatter(logging.Formatter):
             "logger": record.name,
             "message": record.getMessage(),
         }
-        
+
         for key, value in record.__dict__.items():
             if key not in (
                 "name", "msg", "args", "levelname", "levelno",
@@ -23,7 +23,7 @@ class JSONFormatter(logging.Formatter):
                 "thread", "threadName", "processName", "process"
             ):
                 log_entry[key] = value
-                
+
         return json.dumps(log_entry)
 
 
