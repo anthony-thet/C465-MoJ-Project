@@ -193,3 +193,37 @@ Start thinking now: which routes have no tests at all?
 * **STRIDE threat 2 from ICEX 6 that applies to ratings:** [Threat name + 1-2 sentence explanation] Tampering is applicable because while we test if the user has already rated the joke, we don't test if the user is even authenticated. This means that someone could not be authenticated and put a rating, so it would be easy for someone to pretend to be different users rate the same joke multiple time.
 
 * **Evidence & Reflection:** The POST endpoint is non-idempotent and the PUT endpoint is idempotent. In one sentence: what would break in MoJ's user experience if both were non-idempotent (both POST)? If PUT was non-idempotent, it could add duplicates to the database that interfere with user data and change that users experience because of that.
+---
+# ICEX 8: The Minutes of the Ministry
+* **Date:** 2026-04-02
+* **Team Members Present:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@coolds`
+    * Process Lead: `@kthet`
+    * Dev Lead: `@amatariy`, `@maklsmit`
+    * QA Sentinel: `@lsiverts`
+* **Summary of Work:** Implemented structured JSON logging in MoJ by configuring a custom formatter and handler and adding log events to existing authentication, content, and interaction routes. Also verified the logging behavior with caplog tests for successful login, failed login, and rating submission.
+
+### Planted Problem
+* **What was the bug?** The JSONFormatter only copied a hardcoded, limited set of extra logging fields from LogRecord objects. Initially, it preserved only event and user_id, so it did not support the full set of data used by our routes.
+* **What was the consequence?** Additional fields such as joke_id, funniness, appropriateness, originality, endpoint, status_code, and attempted_username were silently omitted from the JSON log output.
+* **How was it resolved?** We replaced the formatter’s hardcoded EXTRA_FIELDS allowlist with logic that iterates through record.__dict__ and automatically copies all non-standard LogRecord attributes into the JSON output.
+
+### Spec → Implementation Map
+| Team Best Event | Category | Implemented? | Notes |
+|-----------------|----------|-|-------|
+| Successful Login | Auth | ✅ | Implemented and tested; INFO log with event `login_success`. |
+| Failed Login | Auth / Error | ✅ | Implemented and tested; WARNING log with event `login_failure`. |
+| Unhandled Exception | Error | ⏳ Deferred | Not implemented or tested yet. |
+| Joke Submission | Content / Interaction | ✅ | Implemented; successful joke submission emits INFO log with event `joke_created`. |
+| Rating Submission | Content / Interaction | ✅ | Implemented and tested; INFO log with event `rating_created`. |
+| Erasure Request | Auth / Content / Error | ⏳ Deferred | Not implemented or tested yet. |
+| Profile Change | Auth / Interaction | ⏳ Deferred | Not implemented or tested yet. |
+| Auth Denied | Auth / Error | ⏳ Deferred | Not implemented or tested yet. |
+| Content Moderation | Content / Error | ⏳ Deferred | Not implemented or tested yet. |
+| Internal Data Access | Auth / Error | ⏳ Deferred | Not implemented or tested yet. |
+| Query Failure | Error | ⏳ Deferred | Not implemented or tested yet. |
+| Slow Query | Error | ⏳ Deferred | Not implemented or tested yet. |
+| Database Initialization Failure | Error | ⏳ Deferred | Not implemented or tested yet. |
+
+* **Evidence & Reflection:** Your JSONFormatter now emits structured JSON for every significant event. In one sentence: if MoJ were operating in production and a user claimed "I never submitted that joke," which specific log fields would you use to prove or disprove the claim? I would check the event, timestamp, user_id, joke_id, endpoint, and status_code fields together to verify whether a joke_created event was logged for that user, when it happened, which joke was created, and whether the request completed successfully.

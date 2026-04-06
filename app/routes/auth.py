@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 from flask_login import login_user, logout_user, login_required, current_user
 from app.models import db, User
 auth_bp = Blueprint('auth', __name__)
@@ -32,9 +32,27 @@ def login():
     user = User.query.filter_by(username=data.get('username')).first()
 
     if user is None or not user.check_password(data.get('password', '')):
+        current_app.logger.warning(
+            "Login failure",
+            extra={
+                "event": "login_failure",
+                "attempted_username": data.get('username'),
+                "endpoint": "POST /login",
+                "status_code": 401
+            }
+        )
         return jsonify({'error': 'Invalid credentials'}), 401
 
     login_user(user)
+
+    current_app.logger.info(
+        "Login successful",
+        extra={
+            "event": "login_success",
+            "user_id": user.id,
+            "endpoint": "POST /login",
+            "status_code": 200
+        })
 
     return jsonify({'message': f'Welcome, {user.username}'}), 200
 
