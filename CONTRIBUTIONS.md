@@ -207,7 +207,7 @@ Start thinking now: which routes have no tests at all?
 ### Planted Problem
 * **What was the bug?** The JSONFormatter only copied a hardcoded, limited set of extra logging fields from LogRecord objects. Initially, it preserved only event and user_id, so it did not support the full set of data used by our routes.
 * **What was the consequence?** Additional fields such as joke_id, funniness, appropriateness, originality, endpoint, status_code, and attempted_username were silently omitted from the JSON log output.
-* **How was it resolved?** We fixed the formatter by expanding EXTRA_FIELDS to include all of the structured fields our application logs use.
+* **How was it resolved?** We replaced the formatter’s hardcoded EXTRA_FIELDS allowlist with logic that iterates through record.__dict__ and automatically copies all non-standard LogRecord attributes into the JSON output.
 
 ### Spec → Implementation Map
 | Team Best Event | Category | Implemented? | Notes |
