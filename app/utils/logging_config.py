@@ -23,7 +23,9 @@ class JSONFormatter(logging.Formatter):
                 "thread", "threadName", "processName", "process"
             ):
                 log_entry[key] = value
+                
         return json.dumps(log_entry)
+
 
 def configure_logging(app):
     """Call this in the app factory, after config is loaded."""
