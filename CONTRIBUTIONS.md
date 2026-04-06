@@ -227,3 +227,9 @@ Start thinking now: which routes have no tests at all?
 | Database Initialization Failure | Error | ⏳ Deferred | Not implemented or tested yet. |
 
 * **Evidence & Reflection:** Your JSONFormatter now emits structured JSON for every significant event. In one sentence: if MoJ were operating in production and a user claimed "I never submitted that joke," which specific log fields would you use to prove or disprove the claim? I would check the event, timestamp, user_id, joke_id, endpoint, and status_code fields together to verify whether a joke_created event was logged for that user, when it happened, which joke was created, and whether the request completed successfully.
+---
+# Cycle 2 Close — moj-c2-v1.0
+* **Date:** 2026-04-06
+* **Team Members:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
+* **Summary:** The MoJ is now a fully fledged secure and auditable playform. We now have role-based authentication using Flask-Login, a three-dimensional rating system that adheres to strict unique constraints to maintain fair ratings, and a robust CI pipeline with security checks on every commit. 
+* **Key Design Choice (one sentence):** We opted for a structured JSON logging architecture to ensure that we can perform quick and precise machine-readable queries into all our logs and for any auditing or support purposes.  
