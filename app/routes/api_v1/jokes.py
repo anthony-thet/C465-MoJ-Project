@@ -7,28 +7,18 @@ from . import api_v1_bp
 def get_joke_count():
     try:
         count = Joke.query.count()
-        current_app.logger.info(
-            "Joke count requested",
-            extra={
-                "event": "joke_count_requested",
-                "count": count,
-                "endpoint": "GET /api/v1/jokes/count",
-                "status_code": 200
-            }
-        )
+        # Success Path
+        response = jsonify({"data": {"count": count}, "status": "ok"})
 
-        return jsonify({
-            "data": {"count": count},
-            "status": "ok"
-        }), 200
-    
+        # Repo Admin's Log Task
+        current_app.logger.info("Joke count requested", extra={
+            "event": "joke_count_requested", "count": count,
+            "endpoint": "GET /api/v1/jokes/count", "status_code": 200
+        })
+        return response, 200
     except Exception as e:
-        current_app.logger.error(f"API Error: {str(e)}")
         return jsonify({
-            "error": {
-                "code": "INTERNAL_ERROR",
-                "message": "Unable to retrieve joke count."
-            }
+            "error": {"code": "INTERNAL_ERROR", "message": "Unable to retrieve joke count."}
         }), 500
 
 
