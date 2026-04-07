@@ -1,7 +1,5 @@
 class TestJokeCountEndpoint:
     """Tests for GET /api/v1/jokes/count"""
-
-    
     def test_joke_count_returns_200(self, client):
         """
         GIVEN an application with the API v1 blueprint registered
@@ -16,7 +14,7 @@ class TestJokeCountEndpoint:
         """
         GIVEN an application with jokes in the database
         WHEN the client sends GET /api/v1/jokes/count
-        THEN the response body should contain 'data' with an 
+        THEN the response body should contain 'data' with an
         integer 'count' and 'status' == 'ok'
         Level: HAPPY PATH
         """
