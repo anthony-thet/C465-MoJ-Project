@@ -31,6 +31,9 @@ def create_app(config=None):
     from app.routes.ratings import ratings_bp
     app.register_blueprint(ratings_bp)
 
+    from routes.api_v1 import api_v1_bp
+    app.register_blueprint(api_v1_bp)
+
     return app
 
 
