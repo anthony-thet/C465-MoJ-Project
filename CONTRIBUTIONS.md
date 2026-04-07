@@ -239,12 +239,12 @@ Start thinking now: which routes have no tests at all?
 * **Date:** 2026-04-07
 * **Team Members Present:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
 * **Roles:**
-    * Repo Admin: `@userX`
-    * Process Lead: `@userY`
-    * Dev Lead: `@userZ`
-    * QA Sentinel: `@userW`
+    * Repo Admin: `@lsiverts`
+    * Process Lead: `@amatariy`
+    * Dev Lead: `@coolds`,`@maklsmit`
+    * QA Sentinel: `@kthet`
 * **Summary of Work:** We implemented the first version of the API endpoint to retrieve the count of the total amount of jokes registered in the Moj database. We then proceeded to add structured JSON logs as we learned was good practice in Cycle 2. Lastly, we formalized the whole process with a contract document and a thorough test suite. 
 
 ### API Contract Reflection
-* **Contract completeness:** Could a developer who has never seen your Flask code build a working `fetch()` call from `docs/api.md` alone? What would they still need to know that the document does not say?
-* **Pagination question:** What happens to a client consuming `GET /api/v1/jokes` when there are 10,000 jokes and no pagination? How does the count endpoint enable a fix?
+* **Contract completeness:** Could a developer who has never seen your Flask code build a working `fetch()` call from `docs/api.md` alone? What would they still need to know that the document does not say? Yes a developer who has never seen our flask code can build a working fetch() using docs/api.md alone. 
+* **Pagination question:** What happens to a client consuming `GET /api/v1/jokes` when there are 10,000 jokes and no pagination? How does the count endpoint enable a fix? The response would be extremely long, use a high amount of memory, and be inefficient in general. the count endpoint allows for smaller subsets to be given causing more reasonably sized responses.
