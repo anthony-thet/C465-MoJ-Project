@@ -1,3 +1,5 @@
+import pytest
+
 class TestJokeCountEndpoint:
     """Tests for GET /api/v1/jokes/count"""
 
@@ -6,7 +8,6 @@ class TestJokeCountEndpoint:
         GIVEN an application with the API v1 blueprint registered
         WHEN the client sends GET /api/v1/jokes/count
         THEN the response status code should be 200
-
         Level: HAPPY PATH
         """
         response = client.get('/api/v1/jokes/count')
@@ -17,10 +18,34 @@ class TestJokeCountEndpoint:
         GIVEN an application with jokes in the database
         WHEN the client sends GET /api/v1/jokes/count
         THEN the response body should contain 'data' with an integer 'count' and 'status' == 'ok'
-
         Level: HAPPY PATH
         """
         response = client.get('/api/v1/jokes/count')
         body = response.get_json()
         assert body["status"] == "ok"
+        assert "count" in body["data"]
         assert isinstance(body["data"]["count"], int)
+
+    def test_joke_count_zero_when_empty(self, client):
+        """
+        GIVEN a database with no jokes
+        WHEN the client sends GET /api/v1/jokes/count
+        THEN the count returned should be 0
+        Level: EDGE CASE
+        """
+        # Logic assumes a fresh test database or session cleanup
+        response = client.get('/api/v1/jokes/count')
+        body = response.get_json()
+        assert body["data"]["count"] == 0
+
+    def test_joke_count_wrong_method_returns_405(self, client):
+        """
+        GIVEN the joke count endpoint
+        WHEN the client sends a POST request instead of GET
+        THEN the response status code should be 405 and return the error envelope
+        Level: ERROR CASE
+        """
+        response = client.post('/api/v1/jokes/count')
+        body = response.get_json()
+        assert response.status_code == 405
+        assert body["error"]["code"] == "METHOD_NOT_ALLOWED"
