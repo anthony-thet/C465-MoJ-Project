@@ -232,4 +232,19 @@ Start thinking now: which routes have no tests at all?
 * **Date:** 2026-04-06
 * **Team Members:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
 * **Summary:** The MoJ is now a fully fledged secure and auditable playform. We now have role-based authentication using Flask-Login, a three-dimensional rating system that adheres to strict unique constraints to maintain fair ratings, and a robust CI pipeline with security checks on every commit. 
-* **Key Design Choice (one sentence):** We opted for a structured JSON logging architecture to ensure that we can perform quick and precise machine-readable queries into all our logs and for any auditing or support purposes.  
+* **Key Design Choice (one sentence):** We opted for a structured JSON logging architecture to ensure that we can perform quick and precise machine-readable queries into all our logs and for any auditing or support purposes.
+
+---
+# ICEX 9: The Great Joke-O-Meter
+* **Date:** 2026-04-07
+* **Team Members Present:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@userX`
+    * Process Lead: `@userY`
+    * Dev Lead: `@userZ`
+    * QA Sentinel: `@userW`
+* **Summary of Work:** [1-2 sentences on what was accomplished]
+
+### API Contract Reflection
+* **Contract completeness:** Could a developer who has never seen your Flask code build a working `fetch()` call from `docs/api.md` alone? What would they still need to know that the document does not say?
+* **Pagination question:** What happens to a client consuming `GET /api/v1/jokes` when there are 10,000 jokes and no pagination? How does the count endpoint enable a fix?
