@@ -7,17 +7,17 @@ from . import api_v1_bp
 def get_joke_count():
     try:
         count = Joke.query.count()
-        
+
         # Log the event (current_app is now imported)
         current_app.logger.info("Joke count requested", extra={
-            "event": "joke_count_requested", 
+            "event": "joke_count_requested",
             "count": count,
-            "endpoint": "GET /api/v1/jokes/count", 
+            "endpoint": "GET /api/v1/jokes/count",
             "status_code": 200
         })
 
         return jsonify({
-            "data": {"count": count}, 
+            "data": {"count": count},
             "status": "ok"
         }), 200
 
@@ -26,7 +26,7 @@ def get_joke_count():
         return jsonify({
             "status": "error",
             "error": {
-                "code": "INTERNAL_ERROR", 
+                "code": "INTERNAL_ERROR",
                 "message": "Unable to retrieve joke count."
             }
         }), 500
