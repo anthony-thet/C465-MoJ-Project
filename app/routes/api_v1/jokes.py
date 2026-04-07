@@ -1,4 +1,5 @@
 from flask import jsonify
+from app.models import Joke
 from . import api_v1_bp
 
 
@@ -6,15 +7,28 @@ from . import api_v1_bp
 def get_joke_count():
     try:
         count = Joke.query.count()
-        response = jsonify({"data": {"count": count}, "status": "ok"})
-        current_app.logger.info("Joke count requested", extra={
-            "event": "joke_count_requested", "count": count,
-            "endpoint": "GET /api/v1/jokes/count", "status_code": 200
-        })
-        return response, 200
-    except Exception as e:
+        current_app.logger.info(
+            "Joke count requested",
+            extra={
+                "event": "joke_count_requested",
+                "count": count,
+                "endpoint": "GET /api/v1/jokes/count",
+                "status_code": 200
+            }
+        )
+
         return jsonify({
-            "error": {"code": "INTERNAL_ERROR", "message": "Unable to retrieve joke count."}
+            "data": {"count": count},
+            "status": "ok"
+        }), 200
+    
+    except Exception as e:
+        current_app.logger.error(f"API Error: {str(e)}")
+        return jsonify({
+            "error": {
+                "code": "INTERNAL_ERROR",
+                "message": "Unable to retrieve joke count."
+            }
         }), 500
 
 
@@ -33,6 +47,9 @@ def method_not_allowed(e):
     return jsonify({
         "error": {
             "code": "METHOD_NOT_ALLOWED",
+            "message": "This HTTP method is not supported for this endpoint."
+        }
+    }), 405
             "message": "This HTTP method is not supported for this endpoint."
         }
     }), 405
