@@ -50,6 +50,3 @@ def method_not_allowed(e):
             "message": "This HTTP method is not supported for this endpoint."
         }
     }), 405
-            "message": "This HTTP method is not supported for this endpoint."
-        }
-    }), 405
