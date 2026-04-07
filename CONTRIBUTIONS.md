@@ -243,7 +243,7 @@ Start thinking now: which routes have no tests at all?
     * Process Lead: `@userY`
     * Dev Lead: `@userZ`
     * QA Sentinel: `@userW`
-* **Summary of Work:** [1-2 sentences on what was accomplished]
+* **Summary of Work:** We implemented the first version of the API endpoint to retrieve the count of the total amount of jokes registered in the Moj database. We then proceeded to add structured JSON logs as we learned was good practice in Cycle 2. Lastly, we formalized the whole process with a contract document and a thorough test suite. 
 
 ### API Contract Reflection
 * **Contract completeness:** Could a developer who has never seen your Flask code build a working `fetch()` call from `docs/api.md` alone? What would they still need to know that the document does not say?
