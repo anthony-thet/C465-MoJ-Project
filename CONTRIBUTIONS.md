@@ -258,7 +258,7 @@ Start thinking now: which routes have no tests at all?
     * Process Lead: `@coolds`
     * Dev Lead: `@kthet`
     * QA Sentinel: `@amatariy`
-* **Summary of Work:** 
+* **Summary of Work:** Scaffolded a React frontend using Vite in the MoJ repository. Then we created modular components for displaying jokes and joke counts, and then implemented state management using `useState` to toggle the visibility of the jokes.
 
 ### Timing Report
 * **Start time:** 2:59 PM
@@ -269,9 +269,10 @@ Start thinking now: which routes have no tests at all?
 
 ### Component Tree
 Paste or describe the component tree for your app (see Process Lead's sketch):
-* **App** — owns: [what data/state]
-  * **JokeCount** — receives: [what props]
-  * **JokeList** — receives: [what props]
+* **App** — owns: 'JOKES' data array and 'showJokes' boolean 
+  * **JokeCount** — receives: 'count' from jokes array
+  * **JokeList** — receives: 'jokes' full array of jokes
+     * **li** - receives: 'key' from 'joke.id'
 
 ### Reflection
 * **Props vs. state:** In your own words, what is the difference between a prop and a state variable? Which component in this ICEX owns state? Which components only receive props?
