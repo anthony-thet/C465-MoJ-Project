@@ -232,4 +232,19 @@ Start thinking now: which routes have no tests at all?
 * **Date:** 2026-04-06
 * **Team Members:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
 * **Summary:** The MoJ is now a fully fledged secure and auditable playform. We now have role-based authentication using Flask-Login, a three-dimensional rating system that adheres to strict unique constraints to maintain fair ratings, and a robust CI pipeline with security checks on every commit. 
-* **Key Design Choice (one sentence):** We opted for a structured JSON logging architecture to ensure that we can perform quick and precise machine-readable queries into all our logs and for any auditing or support purposes.  
+* **Key Design Choice (one sentence):** We opted for a structured JSON logging architecture to ensure that we can perform quick and precise machine-readable queries into all our logs and for any auditing or support purposes.
+
+---
+# ICEX 9: The Great Joke-O-Meter
+* **Date:** 2026-04-07
+* **Team Members Present:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@lsiverts`
+    * Process Lead: `@amatariy`
+    * Dev Lead: `@coolds`,`@maklsmit`
+    * QA Sentinel: `@kthet`
+* **Summary of Work:** We implemented the first version of the API endpoint to retrieve the count of the total amount of jokes registered in the Moj database. We then proceeded to add structured JSON logs as we learned was good practice in Cycle 2. Lastly, we formalized the whole process with a contract document and a thorough test suite. 
+
+### API Contract Reflection
+* **Contract completeness:** Could a developer who has never seen your Flask code build a working `fetch()` call from `docs/api.md` alone? What would they still need to know that the document does not say? Yes a developer who has never seen our flask code can build a working fetch() using docs/api.md alone. 
+* **Pagination question:** What happens to a client consuming `GET /api/v1/jokes` when there are 10,000 jokes and no pagination? How does the count endpoint enable a fix? The response would be extremely long, use a high amount of memory, and be inefficient in general. the count endpoint allows for smaller subsets to be given causing more reasonably sized responses.

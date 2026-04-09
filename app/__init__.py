@@ -4,7 +4,6 @@ from app.models import db
 from flask_login import LoginManager
 from app.models import User
 from app.utils.logging_config import configure_logging
-
 login_manager = LoginManager()
 
 
@@ -30,6 +29,9 @@ def create_app(config=None):
 
     from app.routes.ratings import ratings_bp
     app.register_blueprint(ratings_bp)
+
+    from app.routes.api_v1 import api_v1_bp
+    app.register_blueprint(api_v1_bp)
 
     return app
 
