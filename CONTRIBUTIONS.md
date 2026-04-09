@@ -248,3 +248,31 @@ Start thinking now: which routes have no tests at all?
 ### API Contract Reflection
 * **Contract completeness:** Could a developer who has never seen your Flask code build a working `fetch()` call from `docs/api.md` alone? What would they still need to know that the document does not say? Yes a developer who has never seen our flask code can build a working fetch() using docs/api.md alone. 
 * **Pagination question:** What happens to a client consuming `GET /api/v1/jokes` when there are 10,000 jokes and no pagination? How does the count endpoint enable a fix? The response would be extremely long, use a high amount of memory, and be inefficient in general. the count endpoint allows for smaller subsets to be given causing more reasonably sized responses.
+
+---
+# ICEX 10: The Display Terminal
+* **Date:** YYYY-MM-DD
+* **Team Members Present:** `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@maklsmit`
+    * Process Lead: `@coolds`
+    * Dev Lead: `@kthet`
+    * QA Sentinel: `@amatariy`
+* **Summary of Work:** [1-2 sentences on what was accomplished]
+
+### Timing Report
+* **Start time:** 2:59 PM
+* **End time:** 
+* **Total elapsed:** Minutes
+* **Biggest time sink:** [What took the longest? Node install, typing the components, understanding JSX, debugging a syntax error, something else?]
+* **Comfort level with React after this ICEX:** [1–5 scale, where 1 = "completely lost" and 5 = "I could build another component from scratch"]
+
+### Component Tree
+Paste or describe the component tree for your app (see Process Lead's sketch):
+* **App** — owns: [what data/state]
+  * **JokeCount** — receives: [what props]
+  * **JokeList** — receives: [what props]
+
+### Reflection
+* **Props vs. state:** In your own words, what is the difference between a prop and a state variable? Which component in this ICEX owns state? Which components only receive props?
+* **The seam:** The `JOKES` array at the top of `App.jsx` is hardcoded. Next week, `fetch()` will replace it with data from the Flask API. Which files would need to change? Which files would stay exactly the same? What does that tell you about how this code is organized?
