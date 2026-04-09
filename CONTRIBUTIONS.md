@@ -258,14 +258,14 @@ Start thinking now: which routes have no tests at all?
     * Process Lead: `@coolds`
     * Dev Lead: `@kthet`
     * QA Sentinel: `@amatariy`
-* **Summary of Work:** [1-2 sentences on what was accomplished]
+* **Summary of Work:** 
 
 ### Timing Report
 * **Start time:** 2:59 PM
-* **End time:** 
-* **Total elapsed:** Minutes
-* **Biggest time sink:** [What took the longest? Node install, typing the components, understanding JSX, debugging a syntax error, something else?]
-* **Comfort level with React after this ICEX:** [1–5 scale, where 1 = "completely lost" and 5 = "I could build another component from scratch"]
+* **End time:** 3:27 PM 
+* **Total elapsed:** 27 Minutes
+* **Biggest time sink:** Setting up the Vite Dev server
+* **Comfort level with React after this ICEX:** 2
 
 ### Component Tree
 Paste or describe the component tree for your app (see Process Lead's sketch):
