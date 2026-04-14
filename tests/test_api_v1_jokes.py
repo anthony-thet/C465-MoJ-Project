@@ -48,6 +48,7 @@ class TestJokeCountEndpoint:
         assert response.status_code == 405
         assert body["error"]["code"] == "METHOD_NOT_ALLOWED"
 
+
 def test_get_jokes_returns_200(self, client):
     """
     GIVEN an application with the API v1 blueprint registered
@@ -58,6 +59,7 @@ def test_get_jokes_returns_200(self, client):
     """
     response = client.get('/api/v1/jokes')
     assert response.status_code == 200
+
 
 def test_get_jokes_returns_envelope(self, client):
     """
@@ -73,6 +75,7 @@ def test_get_jokes_returns_envelope(self, client):
     assert body["status"] == "ok"
     assert isinstance(body["data"]["jokes"], list)
 
+
 def test_get_jokes_fields_are_filtered(self, client, seed_joke):
     """
     GIVEN a joke exists in the database
@@ -86,6 +89,7 @@ def test_get_jokes_fields_are_filtered(self, client, seed_joke):
     body = response.get_json()
     joke = body["data"]["jokes"][0]
     assert set(joke.keys()) == {"id", "text", "author"}
+
 
 def test_get_jokes_wrong_method_returns_405(self, client):
     """
