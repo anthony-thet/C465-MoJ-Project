@@ -251,7 +251,7 @@ Start thinking now: which routes have no tests at all?
 
 ---
 # ICEX 10: The Display Terminal
-* **Date:** YYYY-MM-DD
+* **Date:** 2026-04-09
 * **Team Members Present:** `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
 * **Roles:**
     * Repo Admin: `@maklsmit`
@@ -280,7 +280,7 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 
 ---
 # ICEX 11: The Ministry's Two-Speed Dispatch
-* **Date:** YYYY-MM-DD
+* **Date:** 2026-04-14
 * **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
 * **Roles:**
     * Repo Admin: `@coolds`
@@ -293,6 +293,13 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 * **Which files changed** app/__init__.py, routes/api_v1/jokes.py, frontend/src/App.jsx, docs/api.md, and CONTRIBUTIONS.md
 * **Which files did NOT change?** JokeList.jsx, JokeCount.jsx, and JokeItem.jsx
 * **What does this tell you** The child components of the frontend do not rely on where the data comes only what the data is.
+
+### Timing Report
+* **Start time:** 3:01 PM
+* **End time:** 5:50 PM
+* **Total elapsed:** 55 Minutes
+* **Biggest time sink:** Testing our frontend
+* **Comfort level with React after this ICEX:** 2
 
 ### CORS Reflection
 * **What is CORS protecting against?** It prevents a malicious site from using a victim's browser to make unauthorized requests to our site. 
