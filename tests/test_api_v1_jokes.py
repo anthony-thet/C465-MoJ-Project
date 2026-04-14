@@ -47,3 +47,53 @@ class TestJokeCountEndpoint:
         body = response.get_json()
         assert response.status_code == 405
         assert body["error"]["code"] == "METHOD_NOT_ALLOWED"
+
+def test_get_jokes_returns_200(self, client):
+    """
+    GIVEN an application with the API v1 blueprint registered
+    WHEN the client sends GET /api/v1/jokes
+    THEN the response status code should be 200
+
+    Level: HAPPY PATH
+    """
+    response = client.get('/api/v1/jokes')
+    assert response.status_code == 200
+
+def test_get_jokes_returns_envelope(self, client):
+    """
+    GIVEN an application with jokes in the database
+    WHEN the client sends GET /api/v1/jokes
+    THEN the response body should contain 'data.jokes' as a list
+         and 'status' == 'ok'
+
+    Level: HAPPY PATH
+    """
+    response = client.get('/api/v1/jokes')
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert isinstance(body["data"]["jokes"], list)
+
+def test_get_jokes_fields_are_filtered(self, client, seed_joke):
+    """
+    GIVEN a joke exists in the database
+    WHEN the client sends GET /api/v1/jokes
+    THEN each joke object should contain only 'id', 'text', and 'author'
+         — no 'user_id', 'created_at', or other internal fields
+
+    Level: EDGE CASE
+    """
+    response = client.get('/api/v1/jokes')
+    body = response.get_json()
+    joke = body["data"]["jokes"][0]
+    assert set(joke.keys()) == {"id", "text", "author"}
+
+def test_get_jokes_wrong_method_returns_405(self, client):
+    """
+    GIVEN the API v1 blueprint is registered
+    WHEN the client sends DELETE /api/v1/jokes
+    THEN the response status code should be 405
+
+    Level: ERROR CASE
+    """
+    response = client.delete('/api/v1/jokes')
+    assert response.status_code == 405
