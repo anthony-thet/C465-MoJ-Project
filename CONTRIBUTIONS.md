@@ -287,16 +287,16 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
     * Process Lead: `@maklsmit`
     * Dev Lead: `@amatariy`, `@lsiverts`
     * QA Sentinel: `@kthet`
-* **Summary of Work:** [1-2 sentences on what was accomplished]
+* **Summary of Work:** We transitioned the MoJ App from static data to a live system. We also implemented a new flask endpoiint and configured a CORS whitelist. Then we rewired the React frontend to use fetch().
 
 ### Separation of Concerns — The Proof
-* **Which files changed** between ICEX 10 and ICEX 11? List them.
-* **Which files did NOT change?** List them.
-* **What does this tell you** about how the component tree is organized? In one sentence: why did the child components survive a complete data source replacement without a single edit?
+* **Which files changed** app/__init__.py, routes/api_v1/jokes.py, frontend/src/App.jsx, docs/api.md, and CONTRIBUTIONS.md
+* **Which files did NOT change?** JokeList.jsx, JokeCount.jsx, and JokeItem.jsx
+* **What does this tell you** The child components of the frontend do not rely on where the data comes only what the data is.
 
 ### CORS Reflection
-* **What is CORS protecting against?** Describe the attack scenario from L11 in your own words (not a copy of the slide).
-* **Why a whitelist, not a wildcard?** Your CORS config names `http://localhost:5173` specifically. What would go wrong if you used `origins="*"` and your app had authenticated endpoints?
+* **What is CORS protecting against?** It prevents a malicious site from using a victim's browser to make unauthorized requests to our site. 
+* **Why a whitelist, not a wildcard?** A wildcare allows any domain on the internet to read our API responses. This would mean a malicious site could bypass our security and steal private data. 
 
 ### Contract Verification
-* **Did `docs/api.md` match the actual response?** If you found a mismatch during Step 4, describe it: what did the doc say, what did the code return, and which one did you fix?
+* **Did `docs/api.md` match the actual response?** Yes, the document and implementation were consisten as they were done in tandem and updated accordingly. 
