@@ -4,11 +4,13 @@ from app.models import db
 from flask_login import LoginManager
 from app.models import User
 from app.utils.logging_config import configure_logging
+from flask_cors import CORS
 login_manager = LoginManager()
 
 
 def create_app(config=None):
     app = Flask(__name__)
+    CORS(app, origins=["http://localhost:5173"])
     app.config['SECRET_KEY'] = 'dev-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///moj.db'
 
