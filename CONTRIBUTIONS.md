@@ -277,3 +277,26 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 ### Reflection
 * **Props vs. state:** In your own words, what is the difference between a prop and a state variable? Which component in this ICEX owns state? Which components only receive props?
 * **The seam:** The `JOKES` array at the top of `App.jsx` is hardcoded. Next week, `fetch()` will replace it with data from the Flask API. Which files would need to change? Which files would stay exactly the same? What does that tell you about how this code is organized?
+
+---
+# ICEX 11: The Ministry's Two-Speed Dispatch
+* **Date:** YYYY-MM-DD
+* **Team Members Present:** `@user1`, `@user2`, `@user3`, `@user4`
+* **Roles:**
+    * Repo Admin: `@userX`
+    * Process Lead: `@userY`
+    * Dev Lead: `@userZ`
+    * QA Sentinel: `@userW`
+* **Summary of Work:** [1-2 sentences on what was accomplished]
+
+### Separation of Concerns — The Proof
+* **Which files changed** between ICEX 10 and ICEX 11? List them.
+* **Which files did NOT change?** List them.
+* **What does this tell you** about how the component tree is organized? In one sentence: why did the child components survive a complete data source replacement without a single edit?
+
+### CORS Reflection
+* **What is CORS protecting against?** Describe the attack scenario from L11 in your own words (not a copy of the slide).
+* **Why a whitelist, not a wildcard?** Your CORS config names `http://localhost:5173` specifically. What would go wrong if you used `origins="*"` and your app had authenticated endpoints?
+
+### Contract Verification
+* **Did `docs/api.md` match the actual response?** If you found a mismatch during Step 4, describe it: what did the doc say, what did the code return, and which one did you fix?
