@@ -284,8 +284,8 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 * **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
 * **Roles:**
     * Repo Admin: `@coolds`
-    * Process Lead: `@userY`
-    * Dev Lead: `@userZ`
+    * Process Lead: `@maklsmit`
+    * Dev Lead: `@amatariy`, `@lsiverts`
     * QA Sentinel: `@kthet`
 * **Summary of Work:** [1-2 sentences on what was accomplished]
 
