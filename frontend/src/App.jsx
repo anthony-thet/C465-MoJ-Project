@@ -1,46 +1,73 @@
-// App.jsx — MoJ root component
+// App.jsx — MoJ root component (ICEX 11: live data)
 //
-// This is the entry point for the React frontend.
-// It owns the joke data and passes it down to child components via props.
+// CHANGED from ICEX 10:
+//   - Hardcoded JOKES array → fetch() to Flask API
+//   - Added useEffect for data loading on mount
+//   - Added three-state rendering: loading → data → error
 //
-// TODAY: The jokes array is hardcoded below. This is intentional.
-//   Learning React's component model is enough for one session.
-//
-// NEXT WEEK: fetch() will replace this hardcoded array with real data
-//   from the Flask API. The components below will not change —
-//   only the data source will. That is Separation of Concerns:
-//   the display components do not know (or care) where the data comes from.
+// UNCHANGED from ICEX 10:
+//   - JokeList and JokeCount components (they receive props, they don't
+//     know or care where the data comes from)
+//   - Component tree structure
+//   - Show/Hide toggle behavior
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import JokeList from './components/JokeList';
 import JokeCount from './components/JokeCount';
 
-// Hardcoded joke data — stands in for the Flask API until ICEX 11
-const JOKES = [
-  { id: 1, text: "Why did the chicken cross the road?", author: "alice" },
-  { id: 2, text: "A priest and a rabbi walk into a bar...", author: "bob" },
-  { id: 3, text: "Why do programmers prefer dark mode?", author: "carol" },
-];
+const API_BASE = import.meta.env.VITE_API_BASE;
 
 function App() {
-  // useState(true) — jokes are visible by default
-  // setShowJokes toggles visibility when the button is clicked
+  const [jokes, setJokes] = useState([]);
+  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [showJokes, setShowJokes] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        // Fetch jokes and count in parallel
+        const [jokesRes, countRes] = await Promise.all([
+          fetch(`${API_BASE}/jokes`),
+          fetch(`${API_BASE}/jokes/count`),
+        ]);
+
+        if (!jokesRes.ok) {
+          throw new Error(`Jokes endpoint returned ${jokesRes.status}`);
+        }
+        if (!countRes.ok) {
+          throw new Error(`Count endpoint returned ${countRes.status}`);
+        }
+
+        const jokesBody = await jokesRes.json();
+        const countBody = await countRes.json();
+
+        setJokes(jokesBody.data.jokes);
+        setCount(countBody.data.count);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
+  if (loading) return <p>Loading jokes from the Ministry archive...</p>;
+  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
 
   return (
     <div>
       <h1>Ministry of Jokes</h1>
 
-      {/* Count is derived from the array length — not a separate variable */}
-      <JokeCount count={JOKES.length} />
+      <JokeCount count={count} />
 
-      {/* Button toggles showJokes between true and false */}
       <button onClick={() => setShowJokes(!showJokes)}>
         {showJokes ? "Hide Jokes" : "Show Jokes"}
       </button>
 
-      {/* Conditional rendering: show JokeList only when showJokes is true */}
-      {showJokes && <JokeList jokes={JOKES} />}
+      {showJokes && <JokeList jokes={jokes} />}
     </div>
   );
 }
