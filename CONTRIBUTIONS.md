@@ -248,3 +248,32 @@ Start thinking now: which routes have no tests at all?
 ### API Contract Reflection
 * **Contract completeness:** Could a developer who has never seen your Flask code build a working `fetch()` call from `docs/api.md` alone? What would they still need to know that the document does not say? Yes a developer who has never seen our flask code can build a working fetch() using docs/api.md alone. 
 * **Pagination question:** What happens to a client consuming `GET /api/v1/jokes` when there are 10,000 jokes and no pagination? How does the count endpoint enable a fix? The response would be extremely long, use a high amount of memory, and be inefficient in general. the count endpoint allows for smaller subsets to be given causing more reasonably sized responses.
+
+---
+# ICEX 10: The Display Terminal
+* **Date:** YYYY-MM-DD
+* **Team Members Present:** `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@maklsmit`
+    * Process Lead: `@coolds`
+    * Dev Lead: `@kthet`
+    * QA Sentinel: `@amatariy`
+* **Summary of Work:** Scaffolded a React frontend using Vite in the MoJ repository. Then we created modular components for displaying jokes and joke counts, and then implemented state management using `useState` to toggle the visibility of the jokes.
+
+### Timing Report
+* **Start time:** 2:59 PM
+* **End time:** 3:27 PM 
+* **Total elapsed:** 27 Minutes
+* **Biggest time sink:** Setting up the Vite Dev server
+* **Comfort level with React after this ICEX:** 2
+
+### Component Tree
+Paste or describe the component tree for your app (see Process Lead's sketch):
+* **App** — owns: 'JOKES' data array and 'showJokes' boolean 
+  * **JokeCount** — receives: 'count' from jokes array
+  * **JokeList** — receives: 'jokes' full array of jokes
+     * **li** - receives: 'key' from 'joke.id'
+
+### Reflection
+* **Props vs. state:** In your own words, what is the difference between a prop and a state variable? Which component in this ICEX owns state? Which components only receive props?
+* **The seam:** The `JOKES` array at the top of `App.jsx` is hardcoded. Next week, `fetch()` will replace it with data from the Flask API. Which files would need to change? Which files would stay exactly the same? What does that tell you about how this code is organized?
