@@ -281,12 +281,12 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 ---
 # ICEX 11: The Ministry's Two-Speed Dispatch
 * **Date:** YYYY-MM-DD
-* **Team Members Present:** `@user1`, `@user2`, `@user3`, `@user4`
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
 * **Roles:**
-    * Repo Admin: `@userX`
+    * Repo Admin: `@coolds`
     * Process Lead: `@userY`
     * Dev Lead: `@userZ`
-    * QA Sentinel: `@userW`
+    * QA Sentinel: `@kthet`
 * **Summary of Work:** [1-2 sentences on what was accomplished]
 
 ### Separation of Concerns — The Proof
