@@ -64,6 +64,7 @@ Returns all jokes in the database.
 
 ### Error Responses
 | Status | Code | When |
+|--------|------|------|
 | 500 | INTERNAL_ERROR | Database unreachable |
 
 ### Notes
