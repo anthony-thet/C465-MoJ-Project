@@ -65,7 +65,7 @@ def get_jokes():
                 "endpoint": "GET /api/v1/jokes",
                 "status_code": 200
             })
-        
+
         return jsonify({
             "data": {
                 "jokes": [
@@ -73,7 +73,7 @@ def get_jokes():
                         "id": joke.id,
                         "text": joke.text,
                         "author": joke.author.username
-                            if joke.author else "anonymous"
+                        if joke.author else "anonymous"
                     }
                     for joke in jokes
                 ]
