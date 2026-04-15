@@ -74,7 +74,7 @@ class TestJokesListEndpoint:
         assert body["status"] == "ok"
         assert isinstance(body["data"]["jokes"], list)
 
-    def test_get_jokes_fields_are_filtered(self, client, seed_joke):
+    def test_get_jokes_fields_are_filtered(self, client, sample_joke):
         """
         GIVEN a joke exists in the database
         WHEN the client sends GET /api/v1/jokes
