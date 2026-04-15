@@ -48,6 +48,7 @@ class TestJokeCountEndpoint:
         assert response.status_code == 405
         assert body["error"]["code"] == "METHOD_NOT_ALLOWED"
 
+
 class TestJokesListEndpoint:
     def test_get_jokes_returns_200(self, client):
         """
