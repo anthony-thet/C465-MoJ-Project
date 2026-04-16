@@ -251,7 +251,7 @@ Start thinking now: which routes have no tests at all?
 
 ---
 # ICEX 10: The Display Terminal
-* **Date:** YYYY-MM-DD
+* **Date:** 2026-04-09
 * **Team Members Present:** `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
 * **Roles:**
     * Repo Admin: `@maklsmit`
@@ -277,3 +277,33 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 ### Reflection
 * **Props vs. state:** In your own words, what is the difference between a prop and a state variable? Which component in this ICEX owns state? Which components only receive props?
 * **The seam:** The `JOKES` array at the top of `App.jsx` is hardcoded. Next week, `fetch()` will replace it with data from the Flask API. Which files would need to change? Which files would stay exactly the same? What does that tell you about how this code is organized?
+
+---
+# ICEX 11: The Ministry's Two-Speed Dispatch
+* **Date:** 2026-04-14
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@coolds`
+    * Process Lead: `@maklsmit`
+    * Dev Lead: `@amatariy`, `@lsiverts`
+    * QA Sentinel: `@kthet`
+* **Summary of Work:** We transitioned the MoJ App from static data to a live system. We also implemented a new flask endpoiint and configured a CORS whitelist. Then we rewired the React frontend to use fetch().
+
+### Separation of Concerns — The Proof
+* **Which files changed** app/__init__.py, routes/api_v1/jokes.py, frontend/src/App.jsx, docs/api.md, and CONTRIBUTIONS.md
+* **Which files did NOT change?** JokeList.jsx, JokeCount.jsx, and JokeItem.jsx
+* **What does this tell you** The child components of the frontend do not rely on where the data comes only what the data is.
+
+### Timing Report
+* **Start time:** 3:01 PM
+* **End time:** 5:50 PM
+* **Total elapsed:** 55 Minutes
+* **Biggest time sink:** Testing our frontend
+* **Comfort level with React after this ICEX:** 2
+
+### CORS Reflection
+* **What is CORS protecting against?** It prevents a malicious site from using a victim's browser to make unauthorized requests to our site. 
+* **Why a whitelist, not a wildcard?** A wildcare allows any domain on the internet to read our API responses. This would mean a malicious site could bypass our security and steal private data. 
+
+### Contract Verification
+* **Did `docs/api.md` match the actual response?** Yes, the document and implementation were consisten as they were done in tandem and updated accordingly. 
