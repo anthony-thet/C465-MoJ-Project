@@ -22,17 +22,10 @@ def client(app):
 
 
 @pytest.fixture
-def authenticated_client(client, app):
-    """Returns a test client logged in as a joke-teller."""
-    with app.app_context():
-        user = User(username='testuser')
-        user.set_password('testpass')
-        _db.session.add(user)
-        _db.session.commit()
-        client.post('/login', json={
-            'username': 'testuser',
-            'password': 'testpass'
-        })
+def authenticated_client(client, seed_user, seed_joke):
+    """A test client logged in as seed_user who has submitted a joke."""
+    client.post('/api/v1/auth/login',
+                json={'username': 'alice', 'password': 'correctpassword'})
     return client
 
 
