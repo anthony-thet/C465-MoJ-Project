@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_migrate import Migrate
 from app.models import db
 from flask_login import LoginManager
@@ -36,6 +36,9 @@ def create_app(config=None):
 
     from app.routes.api_v1 import api_v1_bp
     app.register_blueprint(api_v1_bp)
+
+    from routes.api_v1.auth import api_v1_auth_bp
+    app.register_blueprint(api_v1_auth_bp)
 
     return app
 
