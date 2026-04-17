@@ -50,7 +50,7 @@ class TestJokeCountEndpoint:
 
 
 class TestJokesListEndpoint:
-    def test_get_jokes_returns_200(self, client):
+    def test_get_jokes_returns_200(self, authenticated_client):
         """
         GIVEN an application with the API v1 blueprint registered
         WHEN the client sends GET /api/v1/jokes
@@ -58,10 +58,10 @@ class TestJokesListEndpoint:
 
         Level: HAPPY PATH
         """
-        response = client.get('/api/v1/jokes')
+        response = authenticated_client.get('/api/v1/jokes')
         assert response.status_code == 200
 
-    def test_get_jokes_returns_envelope(self, client):
+    def test_get_jokes_returns_envelope(self, authenticated_client):
         """
         GIVEN an application with jokes in the database
         WHEN the client sends GET /api/v1/jokes
@@ -70,12 +70,12 @@ class TestJokesListEndpoint:
 
         Level: HAPPY PATH
         """
-        response = client.get('/api/v1/jokes')
+        response = authenticated_client.get('/api/v1/jokes')
         body = response.get_json()
         assert body["status"] == "ok"
         assert isinstance(body["data"]["jokes"], list)
 
-    def test_get_jokes_fields_are_filtered(self, client, sample_joke):
+    def test_get_jokes_fields_are_filtered(self, authenticated_client, sample_joke):
         """
         GIVEN a joke exists in the database
         WHEN the client sends GET /api/v1/jokes
@@ -84,7 +84,7 @@ class TestJokesListEndpoint:
 
         Level: EDGE CASE
         """
-        response = client.get('/api/v1/jokes')
+        response = authenticated_client.get('/api/v1/jokes')
         body = response.get_json()
         joke = body["data"]["jokes"][0]
         assert set(joke.keys()) == {"id", "text", "author"}
