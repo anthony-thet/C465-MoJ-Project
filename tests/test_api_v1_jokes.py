@@ -1,6 +1,7 @@
 import pytest
 from app.models import Joke, db
 
+
 class TestJokeCountEndpoint:
     """Tests for GET /api/v1/jokes/count"""
     def test_joke_count_returns_200(self, client):
@@ -56,7 +57,7 @@ class TestJokesListEndpoint:
     @pytest.fixture(autouse=True)
     def ensure_submission(self, authenticated_client, app):
         """
-        Ensure the authenticated user has submitted a joke 
+        Ensure the authenticated user has submitted a joke
         to satisfy the 'Leave a penny, take a penny' requirement.
         """
         with app.app_context():
