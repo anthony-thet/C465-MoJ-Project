@@ -1,3 +1,6 @@
+import pytest
+from app.models import Joke, db
+
 class TestJokeCountEndpoint:
     """Tests for GET /api/v1/jokes/count"""
     def test_joke_count_returns_200(self, client):
@@ -50,6 +53,19 @@ class TestJokeCountEndpoint:
 
 
 class TestJokesListEndpoint:
+    @pytest.fixture(autouse=True)
+    def ensure_submission(self, authenticated_client, app):
+        """
+        Ensure the authenticated user has submitted a joke 
+        to satisfy the 'Leave a penny, take a penny' requirement.
+        """
+        with app.app_context():
+            # current_user.id in the session is 1 for the first test user
+            if not Joke.query.filter_by(submitted_by=1).first():
+                joke = Joke(text="Test setup joke", submitted_by=1)
+                db.session.add(joke)
+                db.session.commit()
+
     def test_get_jokes_returns_200(self, authenticated_client):
         """
         GIVEN an application with the API v1 blueprint registered
