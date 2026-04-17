@@ -1,4 +1,4 @@
-class TestAuthEndpoint: 
+class TestAuthEndpoint:
     def test_register_success(self, client):
         """
         GIVEN an application with the auth blueprint registered
@@ -8,7 +8,7 @@ class TestAuthEndpoint:
         Level: HAPPY PATH
         """
         response = client.post('/api/v1/auth/register',
-                            json={'username': 'newuser', 'password': 'secret123'})
+                                json={'username': 'newuser', 'password': 'secret123'})
         assert response.status_code == 201
         body = response.get_json()
         assert body['data']['user']['username'] == 'newuser'
@@ -35,7 +35,7 @@ class TestAuthEndpoint:
         Level: HAPPY PATH
         """
         response = client.post('/api/v1/auth/login',
-                               json={'username': 'alice', 'password': 'correctpassword'})
+                               json={'username': 'alice', 'password': 'correct'})
         assert response.status_code == 200
         assert response.get_json()['data']['user']['username'] == 'alice'
 
