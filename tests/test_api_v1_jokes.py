@@ -124,5 +124,8 @@ class TestJokesListEndpoint:
 
         Level: ERROR CASE
         """
+        with client.session_transaction() as session:
+            session.clear()
+
         response = client.get('/api/v1/jokes')
         assert response.status_code == 401
