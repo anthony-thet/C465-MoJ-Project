@@ -39,7 +39,7 @@ def create_app(config=None):
     from app.routes.api_v1 import api_v1_bp
     app.register_blueprint(api_v1_bp)
 
-    from routes.api_v1.auth import api_v1_auth_bp
+    from app.routes.api_v1.auth import api_v1_auth_bp
     app.register_blueprint(api_v1_auth_bp)
 
     return app
