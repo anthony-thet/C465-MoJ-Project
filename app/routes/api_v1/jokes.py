@@ -57,7 +57,7 @@ def method_not_allowed(e):
 @api_v1_bp.route('/jokes', methods=['GET'])
 @login_required
 def get_jokes():
-    has_submitted = Joke.query.filter_by(author_id=current_user.id).count() > 0
+    has_submitted = Joke.query.filter_by(submitted_by=current_user.id).count() > 0
     if not has_submitted:
         return jsonify({
             "error": {
