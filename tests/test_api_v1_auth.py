@@ -35,9 +35,9 @@ class TestAuthEndpoint:
         Level: HAPPY PATH
         """
         response = client.post('/api/v1/auth/login',
-                               json={'username': 'alice', 'password': 'testpass'})
+                               json={'username': 'qauser', 'password': 'testpass'})
         assert response.status_code == 200
-        assert response.get_json()['data']['user']['username'] == 'alice'
+        assert response.get_json()['data']['user']['username'] == 'qauser'
 
     def test_login_wrong_password(self, client, sample_user):
         """
