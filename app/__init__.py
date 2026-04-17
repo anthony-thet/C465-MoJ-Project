@@ -15,6 +15,8 @@ def create_app(config=None):
          supports_credentials=True,
          allow_headers=["Content-Type"],
          methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"])
+    app.config['SECRET_KEY'] = 'dev-key'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///moj.db'
 
     if config is not None:
         app.config.from_object(config)
