@@ -8,7 +8,7 @@ class TestAuthEndpoint:
         Level: HAPPY PATH
         """
         response = client.post('/api/v1/auth/register',
-                               json={'username': 'newuser', 'password': 'secret123'})
+                            json={'username': 'newuser', 'password': 'secret123'})
         assert response.status_code == 201
         body = response.get_json()
         assert body['data']['user']['username'] == 'newuser'
