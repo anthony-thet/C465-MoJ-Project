@@ -13,7 +13,7 @@ class TestAuthEndpoint:
         body = response.get_json()
         assert body['data']['user']['username'] == 'newuser'
 
-    def test_register_duplicate_username(self, client, seed_user):
+    def test_register_duplicate_username(self, client, sample_user):
         """
         GIVEN a user 'alice' already exists
         WHEN the client POSTs username 'alice' to /api/v1/auth/register
@@ -26,7 +26,7 @@ class TestAuthEndpoint:
         assert response.status_code == 409
         assert response.get_json()['error']['code'] == 'CONFLICT'
 
-    def test_login_success(self, client, seed_user):
+    def test_login_success(self, client, sample_user):
         """
         GIVEN a user 'alice' exists with password 'correctpassword'
         WHEN the client POSTs valid credentials to /api/v1/auth/login
@@ -39,7 +39,7 @@ class TestAuthEndpoint:
         assert response.status_code == 200
         assert response.get_json()['data']['user']['username'] == 'alice'
 
-    def test_login_wrong_password(self, client, seed_user):
+    def test_login_wrong_password(self, client, sample_user):
         """
         GIVEN a user 'alice' exists
         WHEN the client POSTs an incorrect password to /api/v1/auth/login
