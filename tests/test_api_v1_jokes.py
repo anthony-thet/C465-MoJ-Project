@@ -99,6 +99,7 @@ class TestJokesListEndpoint:
         """
         response = client.delete('/api/v1/jokes')
         assert response.status_code == 405
+
     def test_get_jokes_requires_auth(self, client):
         """
         GIVEN an unauthenticated client

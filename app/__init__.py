@@ -11,10 +11,10 @@ login_manager = LoginManager()
 def create_app(config=None):
     app = Flask(__name__)
     CORS(app,
-     origins=["http://localhost:5173"],
-     supports_credentials=True,
-     allow_headers=["Content-Type"],
-     methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"])'
+         origins=["http://localhost:5173"],
+         supports_credentials=True,
+         allow_headers=["Content-Type"],
+         methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"])
 
     if config is not None:
         app.config.from_object(config)
@@ -48,6 +48,7 @@ def load_user(user_id):
     """Called on every request with a valid session cookie.
     Returns the User object, or None if the session is invalid."""
     return User.query.get(int(user_id))
+
 
 @login_manager.unauthorized_handler
 def unauthorized():

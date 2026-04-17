@@ -12,6 +12,7 @@ def test_register_success(self, client):
     body = response.get_json()
     assert body['data']['user']['username'] == 'newuser'
 
+
 def test_register_duplicate_username(self, client, seed_user):
     """
     GIVEN a user 'alice' already exists
@@ -25,6 +26,7 @@ def test_register_duplicate_username(self, client, seed_user):
     assert response.status_code == 409
     assert response.get_json()['error']['code'] == 'CONFLICT'
 
+
 def test_login_success(self, client, seed_user):
     """
     GIVEN a user 'alice' exists with password 'correctpassword'
@@ -37,6 +39,7 @@ def test_login_success(self, client, seed_user):
                            json={'username': 'alice', 'password': 'correctpassword'})
     assert response.status_code == 200
     assert response.get_json()['data']['user']['username'] == 'alice'
+
 
 def test_login_wrong_password(self, client, seed_user):
     """
