@@ -396,3 +396,6 @@ Updates a user’s role.
   }
 }
 ```
+
+#### Notes
+- The only accepted role values are `"user"` and `"admin"`.
