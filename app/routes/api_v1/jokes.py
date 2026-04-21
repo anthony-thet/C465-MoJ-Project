@@ -67,7 +67,7 @@ def get_jokes():
         }), 403
     """Return all jokes with only the fields the frontend needs."""
     try:
-        jokes = Joke.query.all()
+        jokes = Joke.query.filter_by(flagged=False).all()
         current_app.logger.info(
             "Jokes list requested",
             extra={
