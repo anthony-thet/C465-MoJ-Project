@@ -94,3 +94,17 @@ def test_admin_flag_joke_toggles(admin_client, sample_jokes):
                                json={'flagged': False})
     assert res2.status_code == 200
     assert res2.get_json()['data']['joke']['flagged'] is False
+
+def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jokes):
+    """
+    GIVEN an authenticated regular user and 3 jokes (1 flagged)
+    WHEN they send GET /api/v1/jokes
+    THEN the response should contain only the 2 unflagged jokes
+
+    Level: EDGE CASE
+    """
+    response = authenticated_client.get('/api/v1/jokes')
+    assert response.status_code == 200
+    jokes = response.get_json()['data']['jokes']
+    assert len(jokes) == 2
+    assert all(j.get('flagged', False) is False for j in jokes)
