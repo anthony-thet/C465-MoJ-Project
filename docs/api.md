@@ -7,7 +7,7 @@
 
 ## Public Joke Endpoints
 
-### GET /api/v1/jokes/count
+### `GET /api/v1/jokes/count`
 
 Returns the total number of jokes in the database.
 
@@ -39,7 +39,7 @@ Returns the total number of jokes in the database.
 
 ---
 
-### GET /api/v1/jokes
+### `GET /api/v1/jokes`
 
 Returns all jokes in the database.
 
@@ -78,7 +78,7 @@ Returns all jokes in the database.
 
 ## Authentication Endpoints
 
-### POST /api/v1/auth/login
+### `POST /api/v1/auth/login`
 
 Authenticates a user and creates a session.
 
@@ -114,7 +114,7 @@ Authenticates a user and creates a session.
 
 ---
 
-### GET /api/v1/auth/me
+### `GET /api/v1/auth/me`
 
 Returns the currently authenticated user.
 
@@ -146,7 +146,7 @@ Returns the currently authenticated user.
 
 ---
 
-### POST /api/v1/auth/logout
+### `POST /api/v1/auth/logout`
 
 Logs out the currently authenticated user and clears the session.
 
@@ -172,7 +172,7 @@ Logs out the currently authenticated user and clears the session.
 
 ## Admin Joke Management Endpoints
 
-### GET /api/v1/admin/jokes
+### `GET /api/v1/admin/jokes`
 
 Returns jokes visible to administrators. Supports filtering flagged jokes.
 
@@ -216,7 +216,7 @@ Returns jokes visible to administrators. Supports filtering flagged jokes.
 
 ---
 
-### DELETE /api/v1/admin/jokes/<id>
+### `DELETE /api/v1/admin/jokes/<id>`
 
 Permanently deletes a joke by ID.
 
@@ -253,7 +253,7 @@ Permanently deletes a joke by ID.
 
 ---
 
-### PATCH /api/v1/admin/jokes/<id>/flag
+### `PATCH /api/v1/admin/jokes/<id>/flag`
 
 Updates a joke’s flagged status.
 
@@ -309,7 +309,7 @@ Updates a joke’s flagged status.
 
 ## Admin User Management Endpoints
 
-### GET /api/v1/admin/users
+### `GET /api/v1/admin/users`
 
 Returns all users visible to administrators.
 
@@ -349,7 +349,7 @@ Returns all users visible to administrators.
 
 ---
 
-### PATCH /api/v1/admin/users/<id>/role
+### `PATCH /api/v1/admin/users/<id>/role`
 
 Updates a user’s role.
 
