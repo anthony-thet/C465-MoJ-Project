@@ -70,3 +70,72 @@ Returns all jokes in the database.
 ### Notes
 - Includes all jokes regardless of author or status.
 - Returns null (not an error) when no jokes exist.
+
+---
+### POST /api/v1/auth/login
+- **Method:** Post
+- **Authentication:** Not required
+- **Query Parameters:** None
+- **Request Body:** 
+``` json
+{
+  "username": "newuser",
+  "password": "secretpassword"
+}
+```
+- **Success Response (200 OK)**:
+``` json
+{
+  "data": {
+    "user": {
+      "id": 1,
+      "username": "newuser"
+    }
+  },
+  "status": "ok"
+}
+```
+- **Error Responses:**
+### Error Responses
+| Status | Code | When |
+|--------|------|------|
+| 401 | UNAUTHORIZED | Invalid username or password |
+
+---
+### GET /api/v1/auth/me
+- Method: GET
+- Authentication: Required (Session Cookie)
+- Query Parameters: None
+- Request Body: None
+- Success Response (200 OK):
+
+```JSON
+{
+  "data": {
+    "user": {
+      "id": 1,
+      "username": "newuser",
+      "role": "joke-teller",
+      "has_submitted": true
+    }
+  },
+  "status": "ok"
+}
+```
+- Error Responses:
+| Status | Code | When |
+|--------|------|------|
+| 401 | UNAUTHORIZED | No active session |
+
+---
+POST /api/v1/auth/logout
+- Method: POST
+- Authentication: Required (Session Cookie)
+- Query Parameters: None
+- Request Body: None
+- Success Response (200 OK):
+```JSON
+{
+  "status": "ok"
+}
+```
