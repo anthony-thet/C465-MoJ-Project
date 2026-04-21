@@ -1,6 +1,7 @@
 from functools import wraps
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
+from app.models import Joke, User, db
 
 admin_bp = Blueprint('api_v1_admin', __name__, url_prefix='/api/v1/admin')
 
