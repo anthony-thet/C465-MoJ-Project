@@ -71,10 +71,10 @@ def admin_user(app):
     with app.app_context():
         user = User(username='admin_alice', role='admin')
         user.set_password('adminpass123')
-        db.session.add(user)
-        db.session.commit()
+        _db.session.add(user)
+        _db.session.commit()
         yield user
-        db.session.rollback()
+        _db.session.rollback()
 
 
 @pytest.fixture
@@ -83,10 +83,10 @@ def regular_user(app):
     with app.app_context():
         user = User(username='regular_bob', role='user')
         user.set_password('userpass123')
-        db.session.add(user)
-        db.session.commit()
+        _db.session.add(user)
+        _db.session.commit()
         yield user
-        db.session.rollback()
+        _db.session.rollback()
 
 
 @pytest.fixture
@@ -112,6 +112,6 @@ def sample_jokes(app, admin_user):
         j1 = Joke(text='Why did the parrot join the ministry?', user_id=admin_user.id, flagged=False)
         j2 = Joke(text='A dead parrot is still a parrot.', user_id=admin_user.id, flagged=True)
         j3 = Joke(text='Nobody expects the Spanish Inquisition!', user_id=admin_user.id, flagged=False)
-        db.session.add_all([j1, j2, j3])
-        db.session.commit()
+        _db.session.add_all([j1, j2, j3])
+        _db.session.commit()
         yield [j1, j2, j3]
