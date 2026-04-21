@@ -322,7 +322,7 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 ### Timing Report
 * **Start time:** 3:07 
 * **End time:** 10:15
-* **Total elapsed:** about 400 mins
+* **Total elapsed:** 150 Minutes
 * **Biggest time sink:** There is an issue with our frontend running thats still somewhat ongoing, but slightly better so dealing with that took a lot as well as typing the components.
 * **Comfort level with React after this ICEX:** 2
 
