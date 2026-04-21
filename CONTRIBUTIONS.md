@@ -343,8 +343,12 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 ---
 # ICEX_MJ13 — The Ministry's Inner Circle
 * **Date:** 2026-04-21
-* **Roles:** Repo Admin: @___, Process Lead: @___, Dev Lead: @___, QA Sentinel: @___
-* **Team Members:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@coolds`
+    * Process Lead: `@kthet`
+    * Dev Lead: `@amatariy`, `@lsiverts`
+    * QA Sentinel: `@maklsmit`
 * **Summary:** [2–3 sentences: what was built and what was the most significant
   technical decision the team made during ICEX 13]
 
@@ -367,7 +371,7 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 
 
 ### Timing Report
-* **Start time:** [Clock time when Phase 1 began]
+* **Start time:** 3:02
 * **End time:** [Clock time when DoD check completed]
 * **Total elapsed:** [Minutes]
 * **Biggest time sink:** [What took the longest? Node install, typing the components, understanding JSX, debugging a syntax error, something else?]
