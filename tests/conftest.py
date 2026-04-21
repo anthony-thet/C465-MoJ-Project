@@ -63,3 +63,55 @@ def auth_headers(client, sample_user):
         'password': 'testpass'
     })
     return {}
+
+
+@pytest.fixture
+def admin_user(app):
+    """An admin user for testing admin-only endpoints."""
+    with app.app_context():
+        user = User(username='admin_alice', role='admin')
+        user.set_password('adminpass123')
+        db.session.add(user)
+        db.session.commit()
+        yield user
+        db.session.rollback()
+
+
+@pytest.fixture
+def regular_user(app):
+    """A non-admin user for testing role enforcement."""
+    with app.app_context():
+        user = User(username='regular_bob', role='user')
+        user.set_password('userpass123')
+        db.session.add(user)
+        db.session.commit()
+        yield user
+        db.session.rollback()
+
+
+@pytest.fixture
+def admin_client(client, admin_user):
+    """A test client logged in as an admin."""
+    client.post('/api/v1/auth/login',
+                json={'username': 'admin_alice', 'password': 'adminpass123'})
+    return client
+
+
+@pytest.fixture
+def regular_client(client, regular_user):
+    """A test client logged in as a non-admin user."""
+    client.post('/api/v1/auth/login',
+                json={'username': 'regular_bob', 'password': 'userpass123'})
+    return client
+
+
+@pytest.fixture
+def sample_jokes(app, admin_user):
+    """Three jokes: two unflagged, one flagged."""
+    with app.app_context():
+        j1 = Joke(text='Why did the parrot join the ministry?', user_id=admin_user.id, flagged=False)
+        j2 = Joke(text='A dead parrot is still a parrot.', user_id=admin_user.id, flagged=True)
+        j3 = Joke(text='Nobody expects the Spanish Inquisition!', user_id=admin_user.id, flagged=False)
+        db.session.add_all([j1, j2, j3])
+        db.session.commit()
+        yield [j1, j2, j3]
