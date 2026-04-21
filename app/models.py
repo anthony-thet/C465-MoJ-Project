@@ -28,7 +28,8 @@ class User(UserMixin, db.Model):
 
 class Joke(db.Model):
     __tablename__ = 'joke'
-
+    
+    flagged = db.Column(db.Boolean, default=False, nullable=False)
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(500), nullable=False)
     submitted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
