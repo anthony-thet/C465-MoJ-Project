@@ -340,3 +340,35 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 * **Open DevTools → Application → Cookies.** What is the name of the session cookie Flask set? What domain is it scoped to? I believe session scope to localhost but the issue makes it hard to know
 * **What happens if you open a private/incognito window** and visit `localhost:5173`? Do you see the login form or the joke list? Why? you see a login form as incognito has no cookies
 
+---
+# ICEX_MJ13 — The Ministry's Inner Circle
+* **Date:** 2026-04-21
+* **Roles:** Repo Admin: @___, Process Lead: @___, Dev Lead: @___, QA Sentinel: @___
+* **Team Members:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Summary:** [2–3 sentences: what was built and what was the most significant
+  technical decision the team made during ICEX 13]
+
+
+**Reflection questions:**
+
+1. `@admin_required` lives in the backend. Your `AdminPanel` only renders for admin
+   users in React. If you removed `@admin_required` but kept the frontend conditional
+   render, what would happen? How would you demonstrate the gap without modifying
+   the source code?
+
+2. The `DELETE` endpoint hard-deletes a joke. The `PATCH .../flag` endpoint soft-deletes
+   it. When would you choose soft-delete over hard-delete in a production system?
+   What does the Ministry permanently lose when an admin clicks Delete instead of Flag?
+
+3. The admin Blueprint lives in a separate file from your main API routes. How does
+   this module-level separation apply *Principle of Least Privilege* and *Separation
+   of Concerns* — not just as organizational convenience, but as a security boundary?
+   What would have to change if you moved the admin routes back into the main routes file?
+
+
+### Timing Report
+* **Start time:** [Clock time when Phase 1 began]
+* **End time:** [Clock time when DoD check completed]
+* **Total elapsed:** [Minutes]
+* **Biggest time sink:** [What took the longest? Node install, typing the components, understanding JSX, debugging a syntax error, something else?]
+* **Comfort level with React after this ICEX:** [1–5 scale, where 1 = "completely lost" and 5 = "I could build another component from scratch"]
