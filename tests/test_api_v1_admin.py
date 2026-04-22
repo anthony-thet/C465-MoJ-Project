@@ -1,3 +1,5 @@
+from app import db
+
 def test_non_admin_gets_403_on_admin_jokes(regular_client):
     """
     GIVEN a logged-in user with role 'user'
