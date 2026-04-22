@@ -10,6 +10,7 @@ def test_non_admin_gets_403_on_admin_jokes(regular_client):
     assert response.status_code == 403
     assert response.get_json()['error']['code'] == 'FORBIDDEN'
 
+
 def test_non_admin_gets_403_on_delete(regular_client, sample_jokes):
     """
     GIVEN a logged-in user with role 'user'
@@ -21,6 +22,7 @@ def test_non_admin_gets_403_on_delete(regular_client, sample_jokes):
     response = regular_client.delete(f'/api/v1/admin/jokes/{sample_jokes[0].id}')
     assert response.status_code == 403
 
+
 def test_unauthenticated_gets_401_on_admin_route(client):
     """
     GIVEN an unauthenticated client (no session)
@@ -31,6 +33,7 @@ def test_unauthenticated_gets_401_on_admin_route(client):
     """
     response = client.get('/api/v1/admin/jokes')
     assert response.status_code == 401
+
 
 def test_admin_get_all_jokes(admin_client, sample_jokes):
     """
@@ -45,6 +48,7 @@ def test_admin_get_all_jokes(admin_client, sample_jokes):
     jokes = response.get_json()['data']['jokes']
     assert len(jokes) == 3
 
+
 def test_admin_get_flagged_only(admin_client, sample_jokes):
     """
     GIVEN an admin user and 3 jokes (1 flagged)
@@ -58,6 +62,7 @@ def test_admin_get_flagged_only(admin_client, sample_jokes):
     jokes = response.get_json()['data']['jokes']
     assert len(jokes) == 1
     assert jokes[0]['flagged'] is True
+
 
 def test_admin_delete_joke(admin_client, sample_jokes):
     """
@@ -75,25 +80,26 @@ def test_admin_delete_joke(admin_client, sample_jokes):
     ids = [j['id'] for j in follow_up.get_json()['data']['jokes']]
     assert joke_id not in ids
 
+
 def test_admin_flag_joke_toggles(admin_client, sample_jokes):
     """
     GIVEN an admin user and an unflagged joke
     WHEN they PATCH /api/v1/admin/jokes/<id>/flag with {"flagged": true}
     THEN the joke should be flagged; patching again with false unflags it
-
     Level: HAPPY PATH
     """
     joke_id = sample_jokes[0].id  # unflagged
     # Flag it
     res1 = admin_client.patch(f'/api/v1/admin/jokes/{joke_id}/flag',
-                               json={'flagged': True})
+                              json={'flagged': True})
     assert res1.status_code == 200
     assert res1.get_json()['data']['joke']['flagged'] is True
     # Unflag it
     res2 = admin_client.patch(f'/api/v1/admin/jokes/{joke_id}/flag',
-                               json={'flagged': False})
+                              json={'flagged': False})
     assert res2.status_code == 200
     assert res2.get_json()['data']['joke']['flagged'] is False
+
 
 def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jokes):
     """

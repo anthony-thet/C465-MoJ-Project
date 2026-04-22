@@ -28,14 +28,13 @@ class User(UserMixin, db.Model):
 
 class Joke(db.Model):
     __tablename__ = 'joke'
-    
     flagged = db.Column(db.Boolean, default=False, nullable=False)
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(500), nullable=False)
     submitted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     ai_rating = db.Column(db.Integer, nullable=True)
-    user_id = db.Column(db.Integer, nullable = False)
+    user_id = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return f'<Joke {self.id}>'

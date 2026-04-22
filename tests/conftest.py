@@ -109,9 +109,15 @@ def regular_client(client, regular_user):
 def sample_jokes(app, admin_user):
     """Three jokes: two unflagged, one flagged."""
     with app.app_context():
-        j1 = Joke(text='Why did the parrot join the ministry?', submitted_by=admin_user.id, flagged=False)
-        j2 = Joke(text='A dead parrot is still a parrot.', submitted_by=admin_user.id, flagged=True)
-        j3 = Joke(text='Nobody expects the Spanish Inquisition!', submitted_by=admin_user.id, flagged=False)
+        j1 = Joke(text='Why did the parrot join the ministry?',
+                  submitted_by=admin_user.id,
+                  flagged=False)
+        j2 = Joke(text='A dead parrot is still a parrot.',
+                  submitted_by=admin_user.id,
+                  flagged=True)
+        j3 = Joke(text='Nobody expects the Spanish Inquisition!',
+                  submitted_by=admin_user.id,
+                  flagged=False)
         _db.session.add_all([j1, j2, j3])
         _db.session.commit()
         yield [j1, j2, j3]

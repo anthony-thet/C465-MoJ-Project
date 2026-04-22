@@ -5,6 +5,7 @@ from app.models import Joke, User, db
 
 admin_bp = Blueprint('api_v1_admin', __name__, url_prefix='/api/v1/admin')
 
+
 def admin_required(f):
     """Decorator: requires authenticated user with role == 'admin'.
     Composes on @login_required — unauthenticated requests get 401,
