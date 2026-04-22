@@ -1,5 +1,6 @@
 from app.models import Joke, db as _db
 
+
 def test_non_admin_gets_403_on_admin_jokes(regular_client):
     """
     GIVEN a logged-in user with role 'user'
@@ -103,7 +104,7 @@ def test_admin_flag_joke_toggles(admin_client, sample_jokes):
     assert res2.get_json()['data']['joke']['flagged'] is False
 
 
-def test_regular_user_does_not_see_flagged_jokes(regular_client, app, regular_user, sample_jokes):
+def test_regular_user_does_not_see_flagged_jokes(regular_client, app, regular_user):
     """
     GIVEN an authenticated regular user (role='user') and 3 jokes (1 flagged)
     WHEN they send GET /api/v1/jokes
@@ -120,6 +121,6 @@ def test_regular_user_does_not_see_flagged_jokes(regular_client, app, regular_us
 
     data = response.get_json()
     jokes = data['data']['jokes']
-    
+
     for joke in jokes:
         assert joke.get('flagged', False) is False
