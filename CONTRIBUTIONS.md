@@ -359,15 +359,18 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
    users in React. If you removed `@admin_required` but kept the frontend conditional
    render, what would happen? How would you demonstrate the gap without modifying
    the source code?
+   If @admin_required were removed from the backend, a non-admin user could bypass the hidden React UI by making direct HTTP requests to the admin endpoints. This could be demonstrated without changing source code by logging in as a normal user and using browser dev tools, curl, or Postman to call /api/v1/admin/... directly with the authenticated session.
 
-2. The `DELETE` endpoint hard-deletes a joke. The `PATCH .../flag` endpoint soft-deletes
+3. The `DELETE` endpoint hard-deletes a joke. The `PATCH .../flag` endpoint soft-deletes
    it. When would you choose soft-delete over hard-delete in a production system?
    What does the Ministry permanently lose when an admin clicks Delete instead of Flag?
+   In a production system, soft-delete is preferred when content may need to be reviewed, restored, audited, or analyzed later. Hard-delete permanently removes that information. If an admin clicks Delete instead of Flag, the Ministry loses the joke itself, its moderation history, and the ability to recover or investigate that content later.
 
-3. The admin Blueprint lives in a separate file from your main API routes. How does
+4. The admin Blueprint lives in a separate file from your main API routes. How does
    this module-level separation apply *Principle of Least Privilege* and *Separation
    of Concerns* — not just as organizational convenience, but as a security boundary?
    What would have to change if you moved the admin routes back into the main routes file?
+   Putting admin routes in a separate module helps keep privileged actions isolated. That supports separation of concerns and least privilege because only a small part of the codebase handles admin-only behavior. If those routes were moved into the main routes file, the security boundary would be less clear and the risk of mistakes would go up.
 
 
 ### Timing Report
