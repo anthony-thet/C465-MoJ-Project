@@ -106,11 +106,11 @@ def regular_client(client, regular_user):
 
 
 @pytest.fixture
-def sample_jokes(app, admin_user, regular_user):
+def sample_jokes(app, admin_user):
     """Three jokes: two unflagged, one flagged."""
     with app.app_context():
         j1 = Joke(text='Why did the parrot join the ministry?',
-                  submitted_by=regular_user.id,
+                  submitted_by=admin_user.id,
                   flagged=False)
         j2 = Joke(text='A dead parrot is still a parrot.',
                   submitted_by=admin_user.id,
