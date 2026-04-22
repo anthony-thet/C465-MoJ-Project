@@ -38,6 +38,7 @@ def authenticated_client(client, app):
         })
     return client
 
+
 @pytest.fixture(scope='function')
 def sample_user(app):
     user = User(username='qauser')
