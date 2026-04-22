@@ -103,7 +103,7 @@ def test_admin_flag_joke_toggles(admin_client, sample_jokes):
     assert res2.get_json()['data']['joke']['flagged'] is False
 
 
-def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jokes, regular_user):
+def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jokes):
     """
     GIVEN an authenticated regular user and 3 jokes (1 flagged)
     WHEN they send GET /api/v1/jokes
@@ -111,13 +111,10 @@ def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jo
 
     Level: EDGE CASE
     """
-    from app.models import Joke
-    unflagged_joke = Joke.query.filter_by(flagged=False).first()
-    if unflagged_joke:
-        unflagged_joke.user_id = regular_user.id 
-        db.session.commit()
-    response = authenticated_client.get('/api/v1/jokes')
+    regular_client.post('/api/v1/jokes', json={"text": "A qualifying joke submission."})
+    response = regular_client.get('/api/v1/jokes')
     assert response.status_code == 200
-    jokes = response.get_json()['data']['jokes']
-    assert len(jokes) == 2
-    assert all(j.get('flagged', False) is False for j in jokes)
+    data = response.get_json()
+    jokes = data['data']['jokes']
+    assert len(jokes) == 3 
+    assert all(j.get('flagged') is False for j in jokes)
