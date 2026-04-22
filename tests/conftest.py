@@ -23,18 +23,20 @@ def client(app):
 
 @pytest.fixture
 def authenticated_client(client, app):
-    """Returns a test client logged in as a joke-teller."""
+    """Returns a test client logged in via the correct API route."""
     with app.app_context():
-        user = User(username='testuser')
-        user.set_password('testpass')
-        _db.session.add(user)
-        _db.session.commit()
-        client.post('/login', json={
-            'username': 'testuser',
+        username = 'testuser'
+        user = User.query.filter_by(username=username).first()
+        if not user:
+            user = User(username=username)
+            user.set_password('testpass')
+            _db.session.add(user)
+            _db.session.commit()
+        client.post('/api/v1/auth/login', json={
+            'username': username,
             'password': 'testpass'
         })
     return client
-
 
 @pytest.fixture(scope='function')
 def sample_user(app):
