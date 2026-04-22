@@ -109,7 +109,7 @@ def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jo
 
     Level: EDGE CASE
     """
-    post_res = authenticated_client.post('/jokes', data={"text": "Joke"})
+    post_res = authenticated_client.post('/jokes', json={"text": "Joke"})
     if post_res.status_code == 415:
          post_res = authenticated_client.post('/jokes', json={"text": "Joke"})
 
