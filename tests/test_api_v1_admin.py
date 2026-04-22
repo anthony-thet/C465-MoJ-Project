@@ -1,5 +1,3 @@
-from app import db
-
 def test_non_admin_gets_403_on_admin_jokes(regular_client):
     """
     GIVEN a logged-in user with role 'user'
@@ -111,10 +109,16 @@ def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jo
 
     Level: EDGE CASE
     """
-    authenticated_client.post('/api/v1/jokes', json={"text": "Pass the gate joke."})
+    from app.models import User
+    from app import db
+    user = User.query.filter_by(username="test_user").first() 
+    if user:
+        user.role = 'TELLER'
+        db.session.commit()
+    authenticated_client.post('/api/v1/jokes', json={"text": "Validation joke."})
     response = authenticated_client.get('/api/v1/jokes')
     assert response.status_code == 200
     data = response.get_json()
     jokes = data['data']['jokes']
-    assert len(jokes) == 3 
+    assert len(jokes) == 3
     assert all(j.get('flagged') is False for j in jokes)
