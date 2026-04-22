@@ -100,6 +100,7 @@ def test_admin_flag_joke_toggles(admin_client, sample_jokes):
     assert res2.status_code == 200
     assert res2.get_json()['data']['joke']['flagged'] is False
 
+
 def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jokes):
     """
     GIVEN an authenticated regular user and 3 jokes (1 flagged)
@@ -110,7 +111,9 @@ def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jo
     """
     from app.models import User, Joke
     from app import db
-    user = User.query.filter_by(username="test_user").first()
+    user = db.session.get(User, 1) 
+    if not user:
+        user = User.query.first()
     gate_joke = Joke(text="Gate-passing joke", author_id=user.id, flagged=False)
     db.session.add(gate_joke)
     db.session.commit()
@@ -119,3 +122,4 @@ def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jo
     data = response.get_json()
     jokes = data['data']['jokes']
     assert len(jokes) == 3
+    assert all(j.get('flagged') is False for j in jokes)
