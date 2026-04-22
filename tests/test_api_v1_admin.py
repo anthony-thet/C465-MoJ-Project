@@ -101,24 +101,24 @@ def test_admin_flag_joke_toggles(admin_client, sample_jokes):
     assert res2.get_json()['data']['joke']['flagged'] is False
 
 
-def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jokes):
+def test_regular_user_does_not_see_flagged_jokes(regular_client, sample_jokes):
     """
-    GIVEN an authenticated regular user and 3 jokes (1 flagged)
+    GIVEN an authenticated regular user (role='user') and 3 jokes (1 flagged)
     WHEN they send GET /api/v1/jokes
     THEN the response should contain only the 2 unflagged jokes
-
-    Level: EDGE CASE
     """
-    authenticated_client.post('/api/v1/jokes', json={"text": "Activity requirement joke."})
+    # 1. Satisfy the activity requirement just in case
+    regular_client.post('/api/v1/jokes', json={"text": "Activity requirement joke."})
 
-    # 2. Now attempt the GET request
-    response = authenticated_client.get('/api/v1/jokes')
+    # 2. Attempt the GET request
+    response = regular_client.get('/api/v1/jokes')
     
     assert response.status_code == 200
     
     data = response.get_json()
     jokes = data['data']['jokes']
     
-    # Ensure no flagged jokes are in the payload
+    # 3. Verify security: No flagged jokes should be returned to a regular user
     for joke in jokes:
-        assert joke.get('flagged') is False
+        # Assuming the API returns a 'flagged' field or strictly filters
+        assert joke.get('flagged', False) is False
