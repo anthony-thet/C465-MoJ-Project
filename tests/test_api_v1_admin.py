@@ -101,7 +101,7 @@ def test_admin_flag_joke_toggles(admin_client, sample_jokes):
     assert res2.get_json()['data']['joke']['flagged'] is False
 
 
-def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jokes, regular_user, db_session):
+def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jokes, regular_user):
     """
     GIVEN an authenticated regular user and 3 jokes (1 flagged)
     WHEN they send GET /api/v1/jokes
