@@ -111,8 +111,8 @@ def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jo
 
     Level: EDGE CASE
     """
-    regular_client.post('/api/v1/jokes', json={"text": "A qualifying joke submission."})
-    response = regular_client.get('/api/v1/jokes')
+    authenticated_client.post('/api/v1/jokes', json={"text": "Pass the gate joke."})
+    response = authenticated_client.get('/api/v1/jokes')
     assert response.status_code == 200
     data = response.get_json()
     jokes = data['data']['jokes']
