@@ -34,7 +34,6 @@ class Joke(db.Model):
     submitted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     ai_rating = db.Column(db.Integer, nullable=True)
-    user_id = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return f'<Joke {self.id}>'
