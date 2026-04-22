@@ -109,6 +109,10 @@ def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jo
 
     Level: EDGE CASE
     """
+    from app.models import Joke
+    unflagged_joke = Joke.query.filter_by(flagged=False).first()
+    unflagged_joke.user_id = regular_user.id
+    db_session.commit()
     response = authenticated_client.get('/api/v1/jokes')
     assert response.status_code == 200
     jokes = response.get_json()['data']['jokes']
