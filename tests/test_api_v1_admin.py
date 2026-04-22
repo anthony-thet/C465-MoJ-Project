@@ -109,14 +109,12 @@ def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jo
 
     Level: EDGE CASE
     """
-    post_res = authenticated_client.post('/jokes', json={"text": "Joke"})
-    if post_res.status_code == 415:
-         post_res = authenticated_client.post('/jokes', json={"text": "Joke"})
-
-    assert post_res.status_code in [200, 201, 302]
+    post_res = authenticated_client.post('/jokes', json={"text": "Gate-passing joke."})
+    assert post_res.status_code in [200, 201]
     response = authenticated_client.get('/api/v1/jokes')
     assert response.status_code == 200
     data = response.get_json()
     jokes = data['data']['jokes']
     assert len(jokes) >= 2
-    assert all(j.get('flagged') is False for j in jokes)
+    for joke in jokes:
+        assert joke.get('flagged') is False
