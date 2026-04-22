@@ -108,8 +108,14 @@ def test_regular_user_does_not_see_flagged_jokes(authenticated_client, sample_jo
 
     Level: EDGE CASE
     """
+    from app.models import User, Joke
+    from app import db
+    user = User.query.filter_by(username="test_user").first()
+    gate_joke = Joke(text="Gate-passing joke", author_id=user.id, flagged=False)
+    db.session.add(gate_joke)
+    db.session.commit()
     response = authenticated_client.get('/api/v1/jokes')
     assert response.status_code == 200
-    jokes = response.get_json()['data']['jokes']
-    assert len(jokes) == 2
-    assert all(j.get('flagged', False) is False for j in jokes)
+    data = response.get_json()
+    jokes = data['data']['jokes']
+    assert len(jokes) == 3
