@@ -384,10 +384,10 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 * **Date:** 2026-04-23
 * **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
 * **Roles:**
-    * Repo Admin: `@userX`
-    * Process Lead: `@userY`
-    * Dev Lead: `@coolds`
-    * QA Sentinel: `@userW`
+    * Repo Admin: `@kthet`
+    * Process Lead: `@lsiverts`
+    * Dev Lead: `@coolds`, `@maklsmit`
+    * QA Sentinel: `@uamatariy`
 * **Summary of Work:** 
 * **Evidence & Reflection:**
     1. `parse_rating()` returns `None` when the LLM ignores your instructions, and the route stores `null` and returns 200 anyway. Is that the right behavior? What would you do differently if the caller *required* a rating?
@@ -395,7 +395,7 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
     3. The AI rating is a signal, not a gate. A joke rated 1/10 is still visible to regular users. What would need to change — in the data model, the API, and the React UI — if the Ministry decided that jokes below 3/10 should be auto-flagged? Which named principle from L14 does that policy decision engage?
 
 ### Timing Report
-* **Start time:** [Clock time when Phase 1 began]
+* **Start time:** 1:20 PM
 * **End time:** [Clock time when DoD check completed]
 * **Total elapsed:** [Minutes]
 * **Biggest time sink:** [What took the longest? Node install, typing the components, understanding JSX, debugging a syntax error, something else?]
