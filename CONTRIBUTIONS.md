@@ -391,8 +391,11 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 * **Summary of Work:** 
 * **Evidence & Reflection:**
     1. `parse_rating()` returns `None` when the LLM ignores your instructions, and the route stores `null` and returns 200 anyway. Is that the right behavior? What would you do differently if the caller *required* a rating?
-    2. The route returns 503 when Ollama is unavailable, not 500. What does each status code communicate to the client? What would a React frontend do differently with a 503 vs a 500?
-    3. The AI rating is a signal, not a gate. A joke rated 1/10 is still visible to regular users. What would need to change — in the data model, the API, and the React UI — if the Ministry decided that jokes below 3/10 should be auto-flagged? Which named principle from L14 does that policy decision engage?
+       Rather than returning 200, it should be treated as a failure and an exception should be thrown. 
+    3. The route returns 503 when Ollama is unavailable, not 500. What does each status code communicate to the client? What would a React frontend do differently with a 503 vs a 500?
+       A 503 communicates that the main service itself is fine and that a required service within is temporarily unavailable.  A 500 communicates that the backend of the main service is facing internal issues. A React frontend would usually treat 503 as a retryable or temporary outage, while 500 would be handled more like a generic application error.
+    4. The AI rating is a signal, not a gate. A joke rated 1/10 is still visible to regular users. What would need to change — in the data model, the API, and the React UI — if the Ministry decided that jokes below 3/10 should be auto-flagged? Which named principle from L14 does that policy decision engage?
+       If jokes below 3/10 were auto-flagged, the backend would need logic to set flagged = True automatically based on the AI rating, the API would need to hide those jokes from regular users while still exposing them to admins, and the React UI would need to filter out flagged jokes for normal users but be visible for moderators. This policy engages Separation of Concerns because the system would now be linking AI scoring logic to moderation behavior.
 
 ### Timing Report
 * **Start time:** 1:20 PM
