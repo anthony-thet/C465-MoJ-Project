@@ -399,7 +399,7 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 
 ### Timing Report
 * **Start time:** 1:20 PM
-* **End time:** [Clock time when DoD check completed]
-* **Total elapsed:** [Minutes]
-* **Biggest time sink:** [What took the longest? Node install, typing the components, understanding JSX, debugging a syntax error, something else?]
-* **Comfort level with React after this ICEX:** [1–5 scale, where 1 = "completely lost" and 5 = "I could build another component from scratch"]
+* **End time:** 6:48 PM
+* **Total elapsed:** 328 minutes
+* **Biggest time sink:** Fixing the fixtures and configs for test cases.
+* **Comfort level with React after this ICEX:** 2
