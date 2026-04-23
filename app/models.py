@@ -7,6 +7,13 @@ from flask_login import UserMixin
 db = SQLAlchemy()
 
 
+def parse_rating(text: str) -> int | None:
+    """Extract the first integer 1–10 from an LLM response string.
+    Returns None if no valid rating found."""
+    match = re.search(r'\b(10|[1-9])\b', text.strip())
+    return int(match.group(1)) if match else None
+
+
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
 
