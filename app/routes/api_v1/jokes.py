@@ -6,13 +6,6 @@ from app.models import Joke
 from . import api_v1_bp
 
 
-def parse_rating(text: str) -> int | None:
-    """Extract the first integer 1–10 from an LLM response string.
-    Returns None if no valid rating found."""
-    match = re.search(r'\b(10|[1-9])\b', text.strip())
-    return int(match.group(1)) if match else None
-
-
 @api_v1_bp.route('/jokes/count', methods=['GET'])
 def get_joke_count():
     try:
