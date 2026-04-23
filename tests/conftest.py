@@ -124,3 +124,13 @@ def sample_jokes(app, admin_user):
         _db.session.add_all([j1, j2, j3])
         _db.session.commit()
         yield [j1, j2, j3]
+
+
+@pytest.fixture
+def sample_joke(app, regular_user):
+    with app.app_context():
+        joke = Joke(text="Why did the parrot join the Ministry?",
+                    user_id=regular_user.id, flagged=False)
+        db.session.add(joke)
+        db.session.commit()
+        yield joke
