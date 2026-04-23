@@ -96,7 +96,7 @@ class TestJokesListEndpoint:
         """
         GIVEN a joke exists in the database
         WHEN the client sends GET /api/v1/jokes
-        THEN each joke object should contain only 'id', 'text', 'author', and 'ai_rating'
+        THEN each joke object should contain only 'id', 'text', 'author', 'ai_rating'
              — no 'user_id', 'created_at', or other internal fields
 
         Level: EDGE CASE
