@@ -56,6 +56,7 @@ function AdminPanel() {
             <th>Text</th>
             <th>Author</th>
             <th>Flagged</th>
+            <th>AI Rating</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -66,6 +67,7 @@ function AdminPanel() {
               <td>{joke.text}</td>
               <td>{joke.author}</td>
               <td>{joke.flagged ? '🚩' : '—'}</td>
+              <td>{joke.ai_rating !== null ? `⭐ ${joke.ai_rating}/10` : '—'}</td>
               <td>
                 <button onClick={() => handleFlag(joke.id, joke.flagged)}>
                   {joke.flagged ? 'Unflag' : 'Flag'}
