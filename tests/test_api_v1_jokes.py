@@ -96,7 +96,7 @@ class TestJokesListEndpoint:
         """
         GIVEN a joke exists in the database
         WHEN the client sends GET /api/v1/jokes
-        THEN each joke object should contain only 'id', 'text', and 'author'
+        THEN each joke object should contain only 'id', 'text', 'author', and 'ai_rating'
              — no 'user_id', 'created_at', or other internal fields
 
         Level: EDGE CASE
@@ -104,7 +104,7 @@ class TestJokesListEndpoint:
         response = authenticated_client.get('/api/v1/jokes')
         body = response.get_json()
         joke = body["data"]["jokes"][0]
-        assert set(joke.keys()) == {"id", "text", "author"}
+        assert set(joke.keys()) == {"id", "text", "author", "ai_rating"}
 
     def test_get_jokes_wrong_method_returns_405(self, client):
         """
