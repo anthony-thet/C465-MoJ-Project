@@ -80,7 +80,7 @@ def test_parse_rating_returns_none_when_no_number():
     assert result is None
 
 
-def test_ai_rating_appears_in_joke_list(authenticated_client, sample_joke, app):
+def test_ai_rating_appears_in_joke_list(regular_client, sample_joke, app):
     """
     Stub D — ai_rating appears in joke list
     GIVEN a joke that has been rated (ai_rating = 9)
