@@ -1,8 +1,7 @@
 from flask import jsonify, current_app
 from flask_login import login_required, current_user
-import re
 import requests
-from app.models import Joke
+from app.models import Joke, parse_rating
 from . import api_v1_bp
 
 

@@ -49,17 +49,6 @@ def sample_user(app):
 
 
 @pytest.fixture(scope='function')
-def sample_joke(app, sample_user):
-    joke = Joke(
-        text='Why did the QA engineer cross the road? To reproduce the bug.',
-        submitted_by=sample_user.id
-    )
-    _db.session.add(joke)
-    _db.session.commit()
-    return joke
-
-
-@pytest.fixture(scope='function')
 def auth_headers(client, sample_user):
     client.post('/login', json={
         'username': 'qauser',
@@ -131,6 +120,6 @@ def sample_joke(app, regular_user):
     with app.app_context():
         joke = Joke(text="Why did the parrot join the Ministry?",
                     subbmited_by=regular_user.id, flagged=False)
-        db.session.add(joke)
-        db.session.commit()
+        _db.session.add(joke)
+        _db.session.commit()
         yield joke

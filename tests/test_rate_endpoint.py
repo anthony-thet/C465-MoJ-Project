@@ -1,8 +1,7 @@
-import pytest
 import requests
 from unittest.mock import patch, MagicMock
 from app.models import Joke, db as _db
-from app.models import parse_rating 
+from app.models import parse_rating
 
 
 def test_rate_joke_stores_ai_rating(authenticated_client, sample_joke):
