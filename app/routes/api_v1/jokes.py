@@ -83,7 +83,8 @@ def get_jokes():
                     {
                         "id": joke.id,
                         "text": joke.text,
-                        "author": joke.author.username
+                        "author": joke.author.username,
+                        "ai_rating": joke.ai_rating
                         if joke.author else "anonymous"
                     }
                     for joke in jokes
