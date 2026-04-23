@@ -400,6 +400,7 @@ Updates a user’s role.
 #### Notes
 - The only accepted role values are `"user"` and `"admin"`.
 
+---
 ### POST /api/v1/jokes/<id>/rate
 #### Request
 - Auth: @login_required — any authenticated user may trigger a rating
