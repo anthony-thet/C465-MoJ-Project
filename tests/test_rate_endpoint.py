@@ -80,28 +80,20 @@ def test_parse_rating_returns_none_when_no_number():
     assert result is None
 
 
-def test_ai_rating_appears_in_joke_list(regular_client, sample_joke, app):
-    """
-    Stub D — ai_rating appears in joke list
-    GIVEN a joke that has been rated (ai_rating = 9)
-    WHEN an authenticated user GETs /api/v1/jokes
-    THEN the response envelope includes ai_rating as an integer for that joke
+def test_ai_rating_appears_in_joke_list(regular_client, sample_joke):
+    regular_client.post('/api/v1/jokes', json={"text": "A joke to unlock the list."})
 
-    Level: HAPPY PATH
-    """
-    with app.app_context():
-        joke_in_db = _db.session.get(Joke, sample_joke.id)
-        joke_in_db.ai_rating = 9
-        _db.session.add(joke_in_db)
-        _db.session.commit()
-        _db.session.expire_all()
+    mock_response = MagicMock()
+    mock_response.json.return_value = {"response": "9"}
+    mock_response.status_code = 200
+
+    with patch('requests.post', return_value=mock_response):
+        regular_client.post(f'/api/v1/jokes/{sample_joke.id}/rate')
+
     response = regular_client.get('/api/v1/jokes')
     assert response.status_code == 200
 
-    data = response.get_json()
-    jokes = data['data']['jokes']
-
+    jokes = response.get_json()['data']['jokes']
     target = next((j for j in jokes if j['id'] == sample_joke.id), None)
 
-    assert target is not None
     assert target['ai_rating'] == 9
