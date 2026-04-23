@@ -1,7 +1,7 @@
 from flask import jsonify, current_app
 from flask_login import login_required, current_user
 import requests
-from app.models import Joke, parse_rating
+from app.models import db as _db, Joke, parse_rating
 from . import api_v1_bp
 
 
@@ -123,7 +123,7 @@ def rate_joke(joke_id):
                       "message": "AI rating service is unavailable."}
         }), 503
     joke.ai_rating = rating
-    db.session.commit()
+    _db.session.commit()
     return jsonify({
         "data": {"joke_id": joke.id, "ai_rating": joke.ai_rating},
         "status": "ok"
