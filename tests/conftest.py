@@ -119,7 +119,7 @@ def sample_jokes(app, admin_user):
 def sample_joke(app, regular_user):
     with app.app_context():
         joke = Joke(text="Why did the parrot join the Ministry?",
-                    subbmited_by=regular_user.id, flagged=False)
+                    submited_by=regular_user.id, flagged=False)
         _db.session.add(joke)
         _db.session.commit()
         yield joke
