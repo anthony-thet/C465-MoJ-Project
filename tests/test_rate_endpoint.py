@@ -90,14 +90,14 @@ def test_ai_rating_appears_in_joke_list(authenticated_client, sample_joke, app):
     Level: HAPPY PATH
     """
     with app.app_context():
-        joke_in_db = Joke.query.get(sample_joke.id)
+        joke_in_db = _db.session.get(Joke, sample_joke.id)
         joke_in_db.ai_rating = 9
         _db.session.commit()
-
     response = authenticated_client.get('/api/v1/jokes')
-    assert response.status_code == 200
 
-    jokes = response.get_json()['data']['jokes']
+    assert response.status_code == 200
+    data = response.get_json()
+    jokes = data['data']['jokes']
     target = next((j for j in jokes if j['id'] == sample_joke.id), None)
 
     assert target is not None
