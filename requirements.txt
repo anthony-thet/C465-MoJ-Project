@@ -8,3 +8,5 @@ flake8
 pytest-cov
 flask-login
 flask-cors
+requests
+re
