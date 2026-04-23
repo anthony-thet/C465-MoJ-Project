@@ -349,8 +349,7 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
     * Process Lead: `@kthet`
     * Dev Lead: `@amatariy`, `@lsiverts`
     * QA Sentinel: `@maklsmit`
-* **Summary:** [2–3 sentences: what was built and what was the most significant
-  technical decision the team made during ICEX 13]
+* **Summary:** Implemented admin-only endpoints that allow administrators to moderate content and manage roles of users. We also included an @admin_required decorator to ensure security holds as well. This means wwe also added a flagged field to jokes and had to ensure regular users can't see these flagged jokes.
 
 
 **Reflection questions:**
@@ -374,7 +373,29 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 
 
 ### Timing Report
-* **Start time:** 3:02
+* **Start time:** 3:02 PM
+* **End time:** 2:19 AM
+* **Total elapsed:** 180+ Minutes
+* **Biggest time sink:** Fixing the test_regular_user_does_not_see_flagged_jokes
+* **Comfort level with React after this ICEX:** 2
+
+---
+# ICEX_MJ14: Hiring a Critic-in-a-Box
+* **Date:** 2026-04-23
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@userX`
+    * Process Lead: `@userY`
+    * Dev Lead: `@coolds`
+    * QA Sentinel: `@userW`
+* **Summary of Work:** 
+* **Evidence & Reflection:**
+    1. `parse_rating()` returns `None` when the LLM ignores your instructions, and the route stores `null` and returns 200 anyway. Is that the right behavior? What would you do differently if the caller *required* a rating?
+    2. The route returns 503 when Ollama is unavailable, not 500. What does each status code communicate to the client? What would a React frontend do differently with a 503 vs a 500?
+    3. The AI rating is a signal, not a gate. A joke rated 1/10 is still visible to regular users. What would need to change — in the data model, the API, and the React UI — if the Ministry decided that jokes below 3/10 should be auto-flagged? Which named principle from L14 does that policy decision engage?
+
+### Timing Report
+* **Start time:** [Clock time when Phase 1 began]
 * **End time:** [Clock time when DoD check completed]
 * **Total elapsed:** [Minutes]
 * **Biggest time sink:** [What took the longest? Node install, typing the components, understanding JSX, debugging a syntax error, something else?]
