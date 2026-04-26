@@ -1,18 +1,20 @@
 FROM python:3.11-slim
 
+# The directory inside the container where code will live
 WORKDIR /app
 
-# Install dependencies first — Docker layer caching means this only
-# reruns when requirements.txt changes, not on every code change.
+# Step 1: Copy requirements from root
 COPY requirements.txt .
+
+# Step 2: Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY . .
+COPY app/ ./app/
 
+# Expose Flask's port
 EXPOSE 5000
 
-ENV FLASK_APP=app
+ENV FLASK_APP="app:create_app()"
 ENV FLASK_ENV=production
 
 CMD ["flask", "run", "--host=0.0.0.0"]
