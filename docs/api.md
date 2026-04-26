@@ -399,3 +399,14 @@ Updates a user’s role.
 
 #### Notes
 - The only accepted role values are `"user"` and `"admin"`.
+
+---
+### POST /api/v1/jokes/<id>/rate
+#### Request
+- Auth: @login_required — any authenticated user may trigger a rating
+- Request body: none required
+- Success 200: {"data": {"joke_id": N, "ai_rating": N_or_null}, "status": "ok"}
+- Error 503: {"error": {"code": "OLLAMA_UNAVAILABLE", "message": "..."}}
+
+#### Notes
+- ai_rating may be null if parse_rating() returns None

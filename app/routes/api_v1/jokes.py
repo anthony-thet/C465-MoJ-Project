@@ -1,7 +1,7 @@
 from flask import jsonify, current_app
 from flask_login import login_required, current_user
-
-from app.models import Joke
+import requests
+from app.models import db as _db, Joke, parse_rating
 from . import api_v1_bp
 
 
@@ -83,8 +83,8 @@ def get_jokes():
                     {
                         "id": joke.id,
                         "text": joke.text,
-                        "author": joke.author.username
-                        if joke.author else "anonymous"
+                        "author": joke.author.username if joke.author else "anonymous",
+                        "ai_rating": joke.ai_rating
                     }
                     for joke in jokes
                 ]
@@ -98,3 +98,32 @@ def get_jokes():
                 "message": "Unable to retrieve jokes."
             }
         }), 500
+
+
+@api_v1_bp.route('/jokes/<int:joke_id>/rate', methods=['POST'])
+@login_required
+def rate_joke(joke_id):
+    joke = Joke.query.get_or_404(joke_id)
+    prompt = (
+        f"Rate this joke from 1 to 10, where 1 is not funny and 10 is hilarious. "
+        f"Respond with only a single integer. Joke: {joke.text}"
+    )
+    try:
+        resp = requests.post(
+            'http://localhost:11434/api/generate',
+            json={"model": "llama3.2:1b", "prompt": prompt, "stream": False},
+            timeout=30,
+        )
+        resp.raise_for_status()
+        rating = parse_rating(resp.json().get('response', ''))
+    except requests.exceptions.RequestException:
+        return jsonify({
+            "error": {"code": "OLLAMA_UNAVAILABLE",
+                      "message": "AI rating service is unavailable."}
+        }), 503
+    joke.ai_rating = rating
+    _db.session.commit()
+    return jsonify({
+        "data": {"joke_id": joke.id, "ai_rating": joke.ai_rating},
+        "status": "ok"
+    }), 200

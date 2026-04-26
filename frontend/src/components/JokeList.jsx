@@ -19,6 +19,9 @@ function JokeList({ jokes }) {
       {jokes.map(joke => (
         <li key={joke.id}>
           <strong>{joke.text}</strong> — {joke.author}
+          <span className="ai-rating">
+            {joke.ai_rating !== null ? ` ⭐ ${joke.ai_rating}/10` : ' —'}
+          </span>
         </li>
       ))}
     </ul>
