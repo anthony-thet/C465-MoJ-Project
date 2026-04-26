@@ -1,4 +1,6 @@
 from flask import jsonify, current_app
+from flask_login import login_required, current_user
+
 from app.models import Joke
 from . import api_v1_bp
 
@@ -53,7 +55,16 @@ def method_not_allowed(e):
 
 
 @api_v1_bp.route('/jokes', methods=['GET'])
+@login_required
 def get_jokes():
+    has_submitted = Joke.query.filter_by(submitted_by=current_user.id).count() > 0
+    if not has_submitted:
+        return jsonify({
+            "error": {
+                "code": "HAS_NOT_SUBMITTED",
+                "message": "Submit a joke before browsing. Leave a penny, take a penny."
+            }
+        }), 403
     """Return all jokes with only the fields the frontend needs."""
     try:
         jokes = Joke.query.all()

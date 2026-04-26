@@ -306,4 +306,37 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 * **Why a whitelist, not a wildcard?** A wildcare allows any domain on the internet to read our API responses. This would mean a malicious site could bypass our security and steal private data. 
 
 ### Contract Verification
-* **Did `docs/api.md` match the actual response?** Yes, the document and implementation were consisten as they were done in tandem and updated accordingly. 
+* **Did `docs/api.md` match the actual response?** Yes, the document and implementation were consisten as they were done in tandem and updated accordingly.
+
+---
+# ICEX 12: The Ministry Opens Its Doors
+* **Date:** 2026-04-16
+* **Team Members Present:** `@amatariy`, `@coolds`, `@kthet`, `@lsiverts`
+* **Roles:**
+    * Repo Admin: `@lsiverts`
+    * Process Lead: `@amatariy`
+    * Dev Lead: `@kthet`
+    * QA Sentinel: `@coolds`
+* **Summary of Work:** Added JSON auth endpoints (register, login, logout, me)
+
+### Timing Report
+* **Start time:** 3:07 
+* **End time:** 10:15
+* **Total elapsed:** 150 Minutes
+* **Biggest time sink:** There is an issue with our frontend running thats still somewhat ongoing, but slightly better so dealing with that took a lot as well as typing the components.
+* **Comfort level with React after this ICEX:** 2
+
+### The Breaking Change
+* **What changed** on `GET /api/v1/jokes` between ICEX 11 and ICEX 12? Describe the behavioral difference in one sentence. The endpoint changed from public (no authentication required) to protected, now requiring a valid session cookie and rejecting users who have not yet submitted a joke
+* **Why did it change?** What capability did the team not have in ICEX 11 that made auth enforcement impossible then? there was no way to verify a session from the React frontend, so enforcing authentication on the API was not yet possible.
+* **If this were a public API** with external consumers who depended on the ICEX 11 contract, what would your team do differently? Name a specific technique from L12 (versioning, deprecation headers, feature flags) and explain how you would apply it. I would keep the existing endpoint available at api/v1/jokes while introducing the authenticated version at api/v2/jokes and adding a depreciation response header
+
+### Policy vs. Mechanism
+* **Where is the "take a penny" rule enforced?** routes/api_v1/jokes.py inside get_jokes()
+* **Where is the "take a penny" rule communicated to the user?** In App.jsx, which checks currentUser.has_submitted and displays the message "Submit your first joke to unlock the archive. Leave a penny, take a penny."
+* **Why do both exist?** a user could bypass by calling the API
+
+### Session Cookie Verification
+* **Open DevTools → Application → Cookies.** What is the name of the session cookie Flask set? What domain is it scoped to? I believe session scope to localhost but the issue makes it hard to know
+* **What happens if you open a private/incognito window** and visit `localhost:5173`? Do you see the login form or the joke list? Why? you see a login form as incognito has no cookies
+

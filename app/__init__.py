@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_migrate import Migrate
 from app.models import db
 from flask_login import LoginManager
@@ -10,7 +10,11 @@ login_manager = LoginManager()
 
 def create_app(config=None):
     app = Flask(__name__)
-    CORS(app, origins=["http://localhost:5173"])
+    CORS(app,
+         origins=["http://localhost:5173"],
+         supports_credentials=True,
+         allow_headers=["Content-Type"],
+         methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"])
     app.config['SECRET_KEY'] = 'dev-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///moj.db'
 
@@ -35,6 +39,9 @@ def create_app(config=None):
     from app.routes.api_v1 import api_v1_bp
     app.register_blueprint(api_v1_bp)
 
+    from app.routes.api_v1.auth import api_v1_auth_bp
+    app.register_blueprint(api_v1_auth_bp)
+
     return app
 
 
@@ -43,3 +50,13 @@ def load_user(user_id):
     """Called on every request with a valid session cookie.
     Returns the User object, or None if the session is invalid."""
     return User.query.get(int(user_id))
+
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return jsonify({
+        "error": {
+            "code": "UNAUTHORIZED",
+            "message": "Authentication required."
+        }
+    }), 401
