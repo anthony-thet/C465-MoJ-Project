@@ -340,3 +340,42 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 * **Open DevTools → Application → Cookies.** What is the name of the session cookie Flask set? What domain is it scoped to? I believe session scope to localhost but the issue makes it hard to know
 * **What happens if you open a private/incognito window** and visit `localhost:5173`? Do you see the login form or the joke list? Why? you see a login form as incognito has no cookies
 
+---
+# ICEX_MJ13 — The Ministry's Inner Circle
+* **Date:** 2026-04-21
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@coolds`
+    * Process Lead: `@kthet`
+    * Dev Lead: `@amatariy`, `@lsiverts`
+    * QA Sentinel: `@maklsmit`
+* **Summary:** [2–3 sentences: what was built and what was the most significant
+  technical decision the team made during ICEX 13]
+
+
+**Reflection questions:**
+
+1. `@admin_required` lives in the backend. Your `AdminPanel` only renders for admin
+   users in React. If you removed `@admin_required` but kept the frontend conditional
+   render, what would happen? How would you demonstrate the gap without modifying
+   the source code?
+   If @admin_required were removed from the backend, a non-admin user could bypass the hidden React UI by making direct HTTP requests to the admin endpoints. This could be demonstrated without changing source code by logging in as a normal user and using browser dev tools, curl, or Postman to call /api/v1/admin/... directly with the authenticated session.
+
+3. The `DELETE` endpoint hard-deletes a joke. The `PATCH .../flag` endpoint soft-deletes
+   it. When would you choose soft-delete over hard-delete in a production system?
+   What does the Ministry permanently lose when an admin clicks Delete instead of Flag?
+   In a production system, soft-delete is preferred when content may need to be reviewed, restored, audited, or analyzed later. Hard-delete permanently removes that information. If an admin clicks Delete instead of Flag, the Ministry loses the joke itself, its moderation history, and the ability to recover or investigate that content later.
+
+4. The admin Blueprint lives in a separate file from your main API routes. How does
+   this module-level separation apply *Principle of Least Privilege* and *Separation
+   of Concerns* — not just as organizational convenience, but as a security boundary?
+   What would have to change if you moved the admin routes back into the main routes file?
+   Putting admin routes in a separate module helps keep privileged actions isolated. That supports separation of concerns and least privilege because only a small part of the codebase handles admin-only behavior. If those routes were moved into the main routes file, the security boundary would be less clear and the risk of mistakes would go up.
+
+
+### Timing Report
+* **Start time:** 3:02
+* **End time:** [Clock time when DoD check completed]
+* **Total elapsed:** [Minutes]
+* **Biggest time sink:** [What took the longest? Node install, typing the components, understanding JSX, debugging a syntax error, something else?]
+* **Comfort level with React after this ICEX:** [1–5 scale, where 1 = "completely lost" and 5 = "I could build another component from scratch"]

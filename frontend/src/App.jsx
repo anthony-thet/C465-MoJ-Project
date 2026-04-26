@@ -14,7 +14,7 @@
 import { useState, useEffect } from 'react';
 import JokeList from './components/JokeList';
 import JokeCount from './components/JokeCount';
-
+import AdminPanel from './components/AdminPanel';
 const API_BASE = import.meta.env.VITE_API_BASE;
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showJokes, setShowJokes] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     async function loadData() {
@@ -60,6 +61,23 @@ function App() {
   return (
     <div>
       <h1>Ministry of Jokes</h1>
+      <p>Welcome, {currentUser.username}!</p>	
+      {currentUser.role === 'admin' && <AdminPanel />}
+      <JokeCount count={count} />
+      {currentUser.has_submitted ? (
+        <>
+          {loading && <p>Loading jokes...</p>}
+          {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+          {!loading && !error && <JokeList jokes={jokes} />}
+         </>
+       ) : (
+          <p><em>Submit your first joke to unlock the archive.
+            Leave a penny, take a penny.</em></p>
+       )}
+  
+      <button onClick={() => setShowJokes(!showJokes)}>
+        {showJokes ? "Hide Jokes" : "Show Jokes"}
+      </button>s</h1>
 
       <JokeCount count={count} />
 
@@ -71,5 +89,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
