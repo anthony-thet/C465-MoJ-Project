@@ -233,7 +233,6 @@ Start thinking now: which routes have no tests at all?
 * **Team Members:** `@lsiverts`, `@kthet`, `@amatariy`, `@maklsmit`, `@coolds`
 * **Summary:** The MoJ is now a fully fledged secure and auditable playform. We now have role-based authentication using Flask-Login, a three-dimensional rating system that adheres to strict unique constraints to maintain fair ratings, and a robust CI pipeline with security checks on every commit. 
 * **Key Design Choice (one sentence):** We opted for a structured JSON logging architecture to ensure that we can perform quick and precise machine-readable queries into all our logs and for any auditing or support purposes.
-
 ---
 # ICEX 9: The Great Joke-O-Meter
 * **Date:** 2026-04-07
@@ -248,7 +247,6 @@ Start thinking now: which routes have no tests at all?
 ### API Contract Reflection
 * **Contract completeness:** Could a developer who has never seen your Flask code build a working `fetch()` call from `docs/api.md` alone? What would they still need to know that the document does not say? Yes a developer who has never seen our flask code can build a working fetch() using docs/api.md alone. 
 * **Pagination question:** What happens to a client consuming `GET /api/v1/jokes` when there are 10,000 jokes and no pagination? How does the count endpoint enable a fix? The response would be extremely long, use a high amount of memory, and be inefficient in general. the count endpoint allows for smaller subsets to be given causing more reasonably sized responses.
-
 ---
 # ICEX 10: The Display Terminal
 * **Date:** 2026-04-09
@@ -277,7 +275,6 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 ### Reflection
 * **Props vs. state:** In your own words, what is the difference between a prop and a state variable? Which component in this ICEX owns state? Which components only receive props?
 * **The seam:** The `JOKES` array at the top of `App.jsx` is hardcoded. Next week, `fetch()` will replace it with data from the Flask API. Which files would need to change? Which files would stay exactly the same? What does that tell you about how this code is organized?
-
 ---
 # ICEX 11: The Ministry's Two-Speed Dispatch
 * **Date:** 2026-04-14
@@ -307,7 +304,6 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 
 ### Contract Verification
 * **Did `docs/api.md` match the actual response?** Yes, the document and implementation were consisten as they were done in tandem and updated accordingly.
-
 ---
 # ICEX 12: The Ministry Opens Its Doors
 * **Date:** 2026-04-16
@@ -339,7 +335,6 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 ### Session Cookie Verification
 * **Open DevTools → Application → Cookies.** What is the name of the session cookie Flask set? What domain is it scoped to? I believe session scope to localhost but the issue makes it hard to know
 * **What happens if you open a private/incognito window** and visit `localhost:5173`? Do you see the login form or the joke list? Why? you see a login form as incognito has no cookies
-
 ---
 # ICEX_MJ13 — The Ministry's Inner Circle
 * **Date:** 2026-04-21
@@ -378,7 +373,6 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 * **Total elapsed:** 180+ Minutes
 * **Biggest time sink:** Fixing the test_regular_user_does_not_see_flagged_jokes
 * **Comfort level with React after this ICEX:** 2
-
 ---
 # ICEX_MJ14: Hiring a Critic-in-a-Box
 * **Date:** 2026-04-23
@@ -403,3 +397,10 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 * **Total elapsed:** 328 minutes
 * **Biggest time sink:** Fixing the fixtures and configs for test cases.
 * **Comfort level with React after this ICEX:** 2
+---
+# W14 Extension — GHCR Image Push
+* **Date:** 2026-04-26
+* **Team Members:** @coolds, @kthet, @lsiverts, @maklsmit, @amatariy
+* **Image:** github.iu.edu/csci-p465-p565/sp26-team-05-moj/backend:latest
+* **Summary:** The workflow builds the Flask backend Docker image and pushes it to the GitHub IU container registry on every push to main.
+* **Design note:** The workflow pushes `:latest` for quickly pulling the newest main build and `:<SHA>` for pulling a reproducible image tied to one specific commit.
