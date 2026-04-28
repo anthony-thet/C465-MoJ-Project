@@ -18,7 +18,7 @@ services:
       DATABASE_URL: postgresql://moj:moj_dev_password@db/moj
       SECRET_KEY: dev-secret-key-change-in-production
       OLLAMA_BASE_URL: http://ollama:11434
-      FLASK_APP: app
+      FLASK_APP: "app:create_app()" 
       FLASK_ENV: development
     depends_on:
       - db
