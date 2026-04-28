@@ -16,8 +16,13 @@ def create_app(config=None):
          allow_headers=["Content-Type"],
          methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"])
     app.config['SECRET_KEY'] = 'dev-key'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///moj.db'
-
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    'DATABASE_URL', 'sqlite:///moj.db'
+    )
+    app.config['OLLAMA_BASE_URL'] = os.environ.get(
+    'OLLAMA_BASE_URL', 'http://localhost:11434'
+    )
+    
     if config is not None:
         app.config.from_object(config)
 
