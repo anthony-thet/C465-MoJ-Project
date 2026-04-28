@@ -400,7 +400,22 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 ---
 # W14 Extension — GHCR Image Push
 * **Date:** 2026-04-26
-* **Team Members:** @coolds, @kthet, @lsiverts, @maklsmit, @amatariy
+* **Team Members:**`@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
 * **Image:** github.iu.edu/csci-p465-p565/sp26-team-05-moj/backend:latest
 * **Summary:** The workflow builds the Flask backend Docker image and pushes it to the GitHub IU container registry on every push to main.
 * **Design note:** The workflow pushes `:latest` for quickly pulling the newest main build and `:<SHA>` for pulling a reproducible image tied to one specific commit.
+
+---
+# ICEX_MJ15: Ministry-in-a-Box
+* **Date:** 2026-04-28
+* **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Roles:**
+    * Repo Admin: `@userX`
+    * Process Lead: `@coolds`
+    * Dev Lead: `@kthet`
+    * QA Sentinel: `@userW`
+* **Summary of Work:** [1–2 sentences: what was containerized and whether the full stack ran]
+* **Evidence & Reflection:**
+    1. Before Docker Compose, Flask connected to Ollama at `http://localhost:11434`. Why does that URL break when Flask runs inside a container? What hostname does it use instead, and why does that name resolve?
+    2. `depends_on: db` starts the PostgreSQL container before the backend container. Teams still hit "connection refused" on first startup. Why doesn't `depends_on` guarantee the database is ready to accept connections? What is the production solution to this problem?
+    3. The compose file uses `volumes: - ./backend:/app` (a bind mount) instead of copying files at build time. What developer workflow does this enable? When would you remove the bind mount and switch to a copy-only Dockerfile — and why must you do that before deploying to production?
