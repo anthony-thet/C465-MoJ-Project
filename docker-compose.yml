@@ -8,14 +8,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   backend:
     build:
       context: .
       dockerfile: backend/Dockerfile
     ports:
-      - "5000:5000"
+      - "5001:5000"
     environment:
       DATABASE_URL: postgresql://moj:moj_dev_password@db/moj
       SECRET_KEY: dev-secret-key-change-in-production
@@ -36,7 +36,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
     ports:
-      - "5173:5173"
+      - "5174:5173"
     volumes:
       - ./frontend:/app
       - /app/node_modules

@@ -77,7 +77,7 @@ function App() {
   
       <button onClick={() => setShowJokes(!showJokes)}>
         {showJokes ? "Hide Jokes" : "Show Jokes"}
-      </button>s</h1>
+      </button>
 
       <JokeCount count={count} />
 
