@@ -410,12 +410,15 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
 * **Date:** 2026-04-28
 * **Team Members Present:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
 * **Roles:**
-    * Repo Admin: `@userX`
+    * Repo Admin: `@maklsmit`
     * Process Lead: `@coolds`
-    * Dev Lead: `@kthet`
-    * QA Sentinel: `@userW`
-* **Summary of Work:** [1–2 sentences: what was containerized and whether the full stack ran]
-* **Evidence & Reflection:**
+    * Dev Lead: `@kthet`, `@amatariy`
+    * QA Sentinel: `@lsiverts`
+* **Summary of Work:** We containerized a full-stack architecture consisting of a React frontend, a Flask backend, and a PostgreSQL database. Alongside roles and authentication with a take a penny, leave a penny ruleset. 
+* **Evidence & Reflection:** 
     1. Before Docker Compose, Flask connected to Ollama at `http://localhost:11434`. Why does that URL break when Flask runs inside a container? What hostname does it use instead, and why does that name resolve?
+       - Localhost refers strictly to that specific container's own network. Docker Compose creates an internal DNS server that automatically maps service names to their respective IP.
     2. `depends_on: db` starts the PostgreSQL container before the backend container. Teams still hit "connection refused" on first startup. Why doesn't `depends_on` guarantee the database is ready to accept connections? What is the production solution to this problem?
+       - Depends on only tracks the state of the container. It doesn't know if the software inside that container is ready or not. You can confugre a database to report a healthy status only once it's ready for traffic.   
     3. The compose file uses `volumes: - ./backend:/app` (a bind mount) instead of copying files at build time. What developer workflow does this enable? When would you remove the bind mount and switch to a copy-only Dockerfile — and why must you do that before deploying to production?
+       - Bind mounts enable reloading. When you change a line of python. You switch COPY in the dockerfile once you are ready for staging or production. You must swithc because production environments don't have a local folder to mount to. 
