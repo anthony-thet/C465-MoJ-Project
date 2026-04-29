@@ -30,8 +30,8 @@ function App() {
       try {
         // Fetch jokes and count in parallel
         const [jokesRes, countRes] = await Promise.all([
-          fetch(`${API_BASE}/jokes`),
-          fetch(`${API_BASE}/jokes/count`),
+          fetch(`${API_BASE}/jokes`, { credentials: 'include' }),
+          fetch(`${API_BASE}/jokes/count`, { credentials: 'include' }),
         ]);
 
         if (!jokesRes.ok) {
