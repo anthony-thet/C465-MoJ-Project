@@ -9,3 +9,4 @@ pytest-cov
 flask-login
 flask-cors
 requests
+psycopg2-binary

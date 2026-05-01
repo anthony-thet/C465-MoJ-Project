@@ -30,8 +30,8 @@ function App() {
       try {
         // Fetch jokes and count in parallel
         const [jokesRes, countRes] = await Promise.all([
-          fetch(`${API_BASE}/jokes`),
-          fetch(`${API_BASE}/jokes/count`),
+          fetch(`${API_BASE}/jokes`, { credentials: 'include' }),
+          fetch(`${API_BASE}/jokes/count`, { credentials: 'include' }),
         ]);
 
         if (!jokesRes.ok) {
@@ -77,7 +77,7 @@ function App() {
   
       <button onClick={() => setShowJokes(!showJokes)}>
         {showJokes ? "Hide Jokes" : "Show Jokes"}
-      </button>s</h1>
+      </button>
 
       <JokeCount count={count} />
 
@@ -89,3 +89,5 @@ function App() {
     </div>
   );
 }
+
+export default App;

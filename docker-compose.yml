@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: moj
+      POSTGRES_PASSWORD: moj_dev_password
+      POSTGRES_DB: moj
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "5001:5000"
+    environment:
+      DATABASE_URL: postgresql://moj:moj_dev_password@db/moj
+      SECRET_KEY: dev-secret-key-change-in-production
+      OLLAMA_BASE_URL: http://ollama:11434
+      # This points to your specific application factory
+      FLASK_APP: "app:create_app()"
+      FLASK_ENV: development
+    depends_on:
+      - db
+      - ollama
+    volumes:
+      - ./app:/app/app
+      - ./backend:/app/backend
+      - ./requirements.txt:/app/requirements.txt
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  postgres_data:
+  ollama_data:

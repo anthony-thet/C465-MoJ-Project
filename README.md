@@ -59,3 +59,10 @@ after the course ends. Before that date, fork or clone it to your personal
 GitHub account if you want to keep a copy of your work.
 
 **Offboard target:** end of Fall 2026 semester
+---
+# Getting Started
+- docker compose up — starts all four services
+- docker compose exec backend flask db upgrade — run migrations (first time)
+- Backend: http://localhost:5000, React: http://localhost:5173
+- Ollama model pull: docker compose exec ollama ollama pull llama3.2:1b
+- .env is git ignored as it contains secrets about the product version of MoJ. .env.example is the safe template that has been commited.
