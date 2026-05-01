@@ -422,3 +422,10 @@ Paste or describe the component tree for your app (see Process Lead's sketch):
        - Depends on only tracks the state of the container. It doesn't know if the software inside that container is ready or not. You can confugre a database to report a healthy status only once it's ready for traffic.   
     3. The compose file uses `volumes: - ./backend:/app` (a bind mount) instead of copying files at build time. What developer workflow does this enable? When would you remove the bind mount and switch to a copy-only Dockerfile — and why must you do that before deploying to production?
        - Bind mounts enable reloading. When you change a line of python. You switch COPY in the dockerfile once you are ready for staging or production. You must swithc because production environments don't have a local folder to mount to. 
+
+---
+# Cycle 3 Close — moj-c3-v1.0
+* **Date:** 2026-05-01
+* **Team Members:** `@maklsmit`, `@lsiverts`, `@kthet`, `@amatariy`, `@coolds`
+* **Summary:** Cycle 3 transitioned the MoJ from a local system to a containerized, full-stack application featuring PostgreSQL storage, a React frontend, and a secure Session-based authentication system using Flask.
+* **Key Design Choice (one sentence):** Requiring users to submit a joke before accessing other jokes established the "Leave a penny, take a penny" structure that directly shaped both the backend authorization logic and the frontend.
